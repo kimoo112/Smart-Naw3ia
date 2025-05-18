@@ -19,15 +19,16 @@ dependencies:
   cupertino_icons: ^1.0.2
   dio: ^5.4.0
   equatable: ^2.0.5
-  flutter_localizations:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.3
+  flutter_iconly: ^1.0.2
   flutter_localization: ^0.3.2
   flutter_screenutil: ^5.9.0
   flutter_secure_storage: ^9.2.4
   go_router: ^13.0.0
   html: ^0.15.4
+  iconify_flutter: ^0.0.7
   intro_screen_onboarding_flutter: ^1.0.0
   shared_preferences: ^2.5.3
 

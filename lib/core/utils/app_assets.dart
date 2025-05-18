@@ -18,6 +18,10 @@ class Assets {
   /// assets/images/onboarding3.png
   static const String imagesOnboarding3 = "assets/images/onboarding3.png";
 
+  /// Assets for imagesOnboarding4
+  /// assets/images/onboarding4.png
+  static const String imagesOnboarding4 = "assets/images/onboarding4.png";
+
   /// Assets for imagesSplashShapes
   /// assets/images/splash_shapes.png
   static const String imagesSplashShapes = "assets/images/splash_shapes.png";
