@@ -25,12 +25,12 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => LoginCubit(),
       child: ScreenUtilInit(
-        designSize: const Size(375, 812), // Design size based on iPhone X
+        designSize: const Size(390, 844),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
           return MaterialApp.router(
-            locale: const Locale('ar'), // Force Arabic
+            locale: const Locale('ar'),
             supportedLocales: const [
               Locale('en'),
               Locale('ar'),
@@ -42,8 +42,8 @@ class MyApp extends StatelessWidget {
             ],
             title: 'Flutter Demo',
             theme: ThemeData(
-  fontFamily: 'Almarai', 
-                useMaterial3: true,
+              fontFamily: 'Almarai',
+              useMaterial3: true,
             ),
             routerConfig: router,
           );

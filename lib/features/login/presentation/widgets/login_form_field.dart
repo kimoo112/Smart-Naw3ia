@@ -25,10 +25,12 @@ class LoginFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      cursorColor: AppColors.primaryColor,
       controller: controller,
       obscureText: isPassword && obscureText,
       decoration: InputDecoration(
         labelText: label,
+        hoverColor: AppColors.primaryColor,
         labelStyle: TextStyle(
           color: AppColors.primaryColor,
           fontFamily: 'Almarai',
