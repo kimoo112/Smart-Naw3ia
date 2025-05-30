@@ -1,0 +1,213 @@
+{
+  "app": {
+    "title": "Faculty of Specific Education",
+    "welcome": "Welcome",
+    "search": "Search here",
+    "more": "More..."
+  },
+  "home": {
+    "home": "Home",
+    "departments": "College Departments",
+    "view_all": "View All",
+    "latest_news": "Latest News",
+    "how_can_we_help": "How can we help you today?",
+    "chat": "Chat",
+    "bookmark": "Bookmarks",
+    "person": "Profile",
+    "settings": "Settings"
+  },
+  "news": {
+    "categories": {
+      "students": "Students",
+      "events": "Events",
+      "results": "Results",
+      "surveys": "Surveys"
+    },
+    "practical_education": {
+      "title": "Practical Education Registration for Level 3",
+      "description": "Registration for Practical Education for Level 3 begins on Sunday, March 24, 2024"
+    },
+    "conference": {
+      "title": "Fourth Conference of the Faculty of Specific Education",
+      "description": "Under the patronage of the University President, the Faculty of Specific Education organizes its fourth conference"
+    },
+    "exam_results": {
+      "title": "First Semester Exam Results"
+    },
+    "survey": {
+      "title": "Student Satisfaction Survey for Evaluation and Exams"
+    },
+    "excellence_program": {
+      "title": "Excellence and Innovation Student Program"
+    },
+    "title": "Latest News",
+    "view_all": "View All",
+    "read_more": "Read More"
+  },
+  "onboarding": {
+    "welcome": {
+      "title": "Welcome to Our College",
+      "subtitle": "Discover our academic programs and facilities"
+    },
+    "chatbot": {
+      "title": "AI Assistant",
+      "subtitle": "Get instant answers to your questions"
+    },
+    "education": {
+      "title": "Quality Education",
+      "subtitle": "Learn from experienced faculty members"
+    },
+    "start": {
+      "title": "Let's Begin",
+      "subtitle": "Start your educational journey with us"
+    }
+  },
+  "departments": {
+    "home_economics": "Home Economics",
+    "art_education": "Art Education",
+    "music_education": "Music Education",
+    "educational_technology": "Educational Technology",
+    "educational_psychology": "Educational and Psychological Sciences"
+  },
+  "department_details": {
+    "about": "About",
+    "vision": "Vision",
+    "aims": "Aims",
+    "staff": "Teaching Staff",
+    "overview": "Overview"
+  },
+  "chat": {
+    "title": "Faculty Assistant",
+    "type_message":"=Ask about faculty, departments, courses..."
+  },
+  "staff": {
+    "manager": "Head of Department",
+    "other_members": "Other Members",
+    "professors": "Professors",
+    "associate_professors": "Associate Professors",
+    "lecturers": "Lecturers",
+    "teaching_assistants": "Teaching Assistants",
+    "demonstrators": "Demonstrators",
+    "other_staff": "Other Staff",
+    "position": "Position",
+    "email": "Email",
+    "phone": "Phone",
+    "office": "Office",
+    "specialization": "Specialization",
+    "department": "Department",
+    "qualifications": "Qualifications",
+    "experience": "Experience",
+    "publications": "Publications",
+    "research": "Research"
+  },
+  "sections": {
+    "home": "Home",
+    "college_vision": "College Vision & Mission",
+    "college_goals": "College Goals",
+    "history": "Historical Overview",
+    "dean_word": "Dean's Word"
+  },
+  "college_vision": {
+    "vision": "Vision",
+    "mission": "Mission",
+    "vision_text": "Achieving excellence and leadership regionally and globally in various specific fields, and raising competitive capabilities in light of digital transformation.",
+    "mission_text": "Preparing a creative and competitive graduate academically and professionally in terms of scientific and research aspects in postgraduate studies and research, and keeping pace with labor market requirements in light of Egypt's Vision 2030, achieving sustainable development for society."
+  },
+  "college_goals": {
+    "goal1": "1. Developing the college's academic programs in line with global quality standards and digital transformation policies.",
+    "goal2": "2. Maximizing the competitive capabilities of college graduates and their ability to make decisions and deal with crises.",
+    "goal3": "3. Promoting the college's distinguished departments regionally to attract students at the local and regional levels.",
+    "goal4": "4. Doubling funded research projects to support scientific research.",
+    "goal5": "5. Raising the efficiency of research output to increase international publication and support the labor market locally, regionally, and globally."
+  },
+  "schedule": {
+    "title": "Schedule",
+    "sections": "Sections",
+    "lectures": "Lectures",
+    "time": "Time",
+    "room": "Room",
+    "instructor": "Instructor",
+    "course": "Course",
+    "section": "Section",
+    "day": "Day"
+  },
+  "academic": {
+    "course_registration": "Course Registration",
+    "exam_schedule": "Exam Schedule",
+    "academic_calendar": "Academic Calendar",
+    "course_materials": "Course Materials",
+    "assignments": "Assignments",
+    "grades": "Grades",
+    "academic_advising": "Academic Advising"
+  },
+  "settings": {
+    "title": "Settings",    "dark_mode": "Dark Mode",
+
+    "theme": "Theme",
+    "language": "Language",
+    "notifications": "Notifications",
+    "about": "About",
+    "help": "Help",
+    "general": "General",
+"preferences": "Preferences",
+"more": "More",
+    "logout": "Logout"
+  },
+  "login": {
+    "title": "Login",
+    "subtitle": "Enter your credentials to login",
+    "student_number": "Student Number",
+    "password": "Password",
+    "forgot_password": "Forgot Password?",
+    "login_button": "Login",
+    "validation": {
+      "student_number_required": "Please enter your student number",
+      "student_number_length": "Student number must be at least 8 digits",
+      "student_number_format": "Student number must be 14 digits",
+      "password_required": "Please enter your password",
+      "password_length": "Password must be at least 6 characters",
+      "invalid_credentials": "Invalid student number",
+      "login_success": "Login successful"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "submit": "Submit",
+    "back": "Back",
+    "next": "Next",
+    "done": "Done",
+    "close": "Close",
+    "search": "Search"
+  },
+  "department": {
+    "about": "About",
+    "vision": "Vision",
+    "aims": "Aims",
+    "staff": "Staff",
+    "contact": "Contact",
+    "news": "News",
+    "events": "Events",
+    "gallery": "Gallery",
+    "research": "Research",
+    "publications": "Publications"
+  },
+  "dean_word": {
+    "title": "Dean's Word",
+    "content": "Education is the foundation of renaissance and the basis of national security. Our world today is swept by a tremendous scientific and technological revolution. In order to keep pace with the rapid and successive developments in various specific fields, the Faculty of Specific Education - Alexandria University - with its noble mission and the multiple roles and diverse tasks it performs, is the backbone in developing society and achieving its goals. The college strives to achieve quality and excellence and occupy a prestigious position on the map of higher education with its various academic curricula to provide students with technical and creative skills in all fields, aiming to prepare a qualified teacher educationally at the highest level of scientific competence, and to provide him with the skills and knowledge developed through the continuous development of programs and academic plans offered by the college in various specific specializations at the undergraduate and graduate levels to face all internal and external challenges necessary to break into the labor market, whether inside or outside the country, in addition to providing specialized research, training and consulting services to various community institutions in a way that contributes to community development.\n\nI pray to God to grant us all success in achieving the college's mission and preparing teachers who believe in their mission and are capable of creativity and shaping a world of teaching, learning and competing in the labor market. My sincere prayers that our college reaches its rightful place and deserved position thanks to the efforts made by everyone. I also hope that what we provide in terms of information on this website of activities, conferences, seminars and workshops, as well as the achievements achieved by the college, which are constantly updated, achieves what you want to know, and we always strive for more continuous development of the website to meet your needs and desires in a way that achieves the public benefit.\n\nWith my sincere thanks and appreciation to everyone who contributed their efforts in preparing this website, and I pray to God Almighty to grant us all success in serving, elevating and developing our dear homeland;",
+    "signature": "Prof. Dr. Nagda Ibrahim Madi\n\nDean of the Faculty of Specific Education, Alexandria University"
+  },
+  "home_sections": {
+    "departments": "College Departments",
+    "view_all": "View All"
+  },
+  "history": {
+    "title": "Historical Overview",
+    "content": "The schools of the Ministry of Education suffered for many years from a clear shortage in applied subjects schools (Home Economics, Music Education, Art Education), where there was a minority of specialized colleges that provided the ministry with its needs in these specializations such as the College of Home Economics in Cairo and Fine Arts in Alexandria. However, most graduates in these colleges were heading to other fields away from the teaching profession, which was rare, in addition to the fact that teacher training institutes were primarily concerned with studying applied subjects, so educational subjects were added to students in the last two years of study, and thus the community lacked the educationally qualified teacher to teach these subjects.\n\nTherefore, thinking was directed towards establishing specific colleges that work to qualify this teacher who can be relied upon in developing students' personalities through educational programs in arts, music and home economics, to perform this vital role with proper preparation.\n\nThe Specific Teacher Colleges in Alexandria was one of four colleges that were approved for establishment in September 1988 in Abbasiya for female teachers, and Dar Al-Salam for male teachers and two colleges in Alexandria at Raml Teachers, but the circumstances of establishment and the delay in study in the year of establishment led to the opening of one college in Alexandria. The name at first did not agree with the precise scientific content and the educational goal for which the college was established, then the college was named the Faculty of Specific Education in Alexandria to be one of the leading colleges that moved with steady and conscious steps to graduate the educationally qualified teacher technically in the fields of home economics, arts and music.\n\nTo keep pace with contemporary global educational trends in teacher preparation, the Supreme Council of Specific Colleges and Kindergartens adopted the introduction of the two-semester system that achieves continuity of the educational process and full integration of students in study and activities throughout the academic year. Based on this, this system was applied starting from the academic year 1995/1996 according to Ministerial Decision No. 1556 dated 26/10/1995, and the study plan was distributed on this basis in all academic divisions of the college."
+  }
+}

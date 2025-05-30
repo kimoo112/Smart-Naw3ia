@@ -14,5 +14,6 @@
 		"ويساعدك",
 		"يجيب",
 		"يوفر"
-	]
+	],
+	"java.configuration.updateBuildConfiguration": "interactive"
 }

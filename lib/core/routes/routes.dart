@@ -2,4 +2,8 @@ const String splashView = '/';
 const String onboarding = '/onboardingView';
 const String loginView = '/loginView';
 const String homeView = '/homeView';
-
+const String settingsView = '/settingsView';
+const String allDataView = '/allDataView';
+const String allDepartmentsView = '/allDepartmentsView';
+const String allNewsView = '/allNewsView';
+const String chatView = '/chat';
