@@ -32,7 +32,7 @@ class _SplashViewState extends State<SplashView> {
       } // Go to home if already logged in
     } else {
       if (mounted) {
-        delayedNavigate(context, homeView);
+        delayedNavigate(context, onboarding);
       } // Show onboarding
     }
   }

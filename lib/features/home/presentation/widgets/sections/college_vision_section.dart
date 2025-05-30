@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:naw3ia/core/localization/translation_extension.dart';
 
 class CollegeVisionSection extends StatelessWidget {
   const CollegeVisionSection({super.key});
@@ -12,7 +13,7 @@ class CollegeVisionSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'رؤية الكلية',
+              'college_vision.vision'.tr(context),
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
@@ -21,15 +22,15 @@ class CollegeVisionSection extends StatelessWidget {
               textDirection: TextDirection.rtl,
             ),
             const SizedBox(height: 10),
-            const Text(
-              'تحقيق التميز والصدارة إقليميًا وعالميًا بمختلف المجالات النوعية، ورفع القدرة التنافسية في ضوء التحول الرقمي.',
-              style: TextStyle(fontSize: 18),
+            Text(
+              'college_vision.vision_text'.tr(context),
+              style: const TextStyle(fontSize: 18),
               textDirection: TextDirection.rtl,
               textAlign: TextAlign.justify,
             ),
             const SizedBox(height: 30),
             Text(
-              'رسالة الكلية',
+              'college_vision.mission'.tr(context),
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
@@ -38,10 +39,9 @@ class CollegeVisionSection extends StatelessWidget {
               textDirection: TextDirection.rtl,
             ),
             const SizedBox(height: 10),
-            const Text(
-              'إعداد خريج نوعي مبدع ومنافس أكاديميًا ومهنيًا من الناحية العلمية والبحثية في الدراسات العليا والبحوث، '
-              'ومواكبًا لمتطلبات سوق العمل في ضوء رؤية مصر 2030، بما يحقق تنمية مستدامة للمجتمع.',
-              style: TextStyle(fontSize: 18),
+            Text(
+              'college_vision.mission_text'.tr(context),
+              style: const TextStyle(fontSize: 18),
               textDirection: TextDirection.rtl,
               textAlign: TextAlign.justify,
             ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../data/models/staff_model.dart';
+import 'package:naw3ia/core/utils/app_text_styles.dart';
+
+import '../../data/models/staff_model.dart';
 
 class StaffMemberCard extends StatelessWidget {
   final StaffMember member;
@@ -35,12 +37,7 @@ class StaffMemberCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    member.name,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
+                  Text(member.name, style: CustomTextStyles.almarai400Style20),
                   const SizedBox(height: 4),
                   Text(
                     member.position,
@@ -67,9 +64,10 @@ class StaffMemberCard extends StatelessWidget {
                         const SizedBox(width: 4),
                         Text(
                           member.email!,
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: Colors.blue,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: Colors.blue,
+                                  ),
                         ),
                       ],
                     ),
@@ -82,4 +80,4 @@ class StaffMemberCard extends StatelessWidget {
       ),
     );
   }
-} 
+}

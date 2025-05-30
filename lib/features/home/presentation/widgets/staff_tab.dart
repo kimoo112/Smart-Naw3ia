@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../data/models/staff_model.dart';
+import '../../data/models/staff_model.dart';
 import 'organizational_chart.dart';
 
 class StaffTab extends StatelessWidget {

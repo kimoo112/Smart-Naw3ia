@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:naw3ia/core/utils/app_colors.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:naw3ia/core/localization/cubit/locale_cubit.dart';
+import 'package:naw3ia/features/home/presentation/cubit/news_cubit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../data/models/news_model.dart'; // Adjust path as needed
-
-class NewsListView extends StatelessWidget {
+class NewsListView extends StatefulWidget {
   const NewsListView({super.key});
+
+  @override
+  State<NewsListView> createState() => _NewsListViewState();
+}
+
+class _NewsListViewState extends State<NewsListView> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<NewsCubit>().fetchNews();
+  }
 
   void _launchURL(String? url) async {
     if (url != null && await canLaunchUrl(Uri.parse(url))) {
@@ -15,69 +26,94 @@ class NewsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 160, // Adjust based on your design
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        itemCount: newsList.length,
-        itemBuilder: (context, index) {
-          final news = newsList[index];
-          return GestureDetector(
-            onTap: () => _launchURL(news.link),
-            child: Container(
-              width: 280,
-              margin: const EdgeInsets.only(right: 12),
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
-                    blurRadius: 6,
-                    offset: const Offset(0, 4),
-                  )
-                ],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    news.title,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    news.category,
-                    style: TextStyle(
-                      color: AppColors.primaryColor,
-                      fontSize: 14,
-                    ),
-                  ),
-                  const Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        news.date,
-                        style: TextStyle(
-                            fontSize: 12,
-                            color: AppColors.primaryColor.withOpacity(.5)),
+    return BlocListener<LocaleCubit, LocaleState>(
+      listener: (context, state) {
+        // Refresh news when locale changes
+        context.read<NewsCubit>().fetchNews();
+      },
+      child: BlocBuilder<NewsCubit, NewsState>(
+        builder: (context, state) {
+          if (state is NewsLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (state is NewsError) {
+            return Center(child: Text(state.message));
+          }
+
+          if (state is NewsLoaded) {
+            final locale =
+                context.watch<LocaleCubit>().state.locale.languageCode;
+            return SizedBox(
+              height: 160,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                itemCount: state.news.length,
+                itemBuilder: (context, index) {
+                  final news = state.news[index];
+                  return GestureDetector(
+                    onTap: () => _launchURL(news.link),
+                    child: Container(
+                      width: 280,
+                      margin: const EdgeInsets.only(right: 12),
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).cardColor,
+                        borderRadius: BorderRadius.circular(16),
+                        boxShadow: [
+                          BoxShadow(
+                            color:
+                                Theme.of(context).shadowColor.withOpacity(0.1),
+                            blurRadius: 6,
+                            offset: const Offset(0, 4),
+                          )
+                        ],
                       ),
-                      const Icon(Icons.arrow_forward_ios,
-                          size: 14, color: Colors.grey),
-                    ],
-                  )
-                ],
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            news.getTitle(locale),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            news.getCategory(locale),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                          ),
+                          const Spacer(),
+                          Text(
+                            news.date,
+                            style:
+                                Theme.of(context).textTheme.bodySmall?.copyWith(
+                                      color: Theme.of(context)
+                                          .primaryColor
+                                          .withOpacity(.5),
+                                    ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               ),
-            ),
-          );
+            );
+          }
+
+          return const SizedBox();
         },
       ),
     );

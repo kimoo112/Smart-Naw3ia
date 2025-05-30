@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:naw3ia/core/utils/app_text_styles.dart';
 
-import '../../../../core/utils/app_colors.dart';
-import '../data/models/department_model.dart';
+import '../../../../core/localization/translation_extension.dart';
+import '../../data/models/department_model.dart';
 import '../widgets/staff_tab.dart';
 
 class DepartmentDetailsPage extends StatelessWidget {
@@ -23,13 +23,13 @@ class DepartmentDetailsPage extends StatelessWidget {
           title: Text(department.title),
           bottom: TabBar(
             isScrollable: true,
-            indicatorColor: AppColors.primaryColor,
-            labelColor: AppColors.primaryColor,
-            tabs: const [
-              Tab(text: 'نبذة'),
-              Tab(text: 'الرؤية'),
-              Tab(text: 'الأهداف'),
-              Tab(text: 'هيئة التدريس'),
+            indicatorColor: Theme.of(context).primaryColor,
+            labelColor: Theme.of(context).primaryColor,
+            tabs: [
+              Tab(text: 'department_details.about'.tr(context)),
+              Tab(text: 'department_details.vision'.tr(context)),
+              Tab(text: 'department_details.aims'.tr(context)),
+              Tab(text: 'department_details.staff'.tr(context)),
             ],
           ),
         ),
