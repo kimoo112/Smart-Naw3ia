@@ -3,6 +3,49 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:naw3ia/core/utils/app_colors.dart';
 
 abstract class CustomTextStyles {
+  static TextStyle getStyle({
+    required BuildContext context,
+    required double fontSize,
+    FontWeight fontWeight = FontWeight.w400,
+    Color? color,
+  }) {
+    final isArabic = Localizations.localeOf(context).languageCode == 'ar';
+    return TextStyle(
+      fontSize: fontSize.sp,
+      fontWeight: fontWeight,
+      fontFamily: isArabic ? "Almarai" : "Poppins",
+      color: color,
+    );
+  }
+
+  static TextStyle getStyleWithContext(BuildContext context, double fontSize) {
+    return getStyle(context: context, fontSize: fontSize);
+  }
+
+  static TextStyle getStyleWithContextAndWeight(
+    BuildContext context,
+    double fontSize,
+    FontWeight weight,
+  ) {
+    return getStyle(
+      context: context,
+      fontSize: fontSize,
+      fontWeight: weight,
+    );
+  }
+
+  static TextStyle getStyleWithContextAndColor(
+    BuildContext context,
+    double fontSize,
+    Color color,
+  ) {
+    return getStyle(
+      context: context,
+      fontSize: fontSize,
+      color: color,
+    );
+  }
+
   static TextStyle almarai400Style64 = TextStyle(
     fontSize: 64.sp,
     fontWeight: FontWeight.w400,

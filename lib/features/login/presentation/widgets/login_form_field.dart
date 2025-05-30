@@ -25,15 +25,15 @@ class LoginFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      cursorColor: AppColors.primaryColor,
+      cursorColor: Theme.of(context).primaryColor,
       controller: controller,
       obscureText: isPassword && obscureText,
       decoration: InputDecoration(
         labelText: label,
         hoverColor: AppColors.primaryColor,
         labelStyle: TextStyle(
-          color: AppColors.primaryColor,
-          fontFamily: 'Almarai',
+          color: Theme.of(context).primaryColor,
+          // fontFamily: 'Almarai',
           fontSize: 16.sp,
         ),
         focusedBorder: OutlineInputBorder(
@@ -47,7 +47,7 @@ class LoginFormField extends StatelessWidget {
           padding: EdgeInsets.all(12.w),
           child: Icon(
             isPassword ? IconlyLight.lock : IconlyLight.profile,
-            color: AppColors.primaryColor,
+            color: Theme.of(context).primaryColor,
             size: 24.sp,
           ),
         ),
@@ -55,7 +55,8 @@ class LoginFormField extends StatelessWidget {
             ? IconButton(
                 icon: Icon(
                   obscureText ? IconlyLight.show : IconlyLight.hide,
-                  color: AppColors.primaryColor,
+                           color: Theme.of(context).primaryColor,
+
                 ),
                 onPressed: onTogglePassword,
               )

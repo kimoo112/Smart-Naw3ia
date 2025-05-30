@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:naw3ia/core/routes/functions/navigation_functions.dart';
 import 'package:naw3ia/core/routes/routes.dart';
+import 'package:naw3ia/core/localization/translation_extension.dart';
 
 import '../../../../core/utils/app_assets.dart';
 import '../cubit/login_cubit.dart';
@@ -20,7 +21,7 @@ class LoginView extends StatelessWidget {
         if (state is LoginSuccess) {
           context.read<LoginCubit>().showMessage(
                 context,
-                'تم تسجيل الدخول بنجاح',
+                'login.validation.login_success'.tr(context),
                 false,
               );
           customNavigate(context, homeView);
@@ -47,13 +48,13 @@ class LoginView extends StatelessWidget {
                       const LoginHeader(),
                       LoginFormField(
                         controller: cubit.usernameController,
-                        label: 'رقم الطالب',
+                        label: 'login.student_number'.tr(context),
                         validator: cubit.validateUsername,
                       ),
                       SizedBox(height: 16.h),
                       LoginFormField(
                         controller: cubit.passwordController,
-                        label: 'كلمة المرور',
+                        label: 'login.password'.tr(context),
                         isPassword: true,
                         obscureText: cubit.obscurePassword,
                         onTogglePassword: () =>

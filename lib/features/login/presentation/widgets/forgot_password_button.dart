@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/localization/translation_extension.dart';
 import '../../../../core/utils/app_colors.dart';
 
 class ForgotPasswordButton extends StatelessWidget {
@@ -16,7 +17,7 @@ class ForgotPasswordButton extends StatelessWidget {
     return TextButton(
       onPressed: onPressed,
       child: Text(
-        'نسيت كلمة المرور؟',
+        'login.forgot_password'.tr(context),
         style: TextStyle(
           fontSize: 16.sp,
           fontFamily: 'Almarai',
@@ -25,4 +26,4 @@ class ForgotPasswordButton extends StatelessWidget {
       ),
     );
   }
-} 
+}

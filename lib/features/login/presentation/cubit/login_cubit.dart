@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../core/cache/cache_helper.dart';
+import 'package:naw3ia/core/cache/cache_helper.dart';
+import 'package:naw3ia/core/global/global_keys.dart';
+import 'package:naw3ia/core/localization/translation_extension.dart';
 
 part 'login_state.dart';
 
@@ -30,20 +31,20 @@ class LoginCubit extends Cubit<LoginState> {
 
   String? validateUsername(String? value) {
     if (value == null || value.isEmpty) {
-      return 'الرجاء إدخال رقم الطالب';
+      return 'login.validation.student_number_required'.tr(navigatorKey.currentContext!);
     }
     if (value.length < 8) {
-      return 'رقم الطالب يجب أن يكون 8 أرقام على الأقل';
+      return 'login.validation.student_number_length'.tr(navigatorKey.currentContext!);
     }
     return null;
   }
 
   String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
-      return 'الرجاء إدخال كلمة المرور';
+      return 'login.validation.password_required'.tr(navigatorKey.currentContext!);
     }
     if (value.length < 6) {
-      return 'كلمة المرور يجب أن تكون 6 أحرف على الأقل';
+      return 'login.validation.password_length'.tr(navigatorKey.currentContext!);
     }
     return null;
   }
@@ -57,12 +58,12 @@ class LoginCubit extends Cubit<LoginState> {
         final password = passwordController.text;
 
         if (username.isEmpty || password.isEmpty) {
-          emit(LoginError('الرجاء إدخال رقم الطالب وكلمة المرور'));
+          emit(LoginError('login.validation.student_number_required'.tr(navigatorKey.currentContext!)));
           return;
         }
 
         if (!RegExp(r'^\d{14}$').hasMatch(username)) {
-          emit(LoginError('رقم الطالب يجب أن يكون 14 أرقام'));
+          emit(LoginError('login.validation.student_number_format'.tr(navigatorKey.currentContext!)));
           return;
         }
 
@@ -77,7 +78,7 @@ class LoginCubit extends Cubit<LoginState> {
 
           emit(LoginSuccess());
         } else {
-          emit(LoginError('رقم الطالب غير صحيح'));
+          emit(LoginError('login.validation.invalid_credentials'.tr(navigatorKey.currentContext!)));
         }
       } catch (e) {
         emit(LoginError(e.toString()));
