@@ -50,6 +50,14 @@ class Assets {
   /// assets/images/Psychology.jpg
   static const String imagesPsychology = "assets/images/Psychology.jpg";
 
+  /// Assets for imagesSearchFailLottie
+  /// assets/images/Search_fail_lottie.json
+  static const String imagesSearchFailLottie = "assets/images/Search_fail_lottie.json";
+
+  /// Assets for imagesSearchLottie
+  /// assets/images/search_lottie.json
+  static const String imagesSearchLottie = "assets/images/search_lottie.json";
+
   /// Assets for imagesSplashShapes
   /// assets/images/splash_shapes.png
   static const String imagesSplashShapes = "assets/images/splash_shapes.png";
