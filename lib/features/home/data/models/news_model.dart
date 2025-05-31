@@ -21,7 +21,8 @@ class NewsModel {
 
   String getTitle(String locale) => locale == 'ar' ? titleAr : titleEn;
   String getCategory(String locale) => locale == 'ar' ? categoryAr : categoryEn;
-  String? getDescription(String locale) => locale == 'ar' ? descriptionAr : descriptionEn;
+  String? getDescription(String locale) =>
+      locale == 'ar' ? descriptionAr : descriptionEn;
 }
 
 final List<NewsModel> newsList = [
@@ -31,8 +32,10 @@ final List<NewsModel> newsList = [
     categoryEn: 'Students',
     categoryAr: 'الطلاب',
     date: '2024-03-20',
-    descriptionEn: 'Registration for Practical Education for Level 3 begins on Sunday, March 24, 2024',
-    descriptionAr: 'يبدأ تسجيل التربية العملية للفرقة الثالثة يوم الأحد الموافق 24 مارس 2024',
+    descriptionEn:
+        'Registration for Practical Education for Level 3 begins on Sunday, March 24, 2024',
+    descriptionAr:
+        'يبدأ تسجيل التربية العملية للفرقة الثالثة يوم الأحد الموافق 24 مارس 2024',
     link: 'https://edusp.alexu.edu.eg/index.php/ar/',
   ),
   const NewsModel(
@@ -41,8 +44,10 @@ final List<NewsModel> newsList = [
     categoryEn: 'Events',
     categoryAr: 'الفعاليات',
     date: '2024-03-18',
-    descriptionEn: 'Under the patronage of the University President, the Faculty of Specific Education organizes its fourth conference',
-    descriptionAr: 'تحت رعاية رئيس الجامعة، تنظم كلية التربية النوعية مؤتمرها الرابع',
+    descriptionEn:
+        'Under the patronage of the University President, the Faculty of Specific Education organizes its fourth conference',
+    descriptionAr:
+        'تحت رعاية رئيس الجامعة، تنظم كلية التربية النوعية مؤتمرها الرابع',
     link: 'https://edusp.alexu.edu.eg/index.php/ar/',
   ),
   const NewsModel(
@@ -51,8 +56,10 @@ final List<NewsModel> newsList = [
     categoryEn: 'Results',
     categoryAr: 'النتائج',
     date: '2024-03-15',
-    descriptionEn: 'First semester examination results for all departments are now available',
-    descriptionAr: 'نتائج امتحانات الفصل الدراسي الأول لجميع الأقسام متاحة الآن',
+    descriptionEn:
+        'First semester examination results for all departments are now available',
+    descriptionAr:
+        'نتائج امتحانات الفصل الدراسي الأول لجميع الأقسام متاحة الآن',
     link: 'https://edusp.alexu.edu.eg/index.php/ar/',
   ),
   const NewsModel(
@@ -61,7 +68,8 @@ final List<NewsModel> newsList = [
     categoryEn: 'Surveys',
     categoryAr: 'الاستبيانات',
     date: '2024-03-10',
-    descriptionEn: 'Participate in the student satisfaction survey about evaluation methods and examinations',
+    descriptionEn:
+        'Participate in the student satisfaction survey about evaluation methods and examinations',
     descriptionAr: 'شارك في استبيان رضا الطلاب عن طرق التقييم والامتحانات',
     link: 'https://edusp.alexu.edu.eg/index.php/ar/',
   ),
@@ -71,7 +79,8 @@ final List<NewsModel> newsList = [
     categoryEn: 'Students',
     categoryAr: 'الطلاب',
     date: '2024-03-05',
-    descriptionEn: 'Launch of the Excellence and Innovation Program for outstanding students',
+    descriptionEn:
+        'Launch of the Excellence and Innovation Program for outstanding students',
     descriptionAr: 'إطلاق برنامج التميز والابتكار للطلاب المتفوقين',
     link: 'https://edusp.alexu.edu.eg/index.php/ar/',
   ),
@@ -81,7 +90,8 @@ final List<NewsModel> newsList = [
     categoryEn: 'Students',
     categoryAr: 'الطلاب',
     date: '2024-03-01',
-    descriptionEn: 'Academic support program for students facing academic challenges',
+    descriptionEn:
+        'Academic support program for students facing academic challenges',
     descriptionAr: 'برنامج الدعم الأكاديمي للطلاب الذين يواجهون تحديات دراسية',
     link: 'https://edusp.alexu.edu.eg/index.php/ar/',
   ),
@@ -91,7 +101,8 @@ final List<NewsModel> newsList = [
     categoryEn: 'Meetings',
     categoryAr: 'الاجتماعات',
     date: '2024-02-28',
-    descriptionEn: 'Monthly meeting to discuss academic and administrative affairs',
+    descriptionEn:
+        'Monthly meeting to discuss academic and administrative affairs',
     descriptionAr: 'الاجتماع الشهري لمناقشة الشؤون الأكاديمية والإدارية',
     link: 'https://edusp.alexu.edu.eg/index.php/ar/',
   ),
@@ -101,8 +112,10 @@ final List<NewsModel> newsList = [
     categoryEn: 'Workshops',
     categoryAr: 'ورش العمل',
     date: '2024-02-25',
-    descriptionEn: 'Interactive workshop on implementing modern teaching methods in specific education',
-    descriptionAr: 'ورشة عمل تفاعلية حول تطبيق طرق التدريس الحديثة في التعليم النوعي',
+    descriptionEn:
+        'Interactive workshop on implementing modern teaching methods in specific education',
+    descriptionAr:
+        'ورشة عمل تفاعلية حول تطبيق طرق التدريس الحديثة في التعليم النوعي',
     link: 'https://edusp.alexu.edu.eg/index.php/ar/',
   ),
   const NewsModel(
@@ -111,7 +124,8 @@ final List<NewsModel> newsList = [
     categoryEn: 'Activities',
     categoryAr: 'الأنشطة',
     date: '2024-02-20',
-    descriptionEn: 'A week full of cultural and artistic activities for students',
+    descriptionEn:
+        'A week full of cultural and artistic activities for students',
     descriptionAr: 'أسبوع حافل بالأنشطة الثقافية والفنية للطلاب',
     link: 'https://edusp.alexu.edu.eg/index.php/ar/',
   ),
@@ -121,7 +135,8 @@ final List<NewsModel> newsList = [
     categoryEn: 'Admissions',
     categoryAr: 'القبول',
     date: '2024-02-15',
-    descriptionEn: 'Announcement of graduate studies admission for the next semester',
+    descriptionEn:
+        'Announcement of graduate studies admission for the next semester',
     descriptionAr: 'إعلان عن القبول في الدراسات العليا للفصل الدراسي القادم',
     link: 'https://edusp.alexu.edu.eg/index.php/ar/',
   ),
@@ -131,7 +146,8 @@ final List<NewsModel> newsList = [
     categoryEn: 'Conferences',
     categoryAr: 'المؤتمرات',
     date: '2024-02-10',
-    descriptionEn: 'International conference discussing modern approaches in art education',
+    descriptionEn:
+        'International conference discussing modern approaches in art education',
     descriptionAr: 'مؤتمر دولي يناقش الاتجاهات الحديثة في التربية الفنية',
     link: 'https://edusp.alexu.edu.eg/index.php/ar/',
   ),
@@ -141,7 +157,8 @@ final List<NewsModel> newsList = [
     categoryEn: 'Events',
     categoryAr: 'الفعاليات',
     date: '2024-02-05',
-    descriptionEn: 'Annual concert featuring performances by music education department students',
+    descriptionEn:
+        'Annual concert featuring performances by music education department students',
     descriptionAr: 'الحفل السنوي لعروض طلاب قسم التربية الموسيقية',
     link: 'https://edusp.alexu.edu.eg/index.php/ar/',
   ),
@@ -161,7 +178,8 @@ final List<NewsModel> newsList = [
     categoryEn: 'Events',
     categoryAr: 'الفعاليات',
     date: '2024-01-28',
-    descriptionEn: 'Opening ceremony of the annual art exhibition featuring student works',
+    descriptionEn:
+        'Opening ceremony of the annual art exhibition featuring student works',
     descriptionAr: 'حفل افتتاح المعرض السنوي للفنون لعرض أعمال الطلاب',
     link: 'https://edusp.alexu.edu.eg/index.php/ar/',
   ),
@@ -225,4 +243,4 @@ final List<NewsModel> newsList = [
     descriptionAr: 'إضافة موارد رقمية جديدة لمكتبة الكلية',
     link: 'https://edusp.alexu.edu.eg/index.php/ar/',
   ),
-]; 
+];
