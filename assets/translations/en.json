@@ -3,6 +3,7 @@
     "title": "Faculty of Specific Education",
     "welcome": "Welcome",
     "search": "Search here",
+    "skip": "Skip",
     "more": "More..."
   },
   "home": {
@@ -72,6 +73,7 @@
   "department_details": {
     "about": "About",
     "vision": "Vision",
+    "mission": "Mission",
     "aims": "Aims",
     "staff": "Teaching Staff",
     "overview": "Overview"
@@ -82,10 +84,15 @@
   },
   "staff": {
     "manager": "Head of Department",
+    "department_head": "Department Head",
+    "department_count": "Department Members",
     "other_members": "Other Members",
     "professors": "Professors",
+    "members": "Members",
     "associate_professors": "Associate Professors",
+    "assistant_professors": "Assistant Professors",
     "lecturers": "Lecturers",
+    "assistant_lecturers": "Assistant Lecturers",
     "teaching_assistants": "Teaching Assistants",
     "demonstrators": "Demonstrators",
     "other_staff": "Other Staff",
@@ -153,6 +160,12 @@
 "more": "More",
     "logout": "Logout"
   },
+    "search": {
+      "loading": "Searching...",
+      "start": "Search for departments, staff, news..."
+,
+      "no_results": "No results found."
+    },
   "login": {
     "title": "Login",
     "subtitle": "Enter your credentials to login",

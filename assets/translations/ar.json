@@ -3,6 +3,7 @@
     "title": "كلية التربية النوعية",
     "welcome": "مرحباً",
     "search": "ابحث هنا",
+    "skip": "تخطي",
     "more": "المزيد..."
   },
   "home": {
@@ -69,16 +70,23 @@
   "department_details": {
     "about": "نبذة",
     "vision": "الرؤية",
+    "mission": "الرسالة",
     "aims": "الأهداف",
     "staff": "هيئة التدريس",
     "overview": "نظرة عامة"
   },
   "staff": {
     "manager": "رئيس القسم",
+    "department_head": "رئيس القسم",
+    "department_count": "اعضاء هيئة التدريس",
     "professors": "الأساتذة",
     "other_members": "أعضاء آخرون",
+    "members": "أعضاء",
+    
     "associate_professors": "الأساتذة المساعدون",
+    "assistant_professors": "الأساتذة المساعدون",
     "lecturers": "المدرسون",
+    "assistant_lecturers": "المدرسون المساعدون",
     "teaching_assistants": "المعيدون",
     "demonstrators": "المدرسون المساعدون",
     "other_staff": "أعضاء هيئة التدريس الآخرون",
@@ -163,6 +171,11 @@
       "login_success": "تم تسجيل الدخول بنجاح"
     }
   },
+    "search": {
+      "loading": "جاري البحث...",
+      "no_results": "لم يتم العثور على نتائج.",
+      "start": "ابحث عن الأقسام، الموظفين، الأخبار..."
+    },
   "common": {
     "loading": "جاري التحميل...",
     "error": "خطأ",

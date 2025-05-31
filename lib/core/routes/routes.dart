@@ -7,3 +7,4 @@ const String allDataView = '/allDataView';
 const String allDepartmentsView = '/allDepartmentsView';
 const String allNewsView = '/allNewsView';
 const String chatView = '/chat';
+const String searchView = '/search';
