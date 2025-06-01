@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:naw3ia/core/utils/app_text_styles.dart';
 
 import '../../../../core/localization/translation_extension.dart';
 import '../../data/models/department_model.dart';
-import '../widgets/staff_tab.dart';
+import '../widgets/organizational_chart.dart';
 
 class DepartmentDetailsPage extends StatelessWidget {
   final DepartmentModel department;
@@ -16,11 +15,14 @@ class DepartmentDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context).languageCode;
+    final textStyle = Theme.of(context).textTheme.bodyLarge;
+
     return DefaultTabController(
-      length: 4,
+      length: 5,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(department.title),
+          title: Text(department.getName(locale)),
           bottom: TabBar(
             isScrollable: true,
             indicatorColor: Theme.of(context).primaryColor,
@@ -28,6 +30,7 @@ class DepartmentDetailsPage extends StatelessWidget {
             tabs: [
               Tab(text: 'department_details.about'.tr(context)),
               Tab(text: 'department_details.vision'.tr(context)),
+              Tab(text: 'department_details.mission'.tr(context)),
               Tab(text: 'department_details.aims'.tr(context)),
               Tab(text: 'department_details.staff'.tr(context)),
             ],
@@ -35,26 +38,61 @@ class DepartmentDetailsPage extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
+            // About Tab
             SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
-              child: Text(department.about,
-                  style:
-                      CustomTextStyles.almarai400Style16.copyWith(height: 2.h)),
+              padding: EdgeInsets.all(16.w),
+              child: Text(
+                department.getDescription(locale),
+                style: textStyle,
+              ),
             ),
+            // Vision Tab
             SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
-              child: Text(department.vision,
-                  style:
-                      CustomTextStyles.almarai400Style16.copyWith(height: 2.h)),
+              padding: EdgeInsets.all(16.w),
+              child: Text(
+                department.getVision(locale),
+                style: textStyle,
+              ),
             ),
+            // Mission Tab
             SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
-              child: Text(department.aims,
-                  style:
-                      CustomTextStyles.almarai400Style16.copyWith(height: 2.h)),
+              padding: EdgeInsets.all(16.w),
+              child: Text(
+                department.getMission(locale),
+                style: textStyle,
+              ),
             ),
-            StaffTab(
-              staff: department.staff,
+            // Aims Tab
+            SingleChildScrollView(
+              padding: EdgeInsets.all(16.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: department
+                    .getObjectives(locale)
+                    .map((aim) => Padding(
+                          padding: EdgeInsets.only(bottom: 8.h),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('• ', style: textStyle),
+                              Expanded(
+                                child: Text(
+                                  aim,
+                                  style: textStyle,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ))
+                    .toList(),
+              ),
+            ),
+            // Staff Tab
+            SingleChildScrollView(
+              padding: EdgeInsets.all(16.w),
+              child: OrganizationalChart(
+                staff: [department.head, ...department.facultyMembers],
+              ),
             ),
           ],
         ),

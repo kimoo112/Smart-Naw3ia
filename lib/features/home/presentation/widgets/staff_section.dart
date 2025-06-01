@@ -35,25 +35,34 @@ class StaffSection extends StatelessWidget {
   }
 }
 
-final List<StaffMember> staffMembers = [
+// Sample data for leadership staff
+final List<StaffMember> leadershipStaff = [
   const StaffMember(
-    name: 'أ.د. محمد أحمد محمد',
-    position: 'عميد الكلية',
-    department: 'الإقتصاد المنزلى',
+    nameEn: 'Prof. Dr. Mohamed Ahmed Mohamed',
+    nameAr: 'أ.د. محمد أحمد محمد',
+    titleEn: 'Dean of the Faculty',
+    titleAr: 'عميد الكلية',
+    department: 'Home Economics',
   ),
   const StaffMember(
-    name: 'أ.د. أحمد محمود علي',
-    position: 'وكيل الكلية لشئون التعليم والطلاب',
-    department: 'التربية الفنية',
+    nameEn: 'Prof. Dr. Ahmed Mahmoud Ali',
+    nameAr: 'أ.د. أحمد محمود علي',
+    titleEn: 'Vice Dean for Education and Student Affairs',
+    titleAr: 'وكيل الكلية لشئون التعليم والطلاب',
+    department: 'Art Education',
   ),
   const StaffMember(
-    name: 'أ.د. سارة محمد حسن',
-    position: 'وكيل الكلية لشئون الدراسات العليا',
-    department: 'تكنولوجيا التعليم',
+    nameEn: 'Prof. Dr. Sara Mohamed Hassan',
+    nameAr: 'أ.د. سارة محمد حسن',
+    titleEn: 'Vice Dean for Graduate Studies',
+    titleAr: 'وكيل الكلية لشئون الدراسات العليا',
+    department: 'Educational Technology',
   ),
   const StaffMember(
-    name: 'أ.د. محمود علي أحمد',
-    position: 'وكيل الكلية لشئون خدمة المجتمع',
-    department: 'علوم تربوية و نفسية',
+    nameEn: 'Prof. Dr. Mahmoud Ali Ahmed',
+    nameAr: 'أ.د. محمود علي أحمد',
+    titleEn: 'Vice Dean for Community Service',
+    titleAr: 'وكيل الكلية لشئون خدمة المجتمع',
+    department: 'Educational and Psychological Sciences',
   ),
 ];

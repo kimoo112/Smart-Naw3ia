@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/utils/app_colors.dart';
-
 class LoginFormField extends StatelessWidget {
   final TextEditingController controller;
   final String label;
@@ -30,14 +28,13 @@ class LoginFormField extends StatelessWidget {
       obscureText: isPassword && obscureText,
       decoration: InputDecoration(
         labelText: label,
-        hoverColor: AppColors.primaryColor,
+        hoverColor: Theme.of(context).primaryColor,
         labelStyle: TextStyle(
           color: Theme.of(context).primaryColor,
-          // fontFamily: 'Almarai',
           fontSize: 16.sp,
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.primaryColor),
+          borderSide: BorderSide(color: Theme.of(context).primaryColor),
           borderRadius: BorderRadius.circular(20.r),
         ),
         border: OutlineInputBorder(
@@ -55,8 +52,7 @@ class LoginFormField extends StatelessWidget {
             ? IconButton(
                 icon: Icon(
                   obscureText ? IconlyLight.show : IconlyLight.hide,
-                           color: Theme.of(context).primaryColor,
-
+                  color: Theme.of(context).primaryColor,
                 ),
                 onPressed: onTogglePassword,
               )

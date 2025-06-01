@@ -15,35 +15,31 @@ class GoalsSection extends StatelessWidget {
       'college_goals.goal5'.tr(context),
     ];
 
-    return Directionality( // Enables RTL layout for Arabic
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-     
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-          
-              Text(
-                'sections.college_goals'.tr(context),
-                style: TextStyle(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue.shade800,
-                ),
+    return Scaffold(
+         
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'sections.college_goals'.tr(context),
+              style: TextStyle(
+                fontSize: 18.sp,
+                fontWeight: FontWeight.bold,
+                color: Colors.blue.shade800,
               ),
-              const SizedBox(height: 10),
-              ...goals.map((goal) => Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 6.0),
-                    child: Text(
-                      goal,
-                      style:  TextStyle(fontSize: 14.sp),
-                      textAlign: TextAlign.justify,
-                    ),
-                  )),
-            ],
-          ),
+            ),
+            const SizedBox(height: 10),
+            ...goals.map((goal) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 6.0),
+                  child: Text(
+                    goal,
+                    style:  TextStyle(fontSize: 14.sp),
+                    textAlign: TextAlign.justify,
+                  ),
+                )),
+          ],
         ),
       ),
     );

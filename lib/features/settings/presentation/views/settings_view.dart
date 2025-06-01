@@ -187,17 +187,21 @@ class SettingsView extends StatelessWidget {
     Color? iconColor,
     Color? textColor,
   }) {
-    return ListTile(
-      leading:
-          Icon(icon, color: iconColor ?? Theme.of(context).iconTheme.color),
-      title: Text(
-        title,
-        style: TextStyle(
-          color: textColor ?? Theme.of(context).textTheme.bodyMedium!.color,
-        ),
-      ),
-      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+    return InkWell(
+  borderRadius: BorderRadius.circular(16.r) ,
       onTap: onTap,
+      child: ListTile(
+        leading:
+            Icon(icon, color: iconColor ?? Theme.of(context).iconTheme.color),
+        title: Text(
+          title,
+          style: TextStyle(
+            color: textColor ?? Theme.of(context).textTheme.bodyMedium!.color,
+          ),
+        ),
+        trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+        // onTap: onTap,
+      ),
     );
   }
 }

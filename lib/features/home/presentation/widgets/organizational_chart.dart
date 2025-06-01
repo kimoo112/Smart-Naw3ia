@@ -13,7 +13,8 @@ class OrganizationalChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final organizedStaff = OrganizedStaff.fromList(staff);
+    final locale = Localizations.localeOf(context).languageCode;
+    final academicStaff = AcademicStaff.fromList(staff);
 
     return SingleChildScrollView(
       child: Column(
@@ -21,61 +22,74 @@ class OrganizationalChart extends StatelessWidget {
         children: [
           _buildLevel(
             context,
-            title: 'staff.manager'.tr(context),
-            members: [organizedStaff.manager].whereType<StaffMember>().toList(),
-            icon: Icons.person,
-            color: Theme.of(context).primaryColor,
+            title: 'staff.department_head'.tr(context),
+            members: staff
+                .where((member) =>
+                    member.position?.contains('رئيس قسم') == true ||
+                    member.position?.toLowerCase().contains('head') == true)
+                .toList(),
+            icon: Icons.account_balance,
+            color: Colors.deepPurple,
+            locale: locale,
+            isHead: true,
           ),
-          _buildConnector(context),
+          if (staff.any((member) =>
+              member.position?.contains('رئيس قسم') == true ||
+              member.position?.toLowerCase().contains('head') == true))
+            _buildConnector(context),
           _buildLevel(
             context,
             title: 'staff.professors'.tr(context),
-            members: organizedStaff.professors,
+            members: academicStaff.professors,
             icon: Icons.school,
-            color: Theme.of(context).primaryColor.withGreen(150),
+            color: Theme.of(context).primaryColor,
+            locale: locale,
           ),
           _buildConnector(context),
           _buildLevel(
             context,
             title: 'staff.associate_professors'.tr(context),
-            members: organizedStaff.associateProfessors,
+            members: academicStaff.associateProfessors,
+            icon: Icons.school,
+            color: Theme.of(context).primaryColor.withGreen(150),
+            locale: locale,
+          ),
+          _buildConnector(context),
+          _buildLevel(
+            context,
+            title: 'staff.assistant_professors'.tr(context),
+            members: academicStaff.assistantProfessors,
             icon: Icons.school,
             color: Theme.of(context).primaryColor.withBlue(100),
+            locale: locale,
           ),
           _buildConnector(context),
           _buildLevel(
             context,
             title: 'staff.lecturers'.tr(context),
-            members: organizedStaff.lecturers,
+            members: academicStaff.lecturers,
             icon: Icons.school,
             color: Theme.of(context).primaryColor.withRed(180),
+            locale: locale,
+          ),
+          _buildConnector(context),
+          _buildLevel(
+            context,
+            title: 'staff.assistant_lecturers'.tr(context),
+            members: academicStaff.assistantLecturers,
+            icon: Icons.school,
+            color: Theme.of(context).primaryColor.withOpacity(0.7),
+            locale: locale,
           ),
           _buildConnector(context),
           _buildLevel(
             context,
             title: 'staff.teaching_assistants'.tr(context),
-            members: organizedStaff.teachingAssistants,
-            icon: Icons.school,
-            color: Theme.of(context).primaryColor.withOpacity(0.7),
-          ),
-          _buildConnector(context),
-          _buildLevel(
-            context,
-            title: 'staff.demonstrators'.tr(context),
-            members: organizedStaff.demonstrators,
+            members: academicStaff.teachingAssistants,
             icon: Icons.school,
             color: Theme.of(context).primaryColor.withOpacity(0.5),
+            locale: locale,
           ),
-          if (organizedStaff.otherStaff.isNotEmpty) ...[
-            _buildConnector(context),
-            _buildLevel(
-              context,
-              title: 'staff.other_members'.tr(context),
-              members: organizedStaff.otherStaff,
-              icon: Icons.people,
-              color: Theme.of(context).colorScheme.secondary,
-            ),
-          ],
         ],
       ),
     );
@@ -87,6 +101,8 @@ class OrganizationalChart extends StatelessWidget {
     required List<StaffMember> members,
     required IconData icon,
     required Color color,
+    required String locale,
+    bool isHead = false,
   }) {
     if (members.isEmpty) {
       return const SizedBox.shrink();
@@ -96,6 +112,7 @@ class OrganizationalChart extends StatelessWidget {
       child: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(icon, color: color),
               const SizedBox(width: 8),
@@ -114,7 +131,8 @@ class OrganizationalChart extends StatelessWidget {
             runSpacing: 8,
             alignment: WrapAlignment.center,
             children: members
-                .map((member) => _buildMemberCard(context, member, color, icon))
+                .map((member) => _buildMemberCard(
+                    context, member, color, icon, locale, isHead))
                 .toList(),
           ),
         ],
@@ -127,9 +145,11 @@ class OrganizationalChart extends StatelessWidget {
     StaffMember member,
     Color color,
     IconData icon,
+    String locale,
+    bool isHead,
   ) {
     return Container(
-      width: 200,
+      width: isHead ? 250 : 200,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
@@ -146,23 +166,33 @@ class OrganizationalChart extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, color: color, size: 24),
+          Icon(icon, color: color, size: isHead ? 32 : 24),
           const SizedBox(height: 8),
           Text(
-            member.name,
+            "${member.getTitle(locale)} ${member.getName(locale)}",
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.bold,
-                  fontFamily: 'Almarai',
+                  fontSize: isHead ? 16 : null,
                 ),
           ),
+          if (member.position != null && isHead) ...[
+            const SizedBox(height: 4),
+            Text(
+              member.position!,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: color,
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+          ],
           if (member.specialization != null) ...[
             const SizedBox(height: 4),
             Text(
               member.specialization!,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    fontFamily: 'Almarai',
                     color: Theme.of(context)
                         .textTheme
                         .bodySmall
@@ -178,7 +208,6 @@ class OrganizationalChart extends StatelessWidget {
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: color,
-                    fontFamily: 'Poppins',
                   ),
             ),
           ],

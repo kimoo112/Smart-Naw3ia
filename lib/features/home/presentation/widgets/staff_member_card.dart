@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:naw3ia/core/utils/app_text_styles.dart';
 
 import '../../data/models/staff_model.dart';
 
@@ -13,6 +12,9 @@ class StaffMemberCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context).languageCode;
+    final textTheme = Theme.of(context).textTheme;
+
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       elevation: 2,
@@ -37,19 +39,24 @@ class StaffMemberCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(member.name, style: CustomTextStyles.almarai400Style20),
+                  Text(
+                    member.getName(locale),
+                    style: textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   const SizedBox(height: 4),
                   Text(
-                    member.position,
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    member.getTitle(locale),
+                    style: textTheme.bodyLarge,
                   ),
                   if (member.specialization != null) ...[
                     const SizedBox(height: 4),
                     Text(
                       member.specialization!,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Colors.grey[600],
-                          ),
+                      style: textTheme.bodyMedium?.copyWith(
+                        color: Colors.grey[600],
+                      ),
                     ),
                   ],
                   if (member.email != null) ...[
@@ -64,10 +71,9 @@ class StaffMemberCard extends StatelessWidget {
                         const SizedBox(width: 4),
                         Text(
                           member.email!,
-                          style:
-                              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: Colors.blue,
-                                  ),
+                          style: textTheme.bodyMedium?.copyWith(
+                            color: Colors.blue,
+                          ),
                         ),
                       ],
                     ),
