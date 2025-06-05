@@ -1,75 +1,49 @@
 class TextComparisonService {
   /// Normalizes Arabic text by standardizing common character variations
   String normalizeArabicText(String text) {
+    // Remove diacritics and special characters
     return text
-        .replaceAll('أ', 'ا')
-        .replaceAll('إ', 'ا')
-        .replaceAll('آ', 'ا')
-        .replaceAll('ة', 'ه')
-        .replaceAll('ؤ', 'و')
-        .replaceAll('ئ', 'ي')
-        .replaceAll('ى', 'ي')
-        .replaceAll('٠', '0')
-        .replaceAll('١', '1')
-        .replaceAll('٢', '2')
-        .replaceAll('٣', '3')
-        .replaceAll('٤', '4')
-        .replaceAll('٥', '5')
-        .replaceAll('٦', '6')
-        .replaceAll('٧', '7')
-        .replaceAll('٨', '8')
-        .replaceAll('٩', '9')
+        .replaceAll(RegExp(r'[\u064B-\u065F]'), '') // Remove Arabic diacritics
+        .replaceAll(RegExp(r'[^\w\s]'), '') // Remove punctuation
+        .replaceAll(
+            RegExp(r'\s+'), ' ') // Replace multiple spaces with single space
         .trim();
   }
 
   /// Compares two texts, handling Arabic variations
   /// Returns a comparison result with similarity score and feedback
   ComparisonResult compareAnswers(String userAnswer, String correctAnswer) {
-    // Handle empty answers
-    if (userAnswer.isEmpty) {
-      return ComparisonResult(
-        isCorrect: false,
-        similarityScore: 0.0,
-        feedback: 'No answer provided.',
-        arabicFeedback: 'لم يتم تقديم إجابة.',
-      );
-    }
-
     // Normalize both answers
-    String normalizedUser = normalizeArabicText(userAnswer.toLowerCase());
-    String normalizedCorrect = normalizeArabicText(correctAnswer.toLowerCase());
+    final normalizedUserAnswer = normalizeArabicText(userAnswer.toLowerCase());
+    final normalizedCorrectAnswer =
+        normalizeArabicText(correctAnswer.toLowerCase());
 
-    // Check for exact match after normalization
-    if (normalizedUser == normalizedCorrect) {
-      return ComparisonResult(
-        isCorrect: true,
-        similarityScore: 1.0,
-        feedback: 'Correct answer!',
-        arabicFeedback: 'إجابة صحيحة!',
-      );
+    // Check for exact match
+    if (normalizedUserAnswer == normalizedCorrectAnswer) {
+      return ComparisonResult(isMatch: true, similarity: 1.0);
     }
 
-    // Calculate similarity score using word matching
-    List<String> userWords = normalizedUser.split(' ');
-    List<String> correctWords = normalizedCorrect.split(' ');
+    // Check if user answer contains the correct answer or vice versa
+    if (normalizedUserAnswer.contains(normalizedCorrectAnswer) ||
+        normalizedCorrectAnswer.contains(normalizedUserAnswer)) {
+      return ComparisonResult(isMatch: true, similarity: 0.8);
+    }
 
+    // Calculate word similarity
+    final userWords = normalizedUserAnswer.split(' ');
+    final correctWords = normalizedCorrectAnswer.split(' ');
     int matchingWords = 0;
-    for (String word in userWords) {
+
+    for (var word in userWords) {
       if (correctWords.contains(word)) {
         matchingWords++;
       }
     }
 
-    double similarityScore = matchingWords / correctWords.length;
-
-    // Determine if the answer is correct based on similarity threshold
-    bool isCorrect = similarityScore >= 0.8; // 80% similarity threshold
-
+    final similarity = matchingWords / correctWords.length;
     return ComparisonResult(
-      isCorrect: isCorrect,
-      similarityScore: similarityScore,
-      feedback: _generateFeedback(similarityScore, isCorrect),
-      arabicFeedback: _generateArabicFeedback(similarityScore, isCorrect),
+      isMatch: similarity > 0.6, // Consider it a match if more than 60% similar
+      similarity: similarity,
     );
   }
 
@@ -95,15 +69,11 @@ class TextComparisonService {
 }
 
 class ComparisonResult {
-  final bool isCorrect;
-  final double similarityScore;
-  final String feedback;
-  final String arabicFeedback;
+  final bool isMatch;
+  final double similarity;
 
   ComparisonResult({
-    required this.isCorrect,
-    required this.similarityScore,
-    required this.feedback,
-    required this.arabicFeedback,
+    required this.isMatch,
+    required this.similarity,
   });
 }

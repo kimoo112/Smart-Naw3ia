@@ -6,7 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:naw3ia/core/localization/cubit/locale_cubit.dart';
 import 'package:naw3ia/core/localization/translation_extension.dart';
 import 'package:naw3ia/features/search/presentation/cubit/search_cubit.dart';
-import 'package:naw3ia/features/home/presentation/widgets/search_results.dart';
+import 'package:naw3ia/features/search/presentation/views/search_results.dart';
 
 import '../../../../core/utils/app_assets.dart';
 

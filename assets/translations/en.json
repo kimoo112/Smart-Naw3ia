@@ -3,8 +3,11 @@
     "title": "Faculty of Specific Education",
     "welcome": "Welcome",
     "search": "Search here",
+    "white_cap": "assets/images/white_cap_en.png",
+    "cap":"assets/images/cap_en.png",
     "skip": "Skip",
-    "more": "More..."
+    "more": "More...",
+    "name": "Faculty of Specific Education"
   },
   "home": {
     "home": "Home",
@@ -15,7 +18,11 @@
     "chat": "Chat",
     "bookmark": "Bookmarks",
     "person": "Profile",
-    "settings": "Settings"
+    "settings": "Settings",
+    "welcome": "Welcome to the Faculty of Specific Education",
+    "news": "Latest News",
+    "events": "Events",
+    "services": "Services"
   },
   "news": {
     "categories": {
@@ -61,7 +68,10 @@
     "start": {
       "title": "Let's Begin",
       "subtitle": "Start your educational journey with us"
-    }
+    },
+    "skip": "Skip",
+    "next": "Next",
+    "get_started": "Get Started"
   },
   "departments": {
     "home_economics": "Home Economics",
@@ -148,24 +158,55 @@
     "academic_advising": "Academic Advising"
   },
   "settings": {
-    "title": "Settings",    "dark_mode": "Dark Mode",
-
+    "title": "Settings",
+    "dark_mode": "Dark Mode",
     "theme": "Theme",
     "language": "Language",
     "notifications": "Notifications",
     "about": "About",
     "help": "Help",
     "general": "General",
-"preferences": "Preferences",
-"more": "More",
+    "preferences": "Preferences",
+    "more": "More",
     "logout": "Logout"
   },
-    "search": {
-      "loading": "Searching...",
-      "start": "Search for departments, staff, news..."
-,
-      "no_results": "No results found."
-    },
+  "search": {
+    "loading": "Searching...",
+    "faculty_info_description": "Faculty information",
+    "start": "Search for departments, staff, news...",
+    "no_results": "No results found."
+    ,      "more": "View More"
+  },
+  "profile": {
+    "title": "Student Profile",
+    "id": "ID",
+    "email": "Email",
+    "department": "Department",
+    "program": "Program",
+    "level": "Level",
+    "gpa": "GPA",
+    "status": "Status",
+    "semester": "Semester",
+    "year": "Academic Year",
+    "phone": "Phone",
+    "national_id": "National ID",
+    "gender": "Gender",
+    "dob": "Date of Birth",
+    "address": "Address",
+    "attendance": "Attendance",
+    "courses_and_grades": "Courses & Grades",
+    "internship_and_graduation": "Internship & Graduation Project",
+    "internship": "Internship",
+    "graduation_project": "Graduation Project",
+    "advisor": "Academic Advisor",
+    "achievements": "Achievements",
+    "scholarships": "Scholarships",
+    "warnings": "Warnings",
+    "no_warnings": "No warnings",
+    "personal_info": "Personal Information",
+    "academic_info": "Academic Information",
+    "contact_info": "Contact Information"
+  },
   "login": {
     "title": "Login",
     "subtitle": "Enter your credentials to login",
@@ -222,5 +263,58 @@
   "history": {
     "title": "Historical Overview",
     "content": "The schools of the Ministry of Education suffered for many years from a clear shortage in applied subjects schools (Home Economics, Music Education, Art Education), where there was a minority of specialized colleges that provided the ministry with its needs in these specializations such as the College of Home Economics in Cairo and Fine Arts in Alexandria. However, most graduates in these colleges were heading to other fields away from the teaching profession, which was rare, in addition to the fact that teacher training institutes were primarily concerned with studying applied subjects, so educational subjects were added to students in the last two years of study, and thus the community lacked the educationally qualified teacher to teach these subjects.\n\nTherefore, thinking was directed towards establishing specific colleges that work to qualify this teacher who can be relied upon in developing students' personalities through educational programs in arts, music and home economics, to perform this vital role with proper preparation.\n\nThe Specific Teacher Colleges in Alexandria was one of four colleges that were approved for establishment in September 1988 in Abbasiya for female teachers, and Dar Al-Salam for male teachers and two colleges in Alexandria at Raml Teachers, but the circumstances of establishment and the delay in study in the year of establishment led to the opening of one college in Alexandria. The name at first did not agree with the precise scientific content and the educational goal for which the college was established, then the college was named the Faculty of Specific Education in Alexandria to be one of the leading colleges that moved with steady and conscious steps to graduate the educationally qualified teacher technically in the fields of home economics, arts and music.\n\nTo keep pace with contemporary global educational trends in teacher preparation, the Supreme Council of Specific Colleges and Kindergartens adopted the introduction of the two-semester system that achieves continuity of the educational process and full integration of students in study and activities throughout the academic year. Based on this, this system was applied starting from the academic year 1995/1996 according to Ministerial Decision No. 1556 dated 26/10/1995, and the study plan was distributed on this basis in all academic divisions of the college."
+  },
+  "specializations": {
+    "educational_technology": "Educational Technology",
+    "music_education": "Music Education",
+    "art_education": "Art Education",
+    "home_economics": "Home Economics",
+    "educational_psychology": "Educational Psychology",
+    "nutrition_food_science": "Nutrition and Food Science",
+    "clothing_textiles": "Clothing and Textiles",
+    "home_management": "Home Management and Family Economics"
+  },
+  "calendar": {
+    "title": "Faculty Calendar",
+    "no_events": "No events for this day",
+    "view_details": "View Details",
+    "time": "Time",
+    "categories": {
+      "events": "Events",
+      "workshops": "Workshops",
+      "conferences": "Conferences",
+      "meetings": "Meetings",
+      "training": "Training",
+      "students": "Students",
+      "activities": "Activities",
+      "community": "Community Service",
+      "library": "Library",
+      "admissions": "Admissions",
+      "results": "Results",
+      "surveys": "Surveys"
+    },
+    "months": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    },
+    "weekdays": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    }
   }
 }

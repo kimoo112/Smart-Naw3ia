@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:naw3ia/core/localization/translation_extension.dart';
+import 'package:naw3ia/core/routes/routes.dart';
+import 'package:naw3ia/features/chat/data/models/department_model.dart' as chat;
+import 'package:naw3ia/features/chat/data/models/faculty_info_model.dart';
 import 'package:naw3ia/features/home/data/models/department_model.dart';
 import 'package:naw3ia/features/home/data/models/news_model.dart';
 import 'package:naw3ia/features/home/data/models/staff_model.dart';
@@ -21,202 +24,141 @@ class SearchResultBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints:
-          BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.85),
+      padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(30.r)),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 10,
-            spreadRadius: 5,
-            offset: Offset(0, -5),
-          ),
-        ],
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(16.r),
+        ),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Handle bar
           Center(
             child: Container(
-              margin: EdgeInsets.symmetric(vertical: 12.h),
               width: 40.w,
               height: 4.h,
+              margin: EdgeInsets.only(bottom: 16.h),
               decoration: BoxDecoration(
-                color: Theme.of(context).dividerColor,
+                color: Colors.grey[300],
                 borderRadius: BorderRadius.circular(2.r),
               ),
             ),
           ),
-          // Content
-          Flexible(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Padding(
-                padding: EdgeInsets.all(24.r),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Header with icon and title
-                    Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 30.r,
-                          backgroundColor:
-                              Theme.of(context).primaryColor.withOpacity(0.1),
-                          child: Icon(
-                            _getIconForType(result.type),
-                            color: Theme.of(context).primaryColor,
-                            size: 32.sp,
-                          ),
-                        ),
-                        SizedBox(width: 16.w),
-                        Expanded(
-                          child: Text(
-                            result.title,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineSmall
-                                ?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20.sp,
-                                ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 24.h),
-                    // Content based on type
-                    _buildContent(context),
-                    SizedBox(height: 24.h),
-                    // Action buttons
-                    _buildActions(context),
-                  ],
-                ),
-              ),
-            ),
+          Text(
+            result.title,
+            style: Theme.of(context).textTheme.titleLarge,
           ),
+          SizedBox(height: 16.h),
+          _buildResultDetails(context),
+          SizedBox(height: 16.h),
+          _buildViewMoreButton(context),
         ],
       ),
     );
   }
 
-  Widget _buildContent(BuildContext context) {
+  Widget _buildResultDetails(BuildContext context) {
     switch (result.type) {
       case SearchResultType.department:
         final department = result.originalItem as DepartmentModel;
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              department.getDescription(locale),
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    height: 1.5,
-                    color: Theme.of(context)
-                        .textTheme
-                        .bodyLarge
-                        ?.color
-                        ?.withOpacity(0.8),
-                  ),
-            ),
-            SizedBox(height: 16.h),
-            _buildInfoRow(context, 'staff.department_count'.tr(context),
-                '${department.facultyMembers.length} ${"staff.members".tr(context)}'),
+            _buildInfoRow(context, 'department_details.about'.tr(context),
+                department.getDescription(locale)),
             _buildInfoRow(context, 'staff.department_head'.tr(context),
-                " ${department.head.getTitle(locale)} / ${department.head.getName(locale)}"),
+                department.head.getName(locale)),
           ],
         );
-
-      case SearchResultType.staff:
-        final staff = result.originalItem as StaffMember;
+      case SearchResultType.chatDepartment:
+        final department = result.originalItem as chat.DepartmentModel;
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (staff.position != null)
-              _buildInfoRow(context, 'Position:', staff.position!),
-            if (staff.specialization != null)
-              _buildInfoRow(context, 'Specialization:', staff.specialization!),
-            if (staff.email != null)
-              _buildInfoRow(context, 'Email:', staff.email!),
+            _buildInfoRow(context, 'department_details.about'.tr(context),
+                department.getDescription(locale)),
+            _buildInfoRow(context, 'staff.department_head'.tr(context),
+                department.getHead(locale)),
           ],
         );
+      case SearchResultType.staff:
+        final staff = result.originalItem as StaffMember;
 
+        final staffDepartment = departments.firstWhere(
+          (dept) => dept.facultyMembers.contains(staff) || dept.head == staff,
+          orElse: () => departments.first,
+        );
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildInfoRow(context, 'staff.department'.tr(context),
+              staffDepartment.getName(locale) ),
+            if (staff.position != null)
+              _buildInfoRow(
+                  context, 'staff.position'.tr(context), staff.position!),
+            if (staff.getSpecialization(locale) != null)
+              _buildInfoRow(context, 'staff.specialization'.tr(context),
+                  staff.getSpecialization(locale)!),
+            if (staff.email != null)
+              _buildInfoRow(context, 'staff.email'.tr(context), staff.email!),
+          ],
+        );
       case SearchResultType.news:
         final news = result.originalItem as NewsModel;
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            _buildInfoRow(context, 'news.date'.tr(context), news.date),
             if (news.getDescription(locale) != null)
-              Text(
-                news.getDescription(locale)!,
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      height: 1.5,
-                      color: Theme.of(context)
-                          .textTheme
-                          .bodyLarge
-                          ?.color
-                          ?.withOpacity(0.8),
-                    ),
-              ),
-            SizedBox(height: 16.h),
-            _buildInfoRow(context, 'Date:', news.date),
+              _buildInfoRow(context, 'news.description'.tr(context),
+                  news.getDescription(locale)!),
           ],
         );
-
-      default:
-        return Text(
-          result.description,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                height: 1.5,
-                color: Theme.of(context)
-                    .textTheme
-                    .bodyLarge
-                    ?.color
-                    ?.withOpacity(0.8),
-              ),
+      case SearchResultType.facultyInfo:
+        final info = result.originalItem as FacultyInfoModel;
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildInfoRow(
+                context,
+                'search.faculty_info_description'.tr(context),
+                info.getDescription(locale)),
+          ],
         );
     }
   }
 
   Widget _buildInfoRow(BuildContext context, String label, String value) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 12.h),
-      child: Row(
+      padding: EdgeInsets.only(bottom: 8.h),
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             label,
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context)
-                      .textTheme
-                      .titleSmall
-                      ?.color
-                      ?.withOpacity(0.7),
+                  color: Colors.grey[600],
                 ),
           ),
-          SizedBox(width: 8.w),
-          Expanded(
-            child: Text(
-              value,
-              style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                  ),
-            ),
+          SizedBox(height: 4.h),
+          Text(
+            value,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
         ],
       ),
     );
   }
 
-  Widget _buildActions(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        //       
-      ],
+  Widget _buildViewMoreButton(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: () => _handleViewMore(context),
+        child: Text('search.more'.tr(context)),
+      ),
     );
   }
 
@@ -224,7 +166,10 @@ class SearchResultBottomSheet extends StatelessWidget {
     switch (result.type) {
       case SearchResultType.department:
         final department = result.originalItem as DepartmentModel;
-        context.push('/department-details', extra: department);
+        context.push(departmentDetailsView, extra: department);
+        break;
+      case SearchResultType.chatDepartment:
+        // Chat department results don't navigate to details
         break;
       case SearchResultType.news:
         final news = result.originalItem as NewsModel;
@@ -233,25 +178,22 @@ class SearchResultBottomSheet extends StatelessWidget {
         }
         break;
       case SearchResultType.staff:
-        // Navigate to staff details page if available
+        final staff = result.originalItem as StaffMember;
+        // Find the department by checking if the staff member is in faculty members or is head
+        final staffDepartment = departments.firstWhere(
+          (dept) => dept.facultyMembers.contains(staff) || dept.head == staff,
+          orElse: () =>
+              departments.first, // Fallback to first department if not found
+        );
+        // Navigate to department details with initial tab index 4 (staff tab)
+        context.push(departmentDetailsView, extra: {
+          'department': staffDepartment,
+          'initialTabIndex': 4,
+        });
         break;
-      default:
-        break;
-    }
-  }
-
-  IconData _getIconForType(SearchResultType type) {
-    switch (type) {
-      case SearchResultType.department:
-        return Icons.apartment_rounded;
-      case SearchResultType.news:
-        return Icons.article_outlined;
-      case SearchResultType.staff:
-        return Icons.person_outline_rounded;
       case SearchResultType.facultyInfo:
-        return Icons.school_outlined;
-      case SearchResultType.chatDepartment:
-        return Icons.chat_bubble_outline_rounded;
+        // Faculty info navigation could be added here
+        break;
     }
   }
 }

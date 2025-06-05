@@ -52,7 +52,7 @@ class SearchCubit extends Cubit<SearchState> {
         for (final staff in allStaff) {
           if (staff.getName(locale).toLowerCase().contains(queryLower) ||
               staff.getTitle(locale).toLowerCase().contains(queryLower) ||
-              (staff.specialization?.toLowerCase().contains(queryLower) ??
+              (staff.getSpecialization(locale)?.toLowerCase().contains(queryLower) ??
                   false)) {
             results.add(SearchResult.fromStaff(staff, locale));
           }

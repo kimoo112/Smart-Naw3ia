@@ -52,7 +52,7 @@ class SearchResult {
     return SearchResult(
       title: staff.getName(locale),
       description:
-          '${staff.getTitle(locale)}${staff.specialization != null ? ' - ${staff.specialization}' : ''}',
+          '${staff.getTitle(locale)}${staff.getSpecialization(locale) != null ? ' - ${staff.getSpecialization(locale)}' : ''}',
       type: SearchResultType.staff,
       originalItem: staff,
     );
