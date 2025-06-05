@@ -14,7 +14,18 @@ class OrganizationalChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final locale = Localizations.localeOf(context).languageCode;
-    final academicStaff = AcademicStaff.fromList(staff);
+
+    // Find the head
+    final heads = staff
+        .where((member) =>
+            member.position?.contains('رئيس قسم') == true ||
+            member.position?.toLowerCase().contains('head') == true)
+        .toList();
+
+    // Filter out head from regular staff
+    final regularStaff =
+        staff.where((member) => !heads.contains(member)).toList();
+    final academicStaff = AcademicStaff.fromList(regularStaff);
 
     return SingleChildScrollView(
       child: Column(
@@ -23,20 +34,13 @@ class OrganizationalChart extends StatelessWidget {
           _buildLevel(
             context,
             title: 'staff.department_head'.tr(context),
-            members: staff
-                .where((member) =>
-                    member.position?.contains('رئيس قسم') == true ||
-                    member.position?.toLowerCase().contains('head') == true)
-                .toList(),
+            members: heads,
             icon: Icons.account_balance,
-            color: Colors.deepPurple,
+            color: const Color(0xFF9A34B9),
             locale: locale,
             isHead: true,
           ),
-          if (staff.any((member) =>
-              member.position?.contains('رئيس قسم') == true ||
-              member.position?.toLowerCase().contains('head') == true))
-            _buildConnector(context),
+          if (heads.isNotEmpty) _buildConnector(context),
           _buildLevel(
             context,
             title: 'staff.professors'.tr(context),
@@ -187,10 +191,10 @@ class OrganizationalChart extends StatelessWidget {
                   ),
             ),
           ],
-          if (member.specialization != null) ...[
+          if (member.specializationEn != null) ...[
             const SizedBox(height: 4),
             Text(
-              member.specialization!,
+              member.getSpecialization(locale)!,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: Theme.of(context)

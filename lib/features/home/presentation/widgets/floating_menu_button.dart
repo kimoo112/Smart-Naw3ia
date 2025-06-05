@@ -41,6 +41,7 @@ class _FloatingMenuButtonState extends State<FloatingMenuButton>
       context.push(route).then((_) {
         if (mounted) {
           context.read<NavigationCubit>().changeIndex(0);
+          customReplacementAndRemove(context, homeView);
         }
       });
     }
@@ -107,9 +108,11 @@ class _FloatingMenuButtonState extends State<FloatingMenuButton>
               backgroundColor: currentIndex == 2
                   ? Theme.of(context).primaryColor
                   : AppColors.white,
-              onPressed: () => _navigateAndCloseFab(homeView, 2),
+              onPressed: () {
+                _navigateAndCloseFab(calenderView, 2);
+              },
               tooltip: 'home.bookmark'.tr(context),
-              child: const Icon(Icons.bookmark_border),
+              child: const Icon(Icons.calendar_month_outlined),
             ),
             FloatingActionButton.small(
               heroTag: 'person',
@@ -119,7 +122,7 @@ class _FloatingMenuButtonState extends State<FloatingMenuButton>
               backgroundColor: currentIndex == 3
                   ? Theme.of(context).primaryColor
                   : AppColors.white,
-              onPressed: () => _navigateAndCloseFab(homeView, 3),
+              onPressed: () => _navigateAndCloseFab(profileView, 3),
               tooltip: 'home.person'.tr(context),
               child: const Icon(Icons.person_outline),
             ),

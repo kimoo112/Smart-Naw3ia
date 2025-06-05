@@ -11,8 +11,8 @@ import '../../../../core/utils/app_text_styles.dart';
 import '../../model/onboarding_model.dart';
 import '../widgets/onboarding_vectors.dart';
 
-class OnboardingPage extends StatelessWidget {
-  const OnboardingPage({super.key});
+class OnboardingView extends StatelessWidget {
+  const OnboardingView({super.key});
 
   @override
   Widget build(BuildContext context) {

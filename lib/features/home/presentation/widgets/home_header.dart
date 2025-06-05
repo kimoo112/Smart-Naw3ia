@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:naw3ia/core/routes/routes.dart';
-import 'package:naw3ia/features/home/presentation/widgets/search_results.dart';
+import 'package:naw3ia/features/search/presentation/views/search_results.dart';
 
 import '../../../../core/cache/cache_helper.dart';
+import '../../../../core/localization/cubit/locale_cubit.dart';
 import '../../../../core/localization/translation_extension.dart';
-import '../../../../core/utils/app_assets.dart';
 
 class HomeHeader extends StatefulWidget {
   const HomeHeader({super.key});
@@ -105,8 +106,12 @@ class _HomeHeaderState extends State<HomeHeader> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final String name = CacheHelper.getData(key: 'studentName') ?? '';
-
+    final isAr = context.read<LocaleCubit>().state.locale.languageCode == 'ar';
+    final String name = isAr
+        ? CacheHelper.getData(key: 'studentName') ?? ''
+        : CacheHelper.getData(key: 'studentNameEn') ?? '';
+    final bool isDark = CacheHelper.getData(key: 'theme_mode') == 'dark';
+    final bool isEnglish = Localizations.localeOf(context).languageCode == 'en';
     return Column(
       children: [
         Padding(
@@ -136,27 +141,34 @@ class _HomeHeaderState extends State<HomeHeader> with TickerProviderStateMixin {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
-
-                /// Image
+                SizedBox(height: 16.h),
                 FadeTransition(
                   opacity: _imageFade,
                   child: ScaleTransition(
                     scale: _imageScale,
-                    child: Center(
-                      child: Image.asset(
-                        Theme.of(context).scaffoldBackgroundColor ==
-                                const Color(0xFF1A1A1A)
-                            ? Assets.imagesHelloHeaderDarkMode
-                            : Assets.imagesHelloHeader,
-                        width: 180.w,
-                      ),
+                    child: Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        Text(
+                          'app.welcome'.tr(context),
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayMedium!
+                              .copyWith(fontWeight: FontWeight.bold),
+                        ),
+                        Positioned(
+                          top: isEnglish ? -20.h : -17.h,
+                          right: isEnglish ? null : -25.w,
+                          left: isEnglish ? -27.w : null,
+                          child: Image.asset(isDark
+                              ? "app.white_cap".tr(context)
+                              : "app.cap".tr(context)),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
-
-                /// Title
+                6.verticalSpace,
                 SlideTransition(
                   position: _titleSlide,
                   child: FadeTransition(

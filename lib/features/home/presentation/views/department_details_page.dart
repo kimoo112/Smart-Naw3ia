@@ -5,12 +5,14 @@ import '../../../../core/localization/translation_extension.dart';
 import '../../data/models/department_model.dart';
 import '../widgets/organizational_chart.dart';
 
-class DepartmentDetailsPage extends StatelessWidget {
+class DepartmentDetailsView extends StatelessWidget {
   final DepartmentModel department;
+  final int initialTabIndex;
 
-  const DepartmentDetailsPage({
+  const DepartmentDetailsView({
     super.key,
     required this.department,
+    this.initialTabIndex = 0,
   });
 
   @override
@@ -20,6 +22,7 @@ class DepartmentDetailsPage extends StatelessWidget {
 
     return DefaultTabController(
       length: 5,
+      initialIndex: initialTabIndex,
       child: Scaffold(
         appBar: AppBar(
           title: Text(department.getName(locale)),

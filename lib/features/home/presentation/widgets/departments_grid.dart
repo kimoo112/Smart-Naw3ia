@@ -24,9 +24,7 @@ class DepartmentsGrid extends StatelessWidget {
           itemBuilder: (context, index) {
             return Padding(
               padding: EdgeInsets.only(
-                right: isArabic
-                    ? (index == 0 ? 0 : 10.w)
-                    : (10.w),
+                right: isArabic ? (index == 0 ? 0 : 10.w) : (10.w),
                 left: isArabic ? (10.w) : (index == 0 ? 0 : 10.w),
               ),
               child: GestureDetector(
@@ -34,7 +32,7 @@ class DepartmentsGrid extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => DepartmentDetailsPage(
+                      builder: (context) => DepartmentDetailsView(
                         department: departments[index],
                       ),
                     ),

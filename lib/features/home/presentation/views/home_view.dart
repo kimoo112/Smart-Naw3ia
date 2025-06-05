@@ -44,21 +44,12 @@ class _HomeViewState extends State<HomeView> {
                     left: 0, child: Image.asset(Assets.imagesHomeVectors)),
                 Padding(
                   padding: EdgeInsets.only(top: 20.0.h),
-                  child: Column(
+                  child: const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const HomeHeader(),
+                      HomeHeader(),
                       Expanded(
-                        child: IndexedStack(
-                          index: currentIndex,
-                          children: const [
-                            SectionTabs(),
-                            Center(child: Text('Chat')),
-                            Center(child: Text('Bookmarks')),
-                            Center(child: Text('Profile')),
-                            Center(child: Text('Settings')),
-                          ],
-                        ),
+                        child: SectionTabs(),
                       ),
                     ],
                   ),

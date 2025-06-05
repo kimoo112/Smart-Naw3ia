@@ -4,7 +4,8 @@ class StaffMember {
   final String titleEn;
   final String titleAr;
   final String? email;
-  final String? specialization;
+  final String? specializationEn;
+  final String? specializationAr;
   final String? department;
   final String? position;
 
@@ -14,11 +15,13 @@ class StaffMember {
     required this.titleEn,
     required this.titleAr,
     this.email,
-    this.specialization,
+    this.specializationEn,
+    this.specializationAr,
     this.department,
     this.position,
   });
 
+  String? getSpecialization(String locale) => locale == 'ar' ? specializationAr : specializationEn;
   String getName(String locale) => locale == 'ar' ? nameAr : nameEn;
   String getTitle(String locale) => locale == 'ar' ? titleAr : titleEn;
 
@@ -144,8 +147,8 @@ class AcademicStaff {
         result.write(' - ${departmentHead.email}');
       }
       result.writeln();
-      if (departmentHead.specialization != null) {
-        result.writeln('  ${departmentHead.specialization}');
+      if (departmentHead.specializationEn != null) {
+        result.writeln('  ${departmentHead.specializationEn}');
       }
       result.writeln();
     }
@@ -186,8 +189,8 @@ class AcademicStaff {
             result.write(' - ${member.email}');
           }
           result.writeln();
-          if (member.specialization != null) {
-            result.writeln('  ${member.specialization}');
+          if (member.specializationEn != null) {
+            result.writeln('  ${member.specializationEn}');
           }
         }
         result.writeln();

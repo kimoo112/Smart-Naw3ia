@@ -29,7 +29,7 @@ class DepartmentListViewWidget extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => DepartmentDetailsPage(department: dept),
+                builder: (context) => DepartmentDetailsView(department: dept),
               ),
             );
           },
@@ -70,9 +70,7 @@ class DepartmentListViewWidget extends StatelessWidget {
                           gradient: LinearGradient(
                             colors: [
                               Theme.of(context).primaryColor,
-                              Theme.of(context)
-                                  .primaryColor
-                                  .withOpacity(0.6)
+                              Theme.of(context).primaryColor.withOpacity(0.6)
                             ],
                           ),
                           boxShadow: [
@@ -87,8 +85,7 @@ class DepartmentListViewWidget extends StatelessWidget {
                         ),
                         child: Center(
                           child: Icon(
-                                           dept.icon,
-            
+                            dept.icon,
                             size: 24.sp,
                             color: Colors.white,
                           ),
@@ -137,13 +134,12 @@ class DepartmentListViewWidget extends StatelessWidget {
                                 ?.copyWith(fontWeight: FontWeight.w500),
                           ),
                         ],
-                        
                       ),
                       Text(
-                            'settings.more'.tr(context),
-                            style: textTheme.bodyMedium
-                                ?.copyWith(fontWeight: FontWeight.w500),
-                          ),
+                        'settings.more'.tr(context),
+                        style: textTheme.bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.w500),
+                      ),
                     ],
                   )
                 ],

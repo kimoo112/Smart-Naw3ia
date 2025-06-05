@@ -68,7 +68,16 @@ class DepartmentModel {
     final headKey = head.email ?? '${head.nameEn}_head';
     uniqueStaff[headKey] = head;
 
-    for (var member in departmentStaff) {
+    // Filter out the head from department staff if they exist there
+    final filteredStaff = departmentStaff.where((member) {
+      if (member.email != null && head.email != null) {
+        return member.email != head.email;
+      }
+      return member.nameEn != head.nameEn;
+    }).toList();
+
+    // Add remaining staff members
+    for (var member in filteredStaff) {
       final key = member.email ?? '${member.nameEn}_${counter++}';
       if (uniqueStaff.containsKey(key)) {
         final existing = uniqueStaff[key]!;
@@ -146,7 +155,8 @@ final List<DepartmentModel> departments = [
       titleEn: 'Prof. Dr.',
       titleAr: 'أ.د',
       position: 'رئيس قسم تكنولوجيا التعليم',
-      specialization: 'Educational Technology',
+      specializationEn: 'Educational Technology',
+      specializationAr: 'تكنولوجيا التعليم',
       department: 'Educational Technology',
     ),
     facultyMembers: [
@@ -155,7 +165,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'محمد وحيد محمد سليمان',
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
-        specialization: 'Educational Technology',
+        specializationEn: 'Educational Technology',
+        specializationAr: 'تكنولوجيا التعليم',
         department: 'Educational Technology',
       ),
       StaffMember(
@@ -163,7 +174,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'حسن على',
         titleEn: 'Dr.',
         titleAr: 'د',
-        specialization: 'Educational Technology',
+        specializationEn: 'Educational Technology',
+        specializationAr: 'تكنولوجيا التعليم',
         department: 'Educational Technology',
       ),
       StaffMember(
@@ -171,7 +183,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'شريف عبدالمنعم',
         titleEn: 'Dr.',
         titleAr: 'د',
-        specialization: 'Educational Technology',
+        specializationEn: 'Educational Technology',
+        specializationAr: 'تكنولوجيا التعليم',
         department: 'Educational Technology',
       ),
       StaffMember(
@@ -179,7 +192,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'الاء سعد صبري عسل',
         titleEn: 'Teaching Assistant',
         titleAr: 'م',
-        specialization: 'Educational Technology',
+        specializationEn: 'Educational Technology',
+        specializationAr: 'تكنولوجيا التعليم',
         department: 'Educational Technology',
       ),
       StaffMember(
@@ -187,7 +201,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'خلود عبد المقصود محمد مقلد',
         titleEn: 'Teaching Assistant',
         titleAr: 'م',
-        specialization: 'Educational Technology',
+        specializationEn: 'Educational Technology',
+        specializationAr: 'تكنولوجيا التعليم',
         department: 'Educational Technology',
       ),
       StaffMember(
@@ -195,7 +210,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'مروه محمود',
         titleEn: 'Teaching Assistant',
         titleAr: 'م',
-        specialization: 'Educational Technology',
+        specializationEn: 'Educational Technology',
+        specializationAr: 'تكنولوجيا التعليم',
         department: 'Educational Technology',
       ),
       StaffMember(
@@ -203,7 +219,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'اسماء علي',
         titleEn: 'Teaching Assistant',
         titleAr: 'م',
-        specialization: 'Educational Technology',
+        specializationEn: 'Educational Technology',
+        specializationAr: 'تكنولوجيا التعليم',
         department: 'Educational Technology',
       ),
       StaffMember(
@@ -211,7 +228,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'ايه مصطفي مبروك ريه',
         titleEn: 'Teaching Assistant',
         titleAr: 'م',
-        specialization: 'Educational Technology',
+        specializationEn: 'Educational Technology',
+        specializationAr: 'تكنولوجيا التعليم',
         department: 'Educational Technology',
       ),
     ],
@@ -264,7 +282,8 @@ final List<DepartmentModel> departments = [
       titleAr: 'أ.د',
       email: 'ebtsam.mahmoud@alexu.edu.eg',
       position: 'رئيس قسم الإقتصاد المنزلى',
-      specialization: 'Nutrition and Food Science',
+      specializationEn: 'Nutrition and Food Science',
+      specializationAr: 'تغذية وعلوم غذاء',
       department: 'Home Economics',
     ),
     facultyMembers: [
@@ -274,7 +293,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Prof. Dr.',
         titleAr: 'أ.د',
         email: 'Nagda.Mady@alexu.edu.eg',
-        specialization: 'Clothing and Textiles',
+        specializationEn: 'Clothing and Textiles',
+        specializationAr: 'ملابس ومنسوجات',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -283,7 +303,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Prof. Dr.',
         titleAr: 'أ.د',
         email: 'prof.faten@alexu.edu.eg',
-        specialization: 'Home Management and Family Economics',
+        specializationEn: 'Home Management and Family Economics',
+        specializationAr: 'إدارة منزلية واقتصاديات الأسرة',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -292,7 +313,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Prof. Dr.',
         titleAr: 'أ.د',
         email: 'prof.tesby@alexu.edu.eg',
-        specialization: 'Nutrition and Food Science',
+        specializationEn: 'Nutrition and Food Science',
+        specializationAr: 'تغذية وعلوم غذاء',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -301,7 +323,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Prof. Dr.',
         titleAr: 'أ.د',
         email: 'malak.reda@alexu.edu.eg',
-        specialization: 'Nutrition and Food Science',
+        specializationEn: 'Nutrition and Food Science',
+        specializationAr: 'تغذية وعلوم غذاء',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -310,7 +333,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Prof. Dr.',
         titleAr: 'أ.د',
         email: 'mona.sharaf@alexu.edu.eg',
-        specialization: 'Home Management and Family Economics',
+        specializationEn: 'Home Management and Family Economics',
+        specializationAr: 'إدارة منزلية واقتصاديات الأسرة',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -319,7 +343,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Prof. Dr.',
         titleAr: 'أ.د',
         email: 'm.mousa1@alexu.edu.eg',
-        specialization: 'Clothing and Textiles',
+        specializationEn: 'Clothing and Textiles',
+        specializationAr: 'ملابس ومنسوجات',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -328,7 +353,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'dr.sabri@alexu.edu.eg',
-        specialization: 'Nutrition and Food Science',
+        specializationEn: 'Nutrition and Food Science',
+        specializationAr: 'تغذية وعلوم غذاء',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -337,7 +363,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'ebtessam.ibrahim@alexu.edu.eg',
-        specialization: 'Clothing and Textiles',
+        specializationEn: 'Clothing and Textiles',
+        specializationAr: 'ملابس ومنسوجات',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -346,7 +373,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'dr.rehab@alexu.edu.eg',
-        specialization: 'Clothing and Textiles',
+        specializationEn: 'Clothing and Textiles',
+        specializationAr: 'ملابس ومنسوجات',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -355,7 +383,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'neven.wardany@alexu.edu.eg',
-        specialization: 'Nutrition and Food Science',
+        specializationEn: 'Nutrition and Food Science',
+        specializationAr: 'تغذية وعلوم غذاء',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -364,7 +393,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'Shimaa.Atiha@alexu.edu.eg',
-        specialization: 'Clothing and Textiles',
+        specializationEn: 'Clothing and Textiles',
+        specializationAr: 'ملابس ومنسوجات',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -373,7 +403,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'amira.shetewy@alexu.edu.eg',
-        specialization: 'Nutrition and Food Science',
+        specializationEn: 'Nutrition and Food Science',
+        specializationAr: 'تغذية وعلوم غذاء',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -382,7 +413,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'dr.doaa@alexu.edu.eg',
-        specialization: 'Nutrition and Food Science',
+        specializationEn: 'Nutrition and Food Science',
+        specializationAr: 'تغذية وعلوم غذاء',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -391,7 +423,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'amel.hassanin@alexu.edu.eg',
-        specialization: 'Home Management and Family Economics',
+        specializationEn: 'Home Management and Family Economics',
+        specializationAr: 'إدارة منزلية واقتصاديات الأسرة',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -400,7 +433,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'dr.sahar@alexu.edu.eg',
-        specialization: 'Home Management and Family Economics',
+        specializationEn: 'Home Management and Family Economics',
+        specializationAr: 'إدارة منزلية واقتصاديات الأسرة',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -409,7 +443,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'dr.sh.elnagar@alexu.edu.eg',
-        specialization: 'Home Management and Family Economics',
+        specializationEn: 'Home Management and Family Economics',
+        specializationAr: 'إدارة منزلية واقتصاديات الأسرة',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -418,7 +453,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'elsaida.khairy@alexu.edu.eg',
-        specialization: 'Clothing and Textiles',
+        specializationEn: 'Clothing and Textiles',
+        specializationAr: 'ملابس ومنسوجات',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -427,7 +463,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'doaa@alexu.edu.eg',
-        specialization: 'Nutrition and Food Science',
+        specializationEn: 'Nutrition and Food Science',
+        specializationAr: 'تغذية وعلوم غذاء',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -436,7 +473,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'ragwa.ibrahim@alexu.edu.eg',
-        specialization: 'Nutrition and Food Science',
+        specializationEn: 'Nutrition and Food Science',
+        specializationAr: 'تغذية وعلوم غذاء',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -445,7 +483,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'ester.vector@alexu.edu.eg',
-        specialization: 'Nutrition and Food Science',
+        specializationEn: 'Nutrition and Food Science',
+        specializationAr: 'تغذية وعلوم غذاء',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -454,7 +493,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'abeer.yassin@alexu.edu.eg',
-        specialization: 'Home Management and Family Economics',
+        specializationEn: 'Home Management and Family Economics',
+        specializationAr: 'إدارة منزلية واقتصاديات الأسرة',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -463,7 +503,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'marwa.zaki@alexu.edu.eg',
-        specialization: 'Nutrition and Food Science',
+        specializationEn: 'Nutrition and Food Science',
+        specializationAr: 'تغذية وعلوم غذاء',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -472,7 +513,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'heba.hamada@alexu.edu.eg',
-        specialization: 'Clothing and Textiles',
+        specializationEn: 'Clothing and Textiles',
+        specializationAr: 'ملابس ومنسوجات',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -481,7 +523,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'Heba.AbdelHalim1@alexu.edu.eg',
-        specialization: 'Clothing and Textiles',
+        specializationEn: 'Clothing and Textiles',
+        specializationAr: 'ملابس ومنسوجات',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -490,7 +533,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'amal.alsayed@alexu.edu.eg',
-        specialization: 'Home Management and Family Economics',
+        specializationEn: 'Home Management and Family Economics',
+        specializationAr: 'إدارة منزلية واقتصاديات الأسرة',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -499,7 +543,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'y-A-Habeeb@alexu.edu.eg',
-        specialization: 'Home Management and Family Economics',
+        specializationEn: 'Home Management and Family Economics',
+        specializationAr: 'إدارة منزلية واقتصاديات الأسرة',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -508,7 +553,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'hagar.ali@alexu.edu.eg',
-        specialization: 'Clothing and Textiles',
+        specializationEn: 'Clothing and Textiles',
+        specializationAr: 'ملابس ومنسوجات',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -517,7 +563,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'alaa.nashaat@alexu.edu.eg',
-        specialization: 'Clothing and Textiles',
+        specializationEn: 'Clothing and Textiles',
+        specializationAr: 'ملابس ومنسوجات',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -526,7 +573,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'iman.ibrahim@alexu.edu.eg',
-        specialization: 'Clothing and Textiles',
+        specializationEn: 'Clothing and Textiles',
+        specializationAr: 'ملابس ومنسوجات',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -535,7 +583,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'nashwa.hasan@alexu.edu.eg',
-        specialization: 'Nutrition and Food Science',
+        specializationEn: 'Nutrition and Food Science',
+        specializationAr: 'تغذية وعلوم غذاء',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -543,7 +592,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'سمر محمد سالم',
         titleEn: 'Dr.',
         titleAr: 'د',
-        specialization: 'Nutrition and Food Science',
+        specializationEn: 'Nutrition and Food Science',
+        specializationAr: 'تغذية وعلوم غذاء',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -551,7 +601,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'أسماء خالد شفيق',
         titleEn: 'Dr.',
         titleAr: 'د',
-        specialization: 'Nutrition and Food Science',
+        specializationEn: 'Nutrition and Food Science',
+        specializationAr: 'تغذية وعلوم غذاء',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -559,7 +610,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'مريم أحمد على',
         titleEn: 'Dr.',
         titleAr: 'د',
-        specialization: 'Nutrition and Food Science',
+        specializationEn: 'Nutrition and Food Science',
+        specializationAr: 'تغذية وعلوم غذاء',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -567,7 +619,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'ابتسام صالح ابراهيم مبروك',
         titleEn: 'Assistant Lecturer',
         titleAr: 'م.م',
-        specialization: 'Clothing and Textiles',
+        specializationEn: 'Clothing and Textiles',
+        specializationAr: 'ملابس ومنسوجات',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -575,7 +628,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'أسماء حمدى أحمد زايد',
         titleEn: 'Teaching Assistant',
         titleAr: 'م',
-        specialization: 'Home Management and Family Economics',
+        specializationEn: 'Home Management and Family Economics',
+        specializationAr: 'إدارة منزلية واقتصاديات الأسرة',
         department: 'Home Economics',
       ),
       StaffMember(
@@ -655,7 +709,8 @@ final List<DepartmentModel> departments = [
       titleAr: 'أ.د',
       email: 'manal.farrag@alexu.edu.eg',
       position: 'رئيس قسم التربية الموسيقية',
-      specialization: 'Music Education',
+      specializationEn: 'Music Education',
+      specializationAr: 'تربية موسيقية',
       department: 'Music Education',
     ),
     facultyMembers: [
@@ -665,7 +720,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Prof. Dr.',
         titleAr: 'أ.د',
         email: 'bahia.alekhrity@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -674,7 +730,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Prof. Dr.',
         titleAr: 'أ.د',
         email: 'dr.salwa.basha@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -683,7 +740,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Prof. Dr.',
         titleAr: 'أ.د',
         email: 'shady.m.a@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -692,7 +750,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Prof. Dr.',
         titleAr: 'أ.د',
         email: 'inas.diab@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -701,7 +760,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Prof. Dr.',
         titleAr: 'أ.د',
         email: 'heidi.wagih@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -710,7 +770,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'mayada.ali@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -719,7 +780,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'mayada.elkatatny@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -728,7 +790,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'dalia.elkabary@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -737,7 +800,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'marwamohamed1@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -746,7 +810,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'islam.saeed@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -755,7 +820,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'spe_asmaa.kotb@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -764,7 +830,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'heba.sami@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -773,7 +840,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'doaa.khmis@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -782,7 +850,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'spe_neven.kamal@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -791,7 +860,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assistant Lecturer',
         titleAr: 'م.م',
         email: 'spe_amal.hatem@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -800,7 +870,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assistant Lecturer',
         titleAr: 'م.م',
         email: 'mahmoud.syam@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -809,7 +880,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'maysa.hamed@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -818,7 +890,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'tamer.fouad@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -827,7 +900,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'eman.soliman@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -836,7 +910,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'Keyoflife@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -845,7 +920,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'heba.galal@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -854,7 +930,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'amira.eldeeb@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -863,7 +940,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'sherymoon@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -872,7 +950,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assistant Lecturer',
         titleAr: 'م.م',
         email: 'spe_heba.suleiman@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -881,7 +960,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assistant Lecturer',
         titleAr: 'م.م',
         email: 'krisslena@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -890,7 +970,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'eman.khmis@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -899,7 +980,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'sara.ibrahim@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -908,7 +990,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assistant Lecturer',
         titleAr: 'م.م',
         email: 'spe_dalia.badawi@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -917,7 +1000,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Teaching Assistant',
         titleAr: 'م',
         email: 'spe_dina.khalil@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -926,7 +1010,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assistant Lecturer',
         titleAr: 'م.م',
         email: 'ali.khebiery@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -935,7 +1020,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assistant Lecturer',
         titleAr: 'م.م',
         email: 'spe_aya.ahmadi@alexu.edu.eg',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -943,7 +1029,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'فاطمة الزهراء السيد',
         titleEn: 'Teaching Assistant',
         titleAr: 'م',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -951,7 +1038,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'أسراء أحمد أحمد حسين',
         titleEn: 'Teaching Assistant',
         titleAr: 'م',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -959,7 +1047,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'دينا شريف خميس',
         titleEn: 'Teaching Assistant',
         titleAr: 'م',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -967,7 +1056,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'ندي خيري محمد رجب',
         titleEn: 'Teaching Assistant',
         titleAr: 'م',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
       StaffMember(
@@ -975,7 +1065,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'فيولا ملاك رياض ملك',
         titleEn: 'Teaching Assistant',
         titleAr: 'م',
-        specialization: 'Music Education',
+        specializationEn: 'Music Education',
+        specializationAr: 'تربية موسيقية',
         department: 'Music Education',
       ),
     ],
@@ -1028,7 +1119,8 @@ final List<DepartmentModel> departments = [
       titleAr: 'أ.م.د',
       email: 'gihan.abolkhair@alexu.edu.eg',
       position: 'رئيس قسم التربية الفنية',
-      specialization: 'Art Education',
+      specializationEn: 'Art Education',
+      specializationAr: 'التربية الفنية',
       department: 'Art Education',
     ),
     facultyMembers: [
@@ -1038,7 +1130,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Prof. Dr.',
         titleAr: 'أ.د',
         email: 'dr.sheref.temraz@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1047,7 +1140,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Prof. Dr.',
         titleAr: 'أ.د',
         email: 'amira.sorady@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1056,7 +1150,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Prof. Dr.',
         titleAr: 'أ.د',
         email: 'dr.hana.yassen@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1065,7 +1160,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Prof. Dr.',
         titleAr: 'أ.د',
         email: 'mona.massry@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1074,7 +1170,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Prof. Dr.',
         titleAr: 'أ.د',
         email: 'dina.adel@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1083,7 +1180,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'ahlam.elmeligy@alexu.edu.eg',
-        specialization: 'Painting',
+        specializationEn: 'Painting',
+        specializationAr: 'الرسم',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1092,7 +1190,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'spe_khairia@alexu.edu.eg',
-        specialization: 'Painting',
+        specializationEn: 'Painting',
+        specializationAr: 'الرسم',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1101,7 +1200,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'noha.darrag@alexu.edu.eg',
-        specialization: 'Textile Printing',
+        specializationEn: 'Textile Printing',
+        specializationAr: 'طباعة المنسوجات',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1110,7 +1210,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'mon_art@alexu.edu.eg',
-        specialization: 'Painting',
+        specializationEn: 'Painting',
+        specializationAr: 'الرسم',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1119,7 +1220,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'a_kadry@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1128,7 +1230,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'hoda.anwar@alexu.edu.eg',
-        specialization: 'Art Works',
+        specializationEn: 'Art Works',
+        specializationAr: 'الأعمال الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1137,7 +1240,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'amira.elhandoom@alexu.edu.eg',
-        specialization: 'Drawing and Painting',
+        specializationEn: 'Drawing and Painting',
+        specializationAr: 'الرسم والتصوير',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1146,7 +1250,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'nahla.eldeeb@alexu.edu.eg',
-        specialization: 'Textile',
+        specializationEn: 'Textile',
+        specializationAr: 'النسيج',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1155,7 +1260,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'adly.abdo@alexu.edu.eg',
-        specialization: 'Metal Works',
+        specializationEn: 'Metal Works',
+        specializationAr: 'أعمال المعادن',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1164,7 +1270,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'walaakm@alexu.edu.eg',
-        specialization: 'Painting',
+        specializationEn: 'Painting',
+        specializationAr: 'الرسم',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1173,7 +1280,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'amira.saleh@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1182,7 +1290,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'Dr.ola.zien@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1191,7 +1300,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'spe_neven2@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1200,7 +1310,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'safaa.saleh@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1209,7 +1320,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'khaled.ali@alexu.edu.eg',
-        specialization: 'Design',
+        specializationEn: 'Design',
+        specializationAr: 'التصميم',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1218,7 +1330,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'nashwa.hasan@alexu.edu.eg',
-        specialization: 'Design',
+        specializationEn: 'Design',
+        specializationAr: 'التصميم',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1227,7 +1340,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'basma.aboelyazed@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1236,7 +1350,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'mahmoudmetwally@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1245,7 +1360,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'ghada.rashwan@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1254,7 +1370,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'asmaa.barbari@alexu.edu.eg',
-        specialization: 'Art Works',
+        specializationEn: 'Art Works',
+        specializationAr: 'الأعمال الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1263,7 +1380,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'neven.zabady@alexu.edu.eg',
-        specialization: 'Ceramics',
+        specializationEn: 'Ceramics',
+        specializationAr: 'السيراميك',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1272,7 +1390,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'dina.rahoma@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1281,7 +1400,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'noha.shams@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1290,7 +1410,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'heba.Anwer@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1299,7 +1420,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'sofia.elkholy@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1308,7 +1430,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'asmaa.ibrahem@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1317,7 +1440,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'ehab.elshekh@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1326,7 +1450,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'Dr.heba.art@alexu.edu.eg',
-        specialization: 'Art Works',
+        specializationEn: 'Art Works',
+        specializationAr: 'الأعمال الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1335,7 +1460,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assistant Lecturer',
         titleAr: 'م.م',
         email: 'nancy.sultan@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1344,7 +1470,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'dalia.sharaf@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1353,7 +1480,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assistant Lecturer',
         titleAr: 'م.م',
         email: 'hend.saad@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1362,7 +1490,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'shereen.raouf@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1371,7 +1500,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'Hend.azaz@alexu.edu.eg',
-        specialization: 'Ceramics',
+        specializationEn: 'Ceramics',
+        specializationAr: 'السيراميك',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1380,7 +1510,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'naema.ali@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1389,7 +1520,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'amira.halol@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1398,7 +1530,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assistant Lecturer',
         titleAr: 'م.م',
         email: 'EmanZahran1@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1407,7 +1540,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'mariam.abdelmalak@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1416,7 +1550,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assistant Lecturer',
         titleAr: 'م.م',
         email: 'hagar.marouf@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1425,7 +1560,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assistant Lecturer',
         titleAr: 'م.م',
         email: 'asmaa.alsad@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1434,7 +1570,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assistant Lecturer',
         titleAr: 'م.م',
         email: 'shorouk.hamouda@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1443,7 +1580,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assistant Lecturer',
         titleAr: 'م.م',
         email: 'ahmed.ayad@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1452,7 +1590,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Teaching Assistant',
         titleAr: 'م',
         email: 'abeer.abdelbaset@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1461,7 +1600,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Teaching Assistant',
         titleAr: 'م',
         email: 'sherine.ashraf@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
       StaffMember(
@@ -1470,7 +1610,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Teaching Assistant',
         titleAr: 'م',
         email: 'esraa.lotfy@alexu.edu.eg',
-        specialization: 'Art Education',
+        specializationEn: 'Art Education',
+        specializationAr: 'التربية الفنية',
         department: 'Art Education',
       ),
     ],
@@ -1523,7 +1664,8 @@ final List<DepartmentModel> departments = [
       titleAr: 'أ.د',
       email: 'hala.said@alexu.edu.eg',
       position: 'رئيس قسم العلوم التربوية والنفسية',
-      specialization: 'Home Economics Teaching Methods',
+      specializationEn: 'Home Economics Teaching Methods',
+      specializationAr: 'مناهج وطرق تدريس الاقتصاد المنزلي',
       department: 'Educational and Psychological Sciences',
     ),
     facultyMembers: [
@@ -1533,7 +1675,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Prof. Dr.',
         titleAr: 'أ.د',
         email: 'sanna.sherif@alexu.edu.eg',
-        specialization: 'Art Education Teaching Methods',
+        specializationEn: 'Art Education Teaching Methods',
+        specializationAr: 'مناهج وطرق تدريس التربية الفنية',
         department: 'Educational and Psychological Sciences',
       ),
       StaffMember(
@@ -1542,7 +1685,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Prof. Dr.',
         titleAr: 'أ.د',
         email: 'zizi.omar@alexu.edu.eg',
-        specialization: 'Home Economics Teaching Methods',
+        specializationEn: 'Home Economics Teaching Methods',
+        specializationAr: 'مناهج وطرق تدريس الاقتصاد المنزلي',
         department: 'Educational and Psychological Sciences',
       ),
       StaffMember(
@@ -1551,7 +1695,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Prof. Dr.',
         titleAr: 'أ.د',
         email: 'dr.helmy@alexu.edu.eg',
-        specialization: 'Educational Psychology',
+        specializationEn: 'Educational Psychology',
+        specializationAr: 'علم النفس التربوي',
         department: 'Educational and Psychological Sciences',
       ),
       StaffMember(
@@ -1560,7 +1705,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'hanan.samir@alexu.edu.eg',
-        specialization: 'Educational Psychology',
+        specializationEn: 'Educational Psychology',
+        specializationAr: 'علم النفس التربوي',
         department: 'Educational and Psychological Sciences',
       ),
       StaffMember(
@@ -1569,7 +1715,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'Sanaa.Mansour@alexu.edu.eg',
-        specialization: 'Art Education Teaching Methods',
+        specializationEn: 'Art Education Teaching Methods',
+        specializationAr: 'مناهج وطرق تدريس التربية الفنية',
         department: 'Educational and Psychological Sciences',
       ),
       StaffMember(
@@ -1578,7 +1725,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'Enas.Hossney@alexu.edu.eg',
-        specialization: 'Art Education Teaching Methods',
+        specializationEn: 'Art Education Teaching Methods',
+        specializationAr: 'مناهج وطرق تدريس التربية الفنية',
         department: 'Educational and Psychological Sciences',
       ),
       StaffMember(
@@ -1587,7 +1735,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'noha.farfor@alexu.edu.eg',
-        specialization: 'Art Education Teaching Methods',
+        specializationEn: 'Art Education Teaching Methods',
+        specializationAr: 'مناهج وطرق تدريس التربية الفنية',
         department: 'Educational and Psychological Sciences',
       ),
       StaffMember(
@@ -1596,7 +1745,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'ghada.alsharif@alexu.edu.eg',
-        specialization: 'Art Education Teaching Methods',
+        specializationEn: 'Art Education Teaching Methods',
+        specializationAr: 'مناهج وطرق تدريس التربية الفنية',
         department: 'Educational and Psychological Sciences',
       ),
       StaffMember(
@@ -1605,7 +1755,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'eman.shapan@alexu.edu.eg',
-        specialization: 'Home Economics Teaching Methods',
+        specializationEn: 'Home Economics Teaching Methods',
+        specializationAr: 'مناهج وطرق تدريس الاقتصاد المنزلي',
         department: 'Educational and Psychological Sciences',
       ),
       StaffMember(
@@ -1614,7 +1765,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Assoc. Prof. Dr.',
         titleAr: 'أ.م.د',
         email: 'Treza.emeel@alexu.edu.eg',
-        specialization: 'Home Economics Teaching Methods',
+        specializationEn: 'Home Economics Teaching Methods',
+        specializationAr: 'مناهج وطرق تدريس الاقتصاد المنزلي',
         department: 'Educational and Psychological Sciences',
       ),
       StaffMember(
@@ -1623,7 +1775,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'mohamed.shewial@alexu.edu.eg',
-        specialization: 'Music Education Teaching Methods',
+        specializationEn: 'Music Education Teaching Methods',
+        specializationAr: 'مناهج وطرق تدريس التربية الموسيقية',
         department: 'Educational and Psychological Sciences',
       ),
       StaffMember(
@@ -1632,7 +1785,8 @@ final List<DepartmentModel> departments = [
         titleEn: 'Dr.',
         titleAr: 'د',
         email: 'amira.zaiton@alexu.edu.eg',
-        specialization: 'Art Education Teaching Methods',
+        specializationEn: 'Art Education Teaching Methods',
+        specializationAr: 'مناهج وطرق تدريس التربية الفنية',
         department: 'Educational and Psychological Sciences',
       ),
       StaffMember(
@@ -1640,7 +1794,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'شيماء ماهر',
         titleEn: 'Dr.',
         titleAr: 'د',
-        specialization: 'Music Education Teaching Methods',
+        specializationEn: 'Music Education Teaching Methods',
+        specializationAr: 'مناهج وطرق تدريس التربية الموسيقية',
         department: 'Educational and Psychological Sciences',
       ),
       StaffMember(
@@ -1648,7 +1803,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'بسمة ممدوح',
         titleEn: 'Assistant Lecturer',
         titleAr: 'م.م',
-        specialization: 'Art Education Teaching Methods',
+        specializationEn: 'Art Education Teaching Methods',
+        specializationAr: 'مناهج وطرق تدريس التربية الفنية',
         department: 'Educational and Psychological Sciences',
       ),
       StaffMember(
@@ -1656,7 +1812,8 @@ final List<DepartmentModel> departments = [
         nameAr: 'إيناس الجزار',
         titleEn: 'Teaching Assistant',
         titleAr: 'م',
-        specialization: 'Music Education Teaching Methods',
+        specializationEn: 'Music Education Teaching Methods',
+        specializationAr: 'مناهج وطرق تدريس التربية الموسيقية',
         department: 'Educational and Psychological Sciences',
       ),
     ],

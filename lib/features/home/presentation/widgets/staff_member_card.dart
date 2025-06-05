@@ -50,10 +50,10 @@ class StaffMemberCard extends StatelessWidget {
                     member.getTitle(locale),
                     style: textTheme.bodyLarge,
                   ),
-                  if (member.specialization != null) ...[
+                  if (member.specializationEn != null) ...[
                     const SizedBox(height: 4),
                     Text(
-                      member.specialization!,
+                      member.specializationEn!,
                       style: textTheme.bodyMedium?.copyWith(
                         color: Colors.grey[600],
                       ),

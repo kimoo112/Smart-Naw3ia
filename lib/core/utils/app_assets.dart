@@ -6,6 +6,14 @@ class Assets {
   /// assets/images/art.jpg
   static const String imagesArt = "assets/images/art.jpg";
 
+  /// Assets for imagesCap
+  /// assets/images/cap.png
+  static const String imagesCap = "assets/images/cap.png";
+
+  /// Assets for imagesCapEn
+  /// assets/images/cap_en.png
+  static const String imagesCapEn = "assets/images/cap_en.png";
+
   /// Assets for imagesHelloHeader
   /// assets/images/hello_header.png
   static const String imagesHelloHeader = "assets/images/hello_header.png";
@@ -29,6 +37,10 @@ class Assets {
   /// Assets for imagesMusic
   /// assets/images/Music.jpg
   static const String imagesMusic = "assets/images/Music.jpg";
+
+  /// Assets for imagesNoEvents
+  /// assets/images/no_events.json
+  static const String imagesNoEvents = "assets/images/no_events.json";
 
   /// Assets for imagesOnboarding1
   /// assets/images/onboarding1.png
@@ -69,5 +81,13 @@ class Assets {
   /// Assets for imagesVectors
   /// assets/images/vectors.png
   static const String imagesVectors = "assets/images/vectors.png";
+
+  /// Assets for imagesWhiteCap
+  /// assets/images/white_cap.png
+  static const String imagesWhiteCap = "assets/images/white_cap.png";
+
+  /// Assets for imagesWhiteCapEn
+  /// assets/images/white_cap_en.png
+  static const String imagesWhiteCapEn = "assets/images/white_cap_en.png";
 }
 
