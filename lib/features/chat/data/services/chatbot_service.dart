@@ -43,29 +43,9 @@ class ChatbotService {
     if (query.isEmpty) {
       return locale == 'ar'
           ? '''مرحباً بك! كيف يمكنني مساعدتك؟
-يمكنك السؤال عن:
-- تاريخ ونشأة الكلية
-- مواعيد الترم الدراسي
-- إثبات القيد
-- الاعتذار عن الترم
-- المشاكل القانونية
-- التسكين في المدينة الجامعية
-- الجداول الدراسية
-- الغياب
-- كارنيه الكلية
-- تسجيل المواد'''
+'''
           : '''Welcome! How can I help you?
-You can ask about:
-- College history
-- Academic semesters
-- Enrollment certificate
-- Semester withdrawal
-- Legal issues
-- University housing
-- Schedules
-- Absence
-- College ID
-- Course registration''';
+''';
     }
 
     // Search through suggested questions for matches
