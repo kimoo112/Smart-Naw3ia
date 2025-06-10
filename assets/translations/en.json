@@ -6,6 +6,8 @@
     "white_cap": "assets/images/white_cap_en.png",
     "cap":"assets/images/cap_en.png",
     "skip": "Skip",
+    "developer_name": "KARIM MOHAMED",
+    "developer_of_the_app": "Developer of the app",
     "more": "More...",
     "name": "Faculty of Specific Education"
   },
@@ -169,7 +171,9 @@
     "preferences": "Preferences",
     "more": "More",
     "logout": "Logout"
+    
   },
+  
   "search": {
     "loading": "Searching...",
     "faculty_info_description": "Faculty information",
@@ -316,5 +320,35 @@
       "saturday": "Saturday",
       "sunday": "Sunday"
     }
+  },
+  "notifications": {
+    "title": "Notifications",
+      "clear_all": "Clear All",
+      "empty": "No notifications yet",
+      "removed": "Notification removed",
+      "undo": "Undo",
+      "enable_notifications": "Enable Notifications",
+      "enabled_title": "Notifications Enabled",
+      "enabled_body": "You will now receive important updates from the Faculty app."
+  },
+  "about_app": {
+    "title": "About the App",
+    "description": "Naw3ia is a modern Flutter application designed for the Faculty of Specific Education at Alexandria University...",
+    "features_title": "Key Features",
+    "features": {
+      "0": "AI Chat Assistant: Instantly get answers to your questions about the faculty, departments, courses, and student services using an integrated AI-powered chatbot.",
+      "1": "Multi-language Support: The app supports both English and Arabic, making it accessible to a diverse user base.",
+      "2": "Personalized Student Profile: View and manage your academic profile, including department, program, level, GPA, and personal information.",
+      "3": "Academic Departments & Programs: Explore detailed information about all academic departments...",
+      "4": "News & Announcements: Stay updated with the latest news, events, conferences, and important announcements.",
+      "5": "Academic Calendar: Access a calendar of events, workshops, conferences, and key academic dates.",
+      "6": "Notifications: Receive timely notifications about important deadlines, events, and faculty updates.",
+      "7": "Onboarding Experience: New users are guided through an onboarding process.",
+      "8": "Settings & Customization: Switch between light and dark themes. Change the app language. Manage notification preferences.",
+      "9": "Secure Login & Logout: User authentication ensures that your data is secure."
+    },
+    "purpose_title": "App Purpose",
+    "purpose": "The app aims to prepare and support students and staff in their academic journey..."
   }
+  
 }
