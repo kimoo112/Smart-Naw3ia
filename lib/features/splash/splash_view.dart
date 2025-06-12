@@ -93,7 +93,10 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
     final String? studentName = CacheHelper.getData(key: 'studentName');
 
     if (studentName != null && studentName.isNotEmpty) {
-      if (mounted) delayedNavigate(context, homeView);
+      if (mounted) {
+        // Allow guest users to continue their session after app restart
+        delayedNavigate(context, homeView);
+      }
     } else {
       if (mounted) delayedNavigate(context, onboarding);
     }

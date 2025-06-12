@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:smart_naw3ia/core/localization/translation_extension.dart';
 import 'package:smart_naw3ia/features/calendar/models/event_model.dart';
 import 'package:smart_naw3ia/features/calendar/widgets/modern_calendar.dart';
 import 'package:smart_naw3ia/features/home/data/models/news_model.dart';
+import 'package:smart_naw3ia/features/login/data/services/guest_permissions_service.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../../core/ui/floating_menu_navigation.dart';
 
 class CalendarView extends StatelessWidget {
   const CalendarView({super.key});
@@ -61,8 +65,10 @@ class CalendarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final fabKey = GlobalKey<ExpandableFabState>();
     final locale = Localizations.localeOf(context).languageCode;
     final events = _createEventsFromNews();
+    final isGuest = GuestPermissionsService.isGuest();
 
     return Scaffold(
       appBar: AppBar(
@@ -73,6 +79,12 @@ class CalendarView extends StatelessWidget {
         events: events,
         locale: locale,
         onEventTap: (event) async {
+          // Skip interaction for guests - already handled in ModernCalendar widget
+          if (isGuest) {
+            return;
+          }
+
+          // Normal behavior for authenticated users
           if (event.link != null) {
             final uri = Uri.parse(event.link!);
             if (await canLaunchUrl(uri)) {
@@ -81,6 +93,8 @@ class CalendarView extends StatelessWidget {
           }
         },
       ),
+      floatingActionButton: FloatingButtonNavigation(key: fabKey),
+      floatingActionButtonLocation: ExpandableFab.location,
     );
   }
 }

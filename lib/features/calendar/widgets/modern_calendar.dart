@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smart_naw3ia/core/localization/translation_extension.dart';
 import 'package:smart_naw3ia/features/calendar/models/event_model.dart';
+import 'package:smart_naw3ia/features/login/data/services/guest_permissions_service.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../../core/utils/app_assets.dart';
@@ -28,12 +29,14 @@ class _ModernCalendarState extends State<ModernCalendar> {
   late DateTime _focusedDay;
   late DateTime _selectedDay;
   late Map<DateTime, List<CalendarEvent>> _eventsByDay;
+  late bool _isGuest;
 
   @override
   void initState() {
     super.initState();
     _focusedDay = DateTime.now();
     _selectedDay = DateTime.now();
+    _isGuest = GuestPermissionsService.isGuest();
     _groupEventsByDay();
   }
 
@@ -158,7 +161,7 @@ class _ModernCalendarState extends State<ModernCalendar> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-           Lottie.asset(Assets.imagesSearchFailLottie,width: 190.w),
+            Lottie.asset(Assets.imagesSearchFailLottie, width: 190.w),
             Text(
               'calendar.no_events'.tr(context),
               style: TextStyle(
@@ -171,6 +174,126 @@ class _ModernCalendarState extends State<ModernCalendar> {
       );
     }
 
+    // If user is a guest, show limited information about events
+    if (_isGuest) {
+      return Column(
+        children: [
+          // Guest restriction banner
+          Container(
+            margin: EdgeInsets.all(16.w),
+            padding: EdgeInsets.all(12.w),
+            decoration: BoxDecoration(
+              color: Colors.amber.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(12.r),
+              border: Border.all(
+                color: Colors.amber,
+                width: 1,
+              ),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.info_outline,
+                  color: Colors.amber,
+                  size: 20.r,
+                ),
+                SizedBox(width: 8.w),
+                Expanded(
+                  child: Text(
+                    'restrictions.calendar_interaction_message'.tr(context),
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      color: Colors.amber[800],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // Limited event list for guests
+          Expanded(
+            child: ListView.builder(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              itemCount: events.length,
+              itemBuilder: (context, index) {
+                final event = events[index];
+                return Card(
+                  margin: EdgeInsets.only(bottom: 12.h),
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                  child: Container(
+                    padding: EdgeInsets.all(16.w),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 4.w,
+                          height: 60.h,
+                          decoration: BoxDecoration(
+                            color: event.color,
+                            borderRadius: BorderRadius.circular(2.r),
+                          ),
+                        ),
+                        SizedBox(width: 16.w),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 8.w,
+                                      vertical: 4.h,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: event.color.withOpacity(0.1),
+                                      borderRadius: BorderRadius.circular(4.r),
+                                    ),
+                                    child: Text(
+                                      event.getCategory(widget.locale),
+                                      style: TextStyle(
+                                        fontSize: 12.sp,
+                                        color: event.color,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    DateFormat.Hm().format(event.date),
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 8.h),
+                              Text(
+                                event.getTitle(widget.locale),
+                                style: TextStyle(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      );
+    }
+
+    // Regular event list for authenticated users
     return ListView.builder(
       padding: EdgeInsets.all(16.w),
       itemCount: events.length,

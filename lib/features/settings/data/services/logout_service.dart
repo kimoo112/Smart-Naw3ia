@@ -20,6 +20,7 @@ class LogoutService {
     await CacheHelper.removeData(key: 'studentGPA');
     await CacheHelper.removeData(key: 'studentStatus');
     await CacheHelper.removeData(key: 'studentStatusEn');
+    await CacheHelper.removeData(key: 'isGuest');
 
     // Navigate to login screen
     customReplacementAndRemove(context, loginView);

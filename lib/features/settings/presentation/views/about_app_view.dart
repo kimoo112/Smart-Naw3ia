@@ -66,8 +66,6 @@ class _AboutAppViewState extends State<AboutAppView>
                 ),
               ),
               SizedBox(height: 30.h),
-
-              // App logo
               ScaleTransition(
                 scale: _scaleAnimation,
                 child: CircleAvatar(

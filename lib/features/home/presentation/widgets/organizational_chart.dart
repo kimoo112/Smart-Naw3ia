@@ -17,9 +17,7 @@ class OrganizationalChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final locale = Localizations.localeOf(context).languageCode;
-    final theme = Theme.of(context);
 
-    // Find the head
     final heads = staff
         .where((member) =>
             member.position?.contains('رئيس قسم') == true ||
@@ -63,7 +61,7 @@ class OrganizationalChart extends StatelessWidget {
           DepartmentLevel(
             title: 'staff.professors'.tr(context),
             members: academicStaff.professors,
-            icon: Icons.school_rounded,
+            icon: FontAwesomeIcons.graduationCap,
             color: rankColors[1],
             locale: locale,
           ),
@@ -113,7 +111,7 @@ class OrganizationalChart extends StatelessWidget {
           DepartmentLevel(
             title: 'staff.teaching_assistants'.tr(context),
             members: academicStaff.teachingAssistants,
-            icon: FontAwesomeIcons.graduationCap,
+            icon: Icons.school_rounded,
             color: rankColors[6],
             locale: locale,
           ),

@@ -163,6 +163,7 @@ class LoginCubit extends Cubit<LoginState> {
               key: 'studentStatus', value: userData['statusAr']);
           await CacheHelper.saveData(
               key: 'studentStatusEn', value: userData['statusEn']);
+          await CacheHelper.saveData(key: 'isGuest', value: false);
 
           emit(LoginSuccess());
         } else {
@@ -172,6 +173,36 @@ class LoginCubit extends Cubit<LoginState> {
       } catch (e) {
         emit(LoginError(e.toString()));
       }
+    }
+  }
+
+  Future<void> loginAsGuest() async {
+    try {
+      emit(LoginLoading());
+
+      await Future.delayed(const Duration(seconds: 1));
+
+      // Save guest user data in shared preferences
+      await CacheHelper.saveData(key: 'studentNumber', value: 'guest');
+      await CacheHelper.saveData(key: 'studentName', value: 'زائر');
+      await CacheHelper.saveData(key: 'studentNameEn', value: 'Guest');
+      await CacheHelper.saveData(
+          key: 'studentEmail', value: 'guest@example.com');
+      await CacheHelper.saveData(key: 'studentPhone', value: 'N/A');
+      await CacheHelper.saveData(key: 'studentDepartment', value: 'زائر');
+      await CacheHelper.saveData(key: 'studentDepartmentEn', value: 'Guest');
+      await CacheHelper.saveData(key: 'studentProgram', value: 'زائر');
+      await CacheHelper.saveData(key: 'studentProgramEn', value: 'Guest');
+      await CacheHelper.saveData(key: 'studentLevel', value: 'زائر');
+      await CacheHelper.saveData(key: 'studentLevelEn', value: 'Guest');
+      await CacheHelper.saveData(key: 'studentGPA', value: '0.0');
+      await CacheHelper.saveData(key: 'studentStatus', value: 'زائر');
+      await CacheHelper.saveData(key: 'studentStatusEn', value: 'Guest');
+      await CacheHelper.saveData(key: 'isGuest', value: true);
+
+      emit(LoginSuccess());
+    } catch (e) {
+      emit(LoginError(e.toString()));
     }
   }
 
