@@ -17,24 +17,6 @@ import 'features/login/presentation/cubit/login_cubit.dart';
 import 'features/notifications/data/services/notification_service.dart';
 
 // Top-level notification callbacks for Awesome Notifications
-Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {
-  // Handle notification actions here
-  final actionKey = receivedAction.payload?['action_key'];
-  if (actionKey != null && actionKey.startsWith('REPLY_TO_')) {
-    // Your logic here
-  }
-}
-
-Future<void> onNotificationDisplayedMethod(
-    ReceivedNotification receivedNotification) async {
-  // Notification was displayed
-}
-
-Future<void> onDismissActionReceivedMethod(
-    ReceivedAction receivedAction) async {
-  // Notification was dismissed
-}
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
@@ -49,11 +31,11 @@ void main() async {
     statusBarColor: Colors.transparent,
   ));
 
-  runApp(const MyApp());
+  runApp(const SmartNaw3ia());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class SmartNaw3ia extends StatelessWidget {
+  const SmartNaw3ia({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -107,3 +89,14 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {
+  final actionKey = receivedAction.payload?['action_key'];
+  if (actionKey != null && actionKey.startsWith('REPLY_TO_')) {}
+}
+
+Future<void> onNotificationDisplayedMethod(
+    ReceivedNotification receivedNotification) async {}
+
+Future<void> onDismissActionReceivedMethod(
+    ReceivedAction receivedAction) async {}

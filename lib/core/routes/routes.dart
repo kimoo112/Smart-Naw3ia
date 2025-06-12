@@ -11,3 +11,5 @@ const String chatView = '/chat';
 const String searchView = '/search';
 const String calenderView = '/calenderView';
 const String profileView = '/profile';
+const String notificationsView = '/notifications';
+const String aboutApp = '/aboutAppView';

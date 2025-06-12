@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../core/utils/app_assets.dart';
 import 'staff_model.dart';
@@ -114,26 +114,30 @@ final List<DepartmentModel> departments = [
     nameEn: 'Educational Technology',
     nameAr: 'تكنولوجيا التعليم',
     descriptionEn:
-        'The Department of Educational Technology aims to prepare specialized teachers in the field of educational technology capable of using and employing technology in the educational process.',
+        'The Department of Educational Technology prepares specialized educators capable of effectively integrating technology into teaching and learning processes. It focuses on developing digital skills, creating educational content, and implementing innovative teaching methods to enhance educational outcomes.',
     descriptionAr:
-        'يهدف قسم تكنولوجيا التعليم إلى إعداد معلمين متخصصين في مجال تكنولوجيا التعليم قادرين على استخدام وتوظيف التكنولوجيا في العملية التعليمية.',
+        'يقوم قسم تكنولوجيا التعليم بإعداد معلمين متخصصين قادرين على دمج التكنولوجيا بفعالية في عمليات التدريس والتعلم. يركز القسم على تطوير المهارات الرقمية، وإنشاء المحتوى التعليمي، وتنفيذ أساليب تدريس مبتكرة لتحسين المخرجات التعليمية.',
     visionEn:
-        'The department seeks to achieve excellence in educational technology through distinguished educational programs and applied scientific research that contributes to community development.',
+        'To be a leading department in educational technology that pioneers innovative teaching methods and digital learning solutions, contributing to the advancement of education locally, regionally, and internationally.',
     visionAr:
-        'يسعى القسم إلى تحقيق التميز في مجال تكنولوجيا التعليم من خلال تقديم برامج تعليمية متميزة وإجراء بحوث علمية تطبيقية تساهم في تطوير المجتمع.',
-    missionEn: 'Preparing specialized educators in educational technology.',
-    missionAr: 'إعداد معلمين متخصصين في مجال تكنولوجيا التعليم.',
+        'أن يكون قسمًا رائدًا في مجال تكنولوجيا التعليم، يقود تطوير طرق التدريس المبتكرة وحلول التعلم الرقمي، ويساهم في تقدم التعليم محليًا وإقليميًا ودوليًا.',
+    missionEn:
+        'Preparing highly qualified educational technology specialists who can effectively utilize and integrate digital technologies in educational environments, conduct innovative research, and contribute to solving educational challenges through technology-enhanced learning approaches.',
+    missionAr:
+        'إعداد متخصصين مؤهلين تأهيلًا عاليًا في مجال تكنولوجيا التعليم قادرين على استخدام ودمج التقنيات الرقمية بفعالية في البيئات التعليمية، وإجراء البحوث المبتكرة، والمساهمة في حل التحديات التعليمية من خلال أساليب التعلم المعززة بالتكنولوجيا.',
     objectivesEn: [
-      'Prepare specialized teachers in educational technology',
-      'Develop students\' technological skills',
-      'Conduct research in educational technology',
-      'Provide community services in educational technology',
+      'Develop educators with advanced technological and pedagogical skills to enhance teaching and learning processes',
+      'Design and implement innovative educational technologies and digital learning environments',
+      'Conduct research that contributes to the advancement of educational technology practices',
+      'Promote the effective integration of technology in educational settings to address diverse learning needs',
+      'Establish partnerships with educational institutions to implement technology-enhanced learning solutions',
     ],
     objectivesAr: [
-      'إعداد معلمين متخصصين في مجال تكنولوجيا التعليم',
-      'تنمية المهارات التكنولوجية لدى الطلاب',
-      'إجراء البحوث العلمية في مجال تكنولوجيا التعليم',
-      'تقديم خدمات مجتمعية في مجال تكنولوجيا التعليم',
+      'تطوير مهارات المعلمين التكنولوجية والتربوية المتقدمة لتعزيز عمليات التعليم والتعلم',
+      'تصميم وتنفيذ تقنيات تعليمية مبتكرة وبيئات تعلم رقمية',
+      'إجراء البحوث التي تساهم في تطوير ممارسات تكنولوجيا التعليم',
+      'تعزيز الدمج الفعال للتكنولوجيا في البيئات التعليمية لتلبية احتياجات التعلم المتنوعة',
+      'إقامة شراكات مع المؤسسات التعليمية لتنفيذ حلول التعلم المعززة بالتكنولوجيا',
     ],
     coursesEn: [
       'Educational Technology Fundamentals',
@@ -233,33 +237,37 @@ final List<DepartmentModel> departments = [
         department: 'Educational Technology',
       ),
     ],
-    icon: Icons.computer_rounded,
+    icon: FontAwesomeIcons.laptopCode,
   ),
   const DepartmentModel(
     image: Assets.imagesHomeEconomics,
     nameEn: 'Home Economics',
     nameAr: 'الإقتصاد المنزلى',
     descriptionEn:
-        'The Department of Home Economics is one of the main departments at the Faculty of Specific Education, aiming to prepare specialized teachers in home economics capable of teaching specialized subjects in various schools.',
+        'The Department of Home Economics is dedicated to preparing specialized educators who excel in various aspects of home economics including nutrition, textiles, family resource management, and child development. Our department equips students with the knowledge and practical skills needed to promote sustainable living practices and improve quality of life.',
     descriptionAr:
-        'يعتبر قسم الاقتصاد المنزلي من الأقسام الأساسية بكلية التربية النوعية، ويهدف إلى إعداد معلمين متخصصين في مجال الاقتصاد المنزلي قادرين على تدريس المواد التخصصية في المدارس المختلفة.',
+        'يكرس قسم الاقتصاد المنزلي جهوده لإعداد مربين متخصصين يتفوقون في مختلف جوانب الاقتصاد المنزلي بما في ذلك التغذية والمنسوجات وإدارة موارد الأسرة وتنمية الطفل. يزود قسمنا الطلاب بالمعرفة والمهارات العملية اللازمة لتعزيز ممارسات العيش المستدامة وتحسين جودة الحياة.',
     visionEn:
-        'The department seeks to achieve leadership in home economics at the local and regional levels through distinguished educational programs and applied scientific research that contributes to community development.',
+        'To be recognized as a center of excellence in home economics education and research, fostering innovation in sustainable living practices and contributing to the well-being of individuals, families, and communities.',
     visionAr:
-        'يسعى القسم إلى تحقيق الريادة في مجال الاقتصاد المنزلي على المستوى المحلي والإقليمي من خلال تقديم برامج تعليمية متميزة وإجراء بحوث علمية تطبيقية تساهم في تطوير المجتمع.',
-    missionEn: 'Preparing specialized educators in home economics.',
-    missionAr: 'إعداد معلمين متخصصين في مجال الاقتصاد المنزلي.',
+        'أن يكون مركزاً متميزاً في تعليم وبحوث الاقتصاد المنزلي، يعزز الابتكار في ممارسات العيش المستدامة ويساهم في رفاهية الأفراد والأسر والمجتمعات.',
+    missionEn:
+        'To provide high-quality education and research in home economics that empowers graduates to address contemporary challenges in nutrition, textiles, family resource management, and child development, while promoting sustainable practices that enhance quality of life for diverse populations.',
+    missionAr:
+        'تقديم تعليم وبحوث عالية الجودة في مجال الاقتصاد المنزلي تمكّن الخريجين من مواجهة التحديات المعاصرة في مجالات التغذية والمنسوجات وإدارة موارد الأسرة وتنمية الطفل، مع تعزيز الممارسات المستدامة التي تحسن جودة الحياة للفئات السكانية المتنوعة.',
     objectivesEn: [
-      'Prepare specialized teachers in home economics',
-      'Develop student skills in nutrition, clothing, and textiles',
-      'Conduct scientific research in home economics',
-      'Provide community services in home economics',
+      'Develop competent home economics educators with advanced knowledge and practical skills',
+      'Conduct innovative research addressing current challenges in nutrition, textiles, family economics, and child development',
+      'Promote sustainable living practices and resource management for improved quality of life',
+      'Foster critical thinking and problem-solving skills in relation to family and community well-being',
+      'Establish partnerships with community organizations to implement home economics knowledge in practical settings',
     ],
     objectivesAr: [
-      'إعداد معلمين متخصصين في مجال الاقتصاد المنزلي',
-      'تنمية مهارات الطلاب في مجالات التغذية والملابس والنسيج',
-      'إجراء البحوث العلمية في مجال الاقتصاد المنزلي',
-      'تقديم خدمات مجتمعية في مجال الاقتصاد المنزلي',
+      'تطوير معلمي اقتصاد منزلي أكفاء يتمتعون بمعرفة متقدمة ومهارات عملية',
+      'إجراء بحوث مبتكرة تعالج التحديات الحالية في مجالات التغذية والمنسوجات واقتصاديات الأسرة وتنمية الطفل',
+      'تعزيز ممارسات العيش المستدامة وإدارة الموارد لتحسين جودة الحياة',
+      'تنمية مهارات التفكير النقدي وحل المشكلات فيما يتعلق برفاهية الأسرة والمجتمع',
+      'إقامة شراكات مع المنظمات المجتمعية لتطبيق معرفة الاقتصاد المنزلي في بيئات عملية',
     ],
     coursesEn: [
       'Nutrition and Food Science',
@@ -661,32 +669,37 @@ final List<DepartmentModel> departments = [
         department: 'Home Economics',
       ),
     ],
-    icon: Icons.kitchen,
+    icon: FontAwesomeIcons.utensils,
   ),
   const DepartmentModel(
     image: Assets.imagesMusic,
     nameEn: 'Music Education',
     nameAr: 'التربية الموسيقية',
     descriptionEn:
-        'The Department of Music Education aims to prepare specialized teachers in the field of music education.',
+        'The Department of Music Education is dedicated to preparing highly skilled music educators who can inspire creativity and musical appreciation in diverse educational settings. We provide comprehensive training in music theory, performance, composition, and pedagogical methods, emphasizing both classical and contemporary approaches to music education.',
     descriptionAr:
-        'يهدف قسم التربية الموسيقية إلى إعداد معلمين متخصصين في مجال التربية الموسيقية.',
+        'يكرس قسم التربية الموسيقية جهوده لإعداد معلمي موسيقى ذوي مهارات عالية قادرين على إلهام الإبداع والتقدير الموسيقي في بيئات تعليمية متنوعة. نقدم تدريباً شاملاً في نظرية الموسيقى والأداء والتأليف وطرق التدريس، مع التركيز على النهج الكلاسيكي والمعاصر للتربية الموسيقية.',
     visionEn:
-        'Excellence in music education through distinguished programs and research.',
-    visionAr: 'التميز في التربية الموسيقية من خلال البرامج والبحوث المتميزة.',
-    missionEn: 'Preparing qualified music educators.',
-    missionAr: 'إعداد معلمين مؤهلين في التربية الموسيقية.',
+        'To be a leading center for music education that fosters artistic excellence, innovation, and cultural enrichment, producing educators who can transform lives through the power of music.',
+    visionAr:
+        'أن نكون مركزاً رائداً للتربية الموسيقية يعزز التميز الفني والابتكار والإثراء الثقافي، ويخرج معلمين قادرين على تغيير الحياة من خلال قوة الموسيقى.',
+    missionEn:
+        'To provide exceptional education in music that combines performance excellence, theoretical understanding, and effective teaching methodologies, preparing graduates who can inspire musical appreciation, creativity, and artistic expression in diverse educational and community settings.',
+    missionAr:
+        'تقديم تعليم استثنائي في الموسيقى يجمع بين التميز في الأداء والفهم النظري وأساليب التدريس الفعالة، وإعداد خريجين قادرين على إلهام التقدير الموسيقي والإبداع والتعبير الفني في مختلف البيئات التعليمية والمجتمعية.',
     objectivesEn: [
-      'Prepare specialized music teachers',
-      'Develop students\' musical skills',
-      'Conduct research in music education',
-      'Contribute to community development',
+      'Develop proficient music educators with strong performance skills and theoretical knowledge',
+      'Promote innovative teaching methodologies that engage diverse learners in musical experiences',
+      'Foster appreciation for various musical traditions, including classical, folk, and contemporary genres',
+      'Conduct research that advances understanding of music education\'s impact on cognitive and social development',
+      'Establish community partnerships that extend musical education beyond traditional classroom settings',
     ],
     objectivesAr: [
-      'إعداد معلمين متخصصين في التربية الموسيقية',
-      'تنمية المهارات الموسيقية للطلاب',
-      'إجراء البحوث في مجال التربية الموسيقية',
-      'المساهمة في تنمية المجتمع',
+      'تطوير معلمي موسيقى بارعين يتمتعون بمهارات أداء قوية ومعرفة نظرية',
+      'تعزيز منهجيات تدريس مبتكرة تشرك المتعلمين المتنوعين في التجارب الموسيقية',
+      'تعزيز تقدير مختلف التقاليد الموسيقية، بما في ذلك الأنواع الكلاسيكية والشعبية والمعاصرة',
+      'إجراء البحوث التي تعزز فهم تأثير التربية الموسيقية على التطور المعرفي والاجتماعي',
+      'إقامة شراكات مجتمعية تمتد بالتعليم الموسيقي إلى ما وراء بيئات الفصول الدراسية التقليدية',
     ],
     coursesEn: [
       'Music Theory',
@@ -1070,33 +1083,37 @@ final List<DepartmentModel> departments = [
         department: 'Music Education',
       ),
     ],
-    icon: Icons.music_note,
+    icon: FontAwesomeIcons.music,
   ),
   const DepartmentModel(
     image: Assets.imagesArt,
     nameEn: 'Art Education',
     nameAr: 'التربية الفنية',
     descriptionEn:
-        'The Department of Art Education aims to prepare specialized teachers in the field of art education capable of teaching art subjects in various schools and developing students\' artistic skills.',
+        'The Department of Art Education is committed to developing innovative art educators who can inspire creative expression and artistic appreciation in diverse educational environments. Our program integrates advanced studio practice, art history, critical theory, and pedagogical methods to prepare educators who can nurture artistic talent and promote visual literacy.',
     descriptionAr:
-        'يهدف قسم التربية الفنية إلى إعداد معلمين متخصصين في مجال التربية الفنية قادرين على تدريس المواد الفنية في المدارس المختلفة وتنمية المهارات الفنية لدى الطلاب.',
+        'يلتزم قسم التربية الفنية بتطوير معلمي فنون مبتكرين قادرين على إلهام التعبير الإبداعي والتقدير الفني في بيئات تعليمية متنوعة. يدمج برنامجنا الممارسة المتقدمة للاستوديو وتاريخ الفن والنظرية النقدية وطرق التدريس لإعداد معلمين قادرين على رعاية المواهب الفنية وتعزيز محو الأمية البصرية.',
     visionEn:
-        'The department seeks to achieve excellence in art education through distinguished educational programs and applied scientific research that contributes to community development.',
+        'To be a distinguished center for art education that fosters creativity, critical thinking, and cultural understanding through innovative teaching approaches and artistic practice, preparing educators who can transform communities through the visual arts.',
     visionAr:
-        'يسعى القسم إلى تحقيق التميز في مجال التربية الفنية من خلال تقديم برامج تعليمية متميزة وإجراء بحوث علمية تطبيقية تساهم في تطوير المجتمع.',
-    missionEn: 'Preparing specialized educators in art education.',
-    missionAr: 'إعداد معلمين متخصصين في مجال التربية الفنية.',
+        'أن نكون مركزاً متميزاً للتربية الفنية يعزز الإبداع والتفكير النقدي والفهم الثقافي من خلال أساليب التدريس المبتكرة والممارسة الفنية، وإعداد معلمين قادرين على تحويل المجتمعات من خلال الفنون البصرية.',
+    missionEn:
+        'To provide exceptional education in art that integrates studio practice, art history, critical theory, and pedagogical methods, preparing graduates who can inspire artistic expression, promote visual literacy, and cultivate aesthetic appreciation in diverse educational and community settings.',
+    missionAr:
+        'تقديم تعليم استثنائي في الفن يدمج ممارسة الاستوديو وتاريخ الفن والنظرية النقدية وطرق التدريس، وإعداد خريجين قادرين على إلهام التعبير الفني وتعزيز محو الأمية البصرية وتنمية التقدير الجمالي في مختلف البيئات التعليمية والمجتمعية.',
     objectivesEn: [
-      'Prepare specialized teachers in art education',
-      'Develop students\' artistic and creative skills',
-      'Conduct scientific research in art education',
-      'Provide community services in art education',
+      'Develop skilled art educators with strong technical abilities and theoretical knowledge in diverse artistic media',
+      'Foster innovative teaching methodologies that engage students in meaningful artistic experiences',
+      'Promote critical thinking and visual literacy through engagement with historical and contemporary art',
+      'Conduct research that advances understanding of art education\'s impact on cognitive, emotional, and social development',
+      'Build community partnerships that extend art education beyond traditional classroom settings and make visual arts accessible to diverse populations',
     ],
     objectivesAr: [
-      'إعداد معلمين متخصصين في مجال التربية الفنية',
-      'تنمية المهارات الفنية والإبداعية لدى الطلاب',
-      'إجراء البحوث العلمية في مجال التربية الفنية',
-      'تقديم خدمات مجتمعية في مجال التربية الفنية',
+      'تطوير معلمي فنون ماهرين يتمتعون بقدرات تقنية قوية ومعرفة نظرية في وسائط فنية متنوعة',
+      'تعزيز منهجيات تدريس مبتكرة تشرك الطلاب في تجارب فنية هادفة',
+      'تعزيز التفكير النقدي ومحو الأمية البصرية من خلال الانخراط مع الفن التاريخي والمعاصر',
+      'إجراء البحوث التي تعزز فهم تأثير التربية الفنية على التطور المعرفي والعاطفي والاجتماعي',
+      'بناء شراكات مجتمعية تمتد بالتربية الفنية إلى ما وراء بيئات الفصول الدراسية التقليدية وتجعل الفنون البصرية متاحة للفئات السكانية المتنوعة',
     ],
     coursesEn: [
       'Drawing and Painting',
@@ -1615,33 +1632,37 @@ final List<DepartmentModel> departments = [
         department: 'Art Education',
       ),
     ],
-    icon: Icons.brush,
+    icon: FontAwesomeIcons.paintBrush,
   ),
   const DepartmentModel(
     image: Assets.imagesPsychology,
     nameEn: 'Educational and Psychological Sciences',
     nameAr: 'علوم تربوية و نفسية',
     descriptionEn:
-        'The Department of Educational and Psychological Sciences offers various courses in educational and psychological sciences.',
+        'The Department of Educational and Psychological Sciences is dedicated to advancing knowledge and practice in educational psychology, human development, and learning sciences. We prepare specialists who understand the complex interplay between psychological processes and educational outcomes, equipping them with evidence-based approaches to support diverse learners across various educational contexts.',
     descriptionAr:
-        'يقدم قسم العلوم التربوية والنفسية مقررات متنوعة في العلوم التربوية والنفسية.',
+        'يكرس قسم العلوم التربوية والنفسية جهوده لتطوير المعرفة والممارسة في مجالات علم النفس التربوي، والتنمية البشرية، وعلوم التعلم. نعد متخصصين يفهمون التفاعل المعقد بين العمليات النفسية والمخرجات التعليمية، ونزودهم بأساليب قائمة على الأدلة لدعم المتعلمين المتنوعين عبر مختلف السياقات التعليمية.',
     visionEn:
-        'Excellence in educational and psychological sciences through research and education.',
-    visionAr: 'التميز في العلوم التربوية والنفسية من خلال البحث والتعليم.',
+        'To be a leading center for excellence in educational and psychological sciences that transforms educational practice through innovative research, evidence-based interventions, and the preparation of skilled professionals who promote psychological well-being and optimal learning for all.',
+    visionAr:
+        'أن نكون مركزاً رائداً للتميز في العلوم التربوية والنفسية يعمل على تحويل الممارسة التعليمية من خلال البحوث المبتكرة والتدخلات القائمة على الأدلة وإعداد متخصصين مهرة يعززون الرفاه النفسي والتعلم الأمثل للجميع.',
     missionEn:
-        'Preparing qualified educators in educational and psychological sciences.',
-    missionAr: 'إعداد معلمين مؤهلين في العلوم التربوية والنفسية.',
+        'To advance understanding of educational and psychological processes through rigorous research and exceptional teaching, preparing graduates who can apply evidence-based principles to enhance learning, development, and mental health across diverse educational and community settings.',
+    missionAr:
+        'تعزيز فهم العمليات التربوية والنفسية من خلال البحوث الدقيقة والتدريس الاستثنائي، وإعداد خريجين قادرين على تطبيق المبادئ القائمة على الأدلة لتحسين التعلم والتطور والصحة النفسية في مختلف البيئات التعليمية والمجتمعية.',
     objectivesEn: [
-      'Develop understanding of educational and psychological theories',
-      'Prepare qualified educational psychologists',
-      'Enhance teaching and learning methodologies',
-      'Foster research in educational psychology',
+      'Develop professionals with advanced understanding of educational psychology and human development principles',
+      'Foster research that contributes to evidence-based practices in teaching, learning, and psychological well-being',
+      'Promote inclusive approaches that address diverse learning needs and mental health considerations',
+      'Enhance critical thinking and problem-solving skills related to educational challenges and psychological processes',
+      'Build collaborations with educational institutions to implement effective psychological and educational interventions',
     ],
     objectivesAr: [
-      'تطوير فهم النظريات التربوية والنفسية',
-      'إعداد أخصائيين نفسيين تربويين مؤهلين',
-      'تعزيز منهجيات التعليم والتعلم',
-      'تشجيع البحث في علم النفس التربوي',
+      'تطوير متخصصين لديهم فهم متقدم لمبادئ علم النفس التربوي والتنمية البشرية',
+      'تعزيز البحوث التي تساهم في الممارسات القائمة على الأدلة في التدريس والتعلم والرفاه النفسي',
+      'تعزيز النهج الشاملة التي تعالج احتياجات التعلم المتنوعة واعتبارات الصحة النفسية',
+      'تعزيز مهارات التفكير النقدي وحل المشكلات المتعلقة بالتحديات التعليمية والعمليات النفسية',
+      'بناء تعاون مع المؤسسات التعليمية لتنفيذ تدخلات نفسية وتربوية فعالة',
     ],
     coursesEn: [
       'Educational Psychology',
@@ -1817,6 +1838,6 @@ final List<DepartmentModel> departments = [
         department: 'Educational and Psychological Sciences',
       ),
     ],
-    icon: IconlyLight.activity,
+    icon: FontAwesomeIcons.brain,
   ),
 ];

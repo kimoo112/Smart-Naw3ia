@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -13,8 +14,8 @@ class MapSection extends StatelessWidget {
         Text(
           'موقع الكلية',
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
+                fontWeight: FontWeight.bold,
+              ),
         ),
         SizedBox(height: 16.h),
         Card(
@@ -28,7 +29,8 @@ class MapSection extends StatelessWidget {
             child: Column(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(12.r)),
+                  borderRadius:
+                      BorderRadius.vertical(top: Radius.circular(12.r)),
                   child: Image.network(
                     'https://maps.googleapis.com/maps/api/staticmap?center=31.2045,29.9127&zoom=15&size=600x300&maptype=roadmap&markers=color:red%7C31.2045,29.9127',
                     height: 200.h,
@@ -41,9 +43,12 @@ class MapSection extends StatelessWidget {
                         color: Theme.of(context).colorScheme.surface,
                         child: Center(
                           child: Icon(
-                            Icons.map,
+                            IconlyBold.location,
                             size: 48.r,
-                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.4),
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSurface
+                                .withOpacity(0.4),
                           ),
                         ),
                       );
@@ -55,7 +60,7 @@ class MapSection extends StatelessWidget {
                   child: Row(
                     children: [
                       Icon(
-                        Icons.location_on,
+                        IconlyBold.location,
                         size: 24.r,
                         color: Theme.of(context).primaryColor,
                       ),
@@ -63,15 +68,19 @@ class MapSection extends StatelessWidget {
                       Expanded(
                         child: Text(
                           '14 شارع محمد أمين شهيب - مصطفى كامل',
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
                       ),
                       Icon(
-                        Icons.arrow_forward_ios,
+                        IconlyLight.arrowRightCircle,
                         size: 16.r,
-                        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.4),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onSurface
+                            .withOpacity(0.4),
                       ),
                     ],
                   ),
@@ -85,7 +94,8 @@ class MapSection extends StatelessWidget {
   }
 
   Future<void> _launchMap() async {
-    const url = 'https://www.google.com/maps/search/?api=1&query=31.2045,29.9127';
+    const url =
+        'https://www.google.com/maps/search/?api=1&query=31.2045,29.9127';
     final uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);

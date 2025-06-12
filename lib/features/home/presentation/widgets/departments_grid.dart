@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:naw3ia/features/home/presentation/widgets/animations/fade_slide_animation.dart';
-import 'package:naw3ia/features/home/presentation/widgets/department_card.dart';
+import 'package:smart_naw3ia/features/home/presentation/widgets/animations/fade_slide_animation.dart';
+import 'package:smart_naw3ia/features/home/presentation/widgets/department_card.dart';
 
 import '../../data/models/department_model.dart';
 import '../views/department_details_page.dart';

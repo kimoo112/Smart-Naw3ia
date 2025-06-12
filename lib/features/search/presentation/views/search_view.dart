@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
-import 'package:naw3ia/core/localization/cubit/locale_cubit.dart';
-import 'package:naw3ia/core/localization/translation_extension.dart';
-import 'package:naw3ia/features/search/presentation/cubit/search_cubit.dart';
-import 'package:naw3ia/features/search/presentation/views/search_results.dart';
+import 'package:smart_naw3ia/core/localization/cubit/locale_cubit.dart';
+import 'package:smart_naw3ia/core/localization/translation_extension.dart';
+import 'package:smart_naw3ia/features/search/presentation/cubit/search_cubit.dart';
+import 'package:smart_naw3ia/features/search/presentation/views/search_results.dart';
 
 import '../../../../core/utils/app_assets.dart';
 
@@ -52,7 +53,7 @@ class _SearchViewState extends State<SearchView> {
               child: Row(
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.arrow_back),
+                    icon: const Icon(IconlyLight.arrowLeft),
                     onPressed: () => context.pop(),
                   ),
                   SizedBox(width: 8.w),
@@ -69,10 +70,10 @@ class _SearchViewState extends State<SearchView> {
                           },
                           decoration: InputDecoration(
                             hintText: 'app.search'.tr(context),
-                            prefixIcon: const Icon(Icons.search),
+                            prefixIcon: const Icon(IconlyLight.search),
                             suffixIcon: _searchController.text.isNotEmpty
                                 ? IconButton(
-                                    icon: const Icon(Icons.clear),
+                                    icon: const Icon(IconlyLight.closeSquare),
                                     onPressed: () {
                                       _searchController.clear();
                                       _searchCubit.clearSearch();

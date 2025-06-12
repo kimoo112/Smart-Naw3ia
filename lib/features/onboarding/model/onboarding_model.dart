@@ -21,8 +21,8 @@ class OnboardingModel {
 
 final List<OnboardingModel> onBoardingData = [
   const OnboardingModel(
-    titleEn: 'Welcome to Naw3ia',
-    titleAr: 'مرحباً بك في نوعية',
+    titleEn: 'Welcome to Smart Naw3ia',
+    titleAr: 'مرحباً بك في سمارت نوعية',
     subTitleEn: 'Your gateway to quality education and academic excellence',
     subTitleAr: 'بوابتك نحو التعليم النوعي والتميز الأكاديمي',
     imagePath: Assets.imagesOnboarding1,

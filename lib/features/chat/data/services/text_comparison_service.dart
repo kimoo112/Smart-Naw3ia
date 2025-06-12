@@ -47,25 +47,6 @@ class TextComparisonService {
     );
   }
 
-  String _generateFeedback(double similarityScore, bool isCorrect) {
-    if (isCorrect) {
-      return 'Correct answer!';
-    } else if (similarityScore >= 0.5) {
-      return 'Partially correct. Your answer is close but needs some adjustment.';
-    } else {
-      return 'Incorrect answer. Please try again.';
-    }
-  }
-
-  String _generateArabicFeedback(double similarityScore, bool isCorrect) {
-    if (isCorrect) {
-      return 'إجابة صحيحة!';
-    } else if (similarityScore >= 0.5) {
-      return 'إجابة صحيحة جزئياً. إجابتك قريبة ولكن تحتاج إلى بعض التعديل.';
-    } else {
-      return 'إجابة غير صحيحة. حاول مرة أخرى.';
-    }
-  }
 }
 
 class ComparisonResult {

@@ -235,7 +235,7 @@ const List<ChatQuestion> suggestedQuestions = [
     answerEn:
         'The college includes the following departments:\n\n1. Home Economics Department\n2. Art Education Department\n3. Music Education Department\n4. Educational Technology Department\n5. Educational and Psychological Sciences Department',
     answerAr:
-        'تضم الكلية الأقسام التالية:\n\n1. قسم الاقتصاد المنزلي\n2. قسم التربية الفنية\n3. قسم التربية الموسيقية\n4. قسم تكنولوجيا التعليم\n5. قسم العلوم التربوية والنفسية',
+        'تضم الكلية الأقسام التالية:\n\n1. قسم الاقتصاد المنزلي\n2. قسم التربية الفنية\n3. قسم التربية الموسيقية\n4. قسم تكنولوجيا التعليم',
   ),
 
   ChatQuestion(

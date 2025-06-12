@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:naw3ia/core/localization/translation_extension.dart';
-
-import '../../data/models/staff_model.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:smart_naw3ia/core/localization/translation_extension.dart';
+import 'package:smart_naw3ia/features/home/data/models/staff_model.dart';
+import 'package:smart_naw3ia/features/home/presentation/widgets/department_connector.dart';
+import 'package:smart_naw3ia/features/home/presentation/widgets/department_level.dart';
 
 class OrganizationalChart extends StatelessWidget {
   final List<StaffMember> staff;
@@ -14,6 +17,7 @@ class OrganizationalChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final locale = Localizations.localeOf(context).languageCode;
+    final theme = Theme.of(context);
 
     // Find the head
     final heads = staff
@@ -27,204 +31,94 @@ class OrganizationalChart extends StatelessWidget {
         staff.where((member) => !heads.contains(member)).toList();
     final academicStaff = AcademicStaff.fromList(regularStaff);
 
-    return SingleChildScrollView(
+    // Custom colors for each rank
+    final rankColors = [
+      const Color(0xFF9A34B9), // Department Head - Purple
+      const Color(0xFF1565C0), // Professors - Blue
+      const Color(0xFF00838F), // Associate Professors - Teal
+      const Color(0xFF2E7D32), // Assistant Professors - Green
+      const Color(0xFFE65100), // Lecturers - Orange
+      const Color(0xFF6D4C41), // Assistant Lecturers - Brown
+      const Color(0xFF546E7A), // Teaching Assistants - Bluegrey
+    ];
+
+    return Center(
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          _buildLevel(
-            context,
+          // Department levels
+          DepartmentLevel(
             title: 'staff.department_head'.tr(context),
             members: heads,
-            icon: Icons.account_balance,
-            color: const Color(0xFF9A34B9),
+            icon: IconlyBold.work,
+            color: rankColors[0],
             locale: locale,
             isHead: true,
           ),
-          if (heads.isNotEmpty) _buildConnector(context),
-          _buildLevel(
-            context,
+
+          if (heads.isNotEmpty)
+            Center(child: DepartmentConnector(color: rankColors[0])),
+
+          DepartmentLevel(
             title: 'staff.professors'.tr(context),
             members: academicStaff.professors,
-            icon: Icons.school,
-            color: Theme.of(context).primaryColor,
+            icon: Icons.school_rounded,
+            color: rankColors[1],
             locale: locale,
           ),
-          _buildConnector(context),
-          _buildLevel(
-            context,
+
+          Center(child: DepartmentConnector(color: rankColors[1])),
+
+          DepartmentLevel(
             title: 'staff.associate_professors'.tr(context),
             members: academicStaff.associateProfessors,
-            icon: Icons.school,
-            color: Theme.of(context).primaryColor.withGreen(150),
+            icon: FontAwesomeIcons.userTie,
+            color: rankColors[2],
             locale: locale,
           ),
-          _buildConnector(context),
-          _buildLevel(
-            context,
+
+          Center(child: DepartmentConnector(color: rankColors[2])),
+
+          DepartmentLevel(
             title: 'staff.assistant_professors'.tr(context),
             members: academicStaff.assistantProfessors,
-            icon: Icons.school,
-            color: Theme.of(context).primaryColor.withBlue(100),
+            icon: FontAwesomeIcons.bookOpenReader,
+            color: rankColors[3],
             locale: locale,
           ),
-          _buildConnector(context),
-          _buildLevel(
-            context,
+
+          Center(child: DepartmentConnector(color: rankColors[3])),
+
+          DepartmentLevel(
             title: 'staff.lecturers'.tr(context),
             members: academicStaff.lecturers,
-            icon: Icons.school,
-            color: Theme.of(context).primaryColor.withRed(180),
+            icon: FontAwesomeIcons.bookOpenReader,
+            color: rankColors[4],
             locale: locale,
           ),
-          _buildConnector(context),
-          _buildLevel(
-            context,
+
+          Center(child: DepartmentConnector(color: rankColors[4])),
+
+          DepartmentLevel(
             title: 'staff.assistant_lecturers'.tr(context),
             members: academicStaff.assistantLecturers,
-            icon: Icons.school,
-            color: Theme.of(context).primaryColor.withOpacity(0.7),
+            icon: FontAwesomeIcons.chalkboardUser,
+            color: rankColors[5],
             locale: locale,
           ),
-          _buildConnector(context),
-          _buildLevel(
-            context,
+
+          Center(child: DepartmentConnector(color: rankColors[5])),
+
+          DepartmentLevel(
             title: 'staff.teaching_assistants'.tr(context),
             members: academicStaff.teachingAssistants,
-            icon: Icons.school,
-            color: Theme.of(context).primaryColor.withOpacity(0.5),
+            icon: FontAwesomeIcons.graduationCap,
+            color: rankColors[6],
             locale: locale,
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildLevel(
-    BuildContext context, {
-    required String title,
-    required List<StaffMember> members,
-    required IconData icon,
-    required Color color,
-    required String locale,
-    bool isHead = false,
-  }) {
-    if (members.isEmpty) {
-      return const SizedBox.shrink();
-    }
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(icon, color: color),
-              const SizedBox(width: 8),
-              Text(
-                title,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: color,
-                      fontWeight: FontWeight.bold,
-                    ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            alignment: WrapAlignment.center,
-            children: members
-                .map((member) => _buildMemberCard(
-                    context, member, color, icon, locale, isHead))
-                .toList(),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildMemberCard(
-    BuildContext context,
-    StaffMember member,
-    Color color,
-    IconData icon,
-    String locale,
-    bool isHead,
-  ) {
-    return Container(
-      width: isHead ? 250 : 200,
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: color.withOpacity(0.3)),
-        boxShadow: [
-          BoxShadow(
-            color: color.withOpacity(0.1),
-            blurRadius: 4,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, color: color, size: isHead ? 32 : 24),
-          const SizedBox(height: 8),
-          Text(
-            "${member.getTitle(locale)} ${member.getName(locale)}",
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: isHead ? 16 : null,
-                ),
-          ),
-          if (member.position != null && isHead) ...[
-            const SizedBox(height: 4),
-            Text(
-              member.position!,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: color,
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
-          ],
-          if (member.specializationEn != null) ...[
-            const SizedBox(height: 4),
-            Text(
-              member.getSpecialization(locale)!,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Theme.of(context)
-                        .textTheme
-                        .bodySmall
-                        ?.color
-                        ?.withOpacity(0.7),
-                  ),
-            ),
-          ],
-          if (member.email != null) ...[
-            const SizedBox(height: 4),
-            Text(
-              member.email!,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: color,
-                  ),
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-
-  Widget _buildConnector(BuildContext context) {
-    return Container(
-      width: 2,
-      height: 20,
-      color: Theme.of(context).dividerColor,
     );
   }
 }

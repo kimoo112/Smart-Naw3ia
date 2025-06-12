@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:naw3ia/core/localization/translation_extension.dart';
-import 'package:naw3ia/features/chat/data/chat_data.dart';
-import 'package:naw3ia/features/chat/presentation/cubit/chat_cubit.dart';
-import 'package:naw3ia/features/chat/presentation/widgets/chat_message.dart';
-import 'package:naw3ia/features/chat/presentation/widgets/suggestion_chip.dart';
-import 'package:naw3ia/features/chat/presentation/widgets/typing_indicator.dart';
+import 'package:smart_naw3ia/core/localization/translation_extension.dart';
+import 'package:smart_naw3ia/features/chat/presentation/cubit/chat_cubit.dart';
+import 'package:smart_naw3ia/features/chat/presentation/widgets/chat_input_field.dart';
+import 'package:smart_naw3ia/features/chat/presentation/widgets/chat_message.dart';
+import 'package:smart_naw3ia/features/chat/presentation/widgets/chat_suggestions.dart';
+import 'package:smart_naw3ia/features/chat/presentation/widgets/typing_indicator.dart';
 
 class ChatView extends StatefulWidget {
   const ChatView({super.key});
@@ -19,48 +19,53 @@ class ChatView extends StatefulWidget {
 }
 
 class _ChatViewState extends State<ChatView> {
-  final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   bool _isTyping = false;
+  bool _mounted = true;
+  late final ChatCubit _chatCubit;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Update locale when it changes
+    _chatCubit = context.read<ChatCubit>();
+    _chatCubit.setInChatScreen(true);
     final locale = Localizations.localeOf(context).languageCode;
-    context.read<ChatCubit>().updateLocale(locale);
+    _chatCubit.updateLocale(locale);
   }
 
-  void _addUserMessage(String message) {
-    context
-        .read<ChatCubit>()
-        .sendMessage(message, Localizations.localeOf(context).languageCode);
+  @override
+  void dispose() {
+    _mounted = false;
+    _chatCubit.setInChatScreen(false);
+    _scrollController.dispose();
+    super.dispose();
   }
 
-  void _handleSubmitted(String text) {
-    if (text.trim().isEmpty) return;
+  void _handleMessageSubmit(String text) {
+    if (text.trim().isEmpty || !_mounted) return;
 
-    _controller.clear();
     setState(() {
       _isTyping = true;
     });
 
-    // Add user message first
-    _addUserMessage(text);
+    final locale = Localizations.localeOf(context).languageCode;
+    _chatCubit.sendMessage(text, locale);
     _scrollToBottom();
 
-    // Simulate bot typing and then add response
-    Future.delayed(const Duration(seconds: 1), () {
-      if (!mounted) return;
-      setState(() {
-        _isTyping = false;
-      });
+    // Cancel typing indicator after delay
+    Future.delayed(const Duration(seconds: 2), () {
+      if (_mounted) {
+        setState(() {
+          _isTyping = false;
+        });
+      }
     });
   }
 
   void _scrollToBottom() {
+    if (!_mounted) return;
     Future.delayed(const Duration(milliseconds: 100), () {
-      if (_scrollController.hasClients) {
+      if (_mounted && _scrollController.hasClients) {
         _scrollController.animateTo(
           _scrollController.position.maxScrollExtent,
           duration: const Duration(milliseconds: 300),
@@ -70,10 +75,48 @@ class _ChatViewState extends State<ChatView> {
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Future<void> _showClearConfirmationDialog() async {
     final locale = Localizations.localeOf(context).languageCode;
     final isRTL = locale == 'ar';
+
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(
+          isRTL ? 'مسح المحادثة' : 'Clear Chat',
+          textAlign: isRTL ? TextAlign.right : TextAlign.left,
+        ),
+        content: Text(
+          isRTL
+              ? 'هل أنت متأكد من أنك تريد مسح جميع الرسائل؟'
+              : 'Are you sure you want to clear all messages?',
+          textAlign: isRTL ? TextAlign.right : TextAlign.left,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(isRTL ? 'إلغاء' : 'Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              _chatCubit.clearChat();
+              Navigator.of(context).pop();
+              setState(() {
+                _isTyping = false;
+              });
+            },
+            child: Text(
+              isRTL ? 'مسح' : 'Clear',
+              style: const TextStyle(color: Colors.red),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
 
     return Scaffold(
       appBar: AppBar(
@@ -82,9 +125,7 @@ class _ChatViewState extends State<ChatView> {
         actions: [
           IconButton(
             icon: const Icon(IconlyLight.delete),
-            onPressed: () {
-              context.read<ChatCubit>().clearChat();
-            },
+            onPressed: () => _showClearConfirmationDialog(),
           ),
         ],
       ),
@@ -121,93 +162,14 @@ class _ChatViewState extends State<ChatView> {
               },
             ),
           ),
-          _buildSuggestions(),
-          Container(
-            padding: EdgeInsets.all(8.w),
-            decoration: BoxDecoration(
-              color: Theme.of(context).cardColor,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
-                  blurRadius: 10,
-                  offset: const Offset(0, -5),
-                ),
-              ],
-            ),
-            child: Row(
-              textDirection: isRTL ? TextDirection.rtl : TextDirection.ltr,
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _controller,
-                    textDirection:
-                        isRTL ? TextDirection.rtl : TextDirection.ltr,
-                    textAlign: isRTL ? TextAlign.right : TextAlign.left,
-                    style: TextStyle(fontSize: 10.sp),
-                    decoration: InputDecoration(
-                      hintText:
-                          isRTL ? 'اكتب رسالتك...' : 'Type your message...',
-                      hintStyle: TextStyle(fontSize: 10.sp),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide.none,
-                      ),
-                      filled: true,
-                      fillColor: Theme.of(context).scaffoldBackgroundColor,
-                      contentPadding: EdgeInsets.symmetric(
-                        horizontal: 16.w,
-                        vertical: 8.h,
-                      ),
-                    ),
-                    onSubmitted: _handleSubmitted,
-                  ),
-                ),
-                SizedBox(width: 8.w),
-                IconButton(
-                  icon: Icon(isRTL ? Icons.send : Icons.send_outlined,
-                      textDirection:
-                          isRTL ? TextDirection.rtl : TextDirection.ltr),
-                  onPressed: () => _handleSubmitted(_controller.text),
-                ),
-              ],
-            ),
+          ChatSuggestions(
+            onSuggestionSelected: _handleMessageSubmit,
+          ),
+          ChatInputField(
+            onSubmitted: _handleMessageSubmit,
           ),
         ],
       ),
     );
-  }
-
-  Widget _buildSuggestions() {
-    final locale = Localizations.localeOf(context).languageCode;
-    final isRTL = locale == 'ar';
-
-    return Container(
-      height: 40.h,
-      margin: EdgeInsets.symmetric(vertical: 8.h),
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        reverse: isRTL,
-        padding: EdgeInsets.symmetric(horizontal: 8.w),
-        itemCount: suggestedQuestions.length,
-        itemBuilder: (context, index) {
-          final question = suggestedQuestions[index];
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 4.w),
-            child: SuggestionChip(
-              label: isRTL ? question.questionAr : question.questionEn,
-              onTap: () => _handleSubmitted(
-                  isRTL ? question.questionAr : question.questionEn),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    _scrollController.dispose();
-    super.dispose();
   }
 }

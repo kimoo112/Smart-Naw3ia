@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
-import 'package:naw3ia/core/localization/translation_extension.dart';
-import 'package:naw3ia/features/calendar/models/event_model.dart';
+import 'package:smart_naw3ia/core/localization/translation_extension.dart';
+import 'package:smart_naw3ia/features/calendar/models/event_model.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../../core/utils/app_assets.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:naw3ia/core/cache/cache_helper.dart';
-import 'package:naw3ia/core/localization/translation_extension.dart';
+import 'package:smart_naw3ia/core/cache/cache_helper.dart';
+import 'package:smart_naw3ia/core/localization/translation_extension.dart';
 
 import '../../../../core/utils/app_router.dart';
 
@@ -19,8 +19,8 @@ class LoginCubit extends Cubit<LoginState> {
       'genderAr': 'ذكر',
       'genderEn': 'Male',
       'dob': '2003-11-08',
-      'addressAr': 'شارع الجيش، الجيزة',
-      'addressEn': 'Army Street, Giza',
+      'addressAr': 'شارع الجيش، الاسكمدريه',
+      'addressEn': 'Army Street, Alexandria',
       'departmentAr': 'تكنولوجيا التعليم',
       'departmentEn': 'Educational Technology',
       'programAr': 'بكالوريوس تكنولوجيا التعليم',

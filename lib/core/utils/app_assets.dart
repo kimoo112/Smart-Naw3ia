@@ -14,13 +14,9 @@ class Assets {
   /// assets/images/cap_en.png
   static const String imagesCapEn = "assets/images/cap_en.png";
 
-  /// Assets for imagesHelloHeader
-  /// assets/images/hello_header.png
-  static const String imagesHelloHeader = "assets/images/hello_header.png";
-
-  /// Assets for imagesHelloHeaderDarkMode
-  /// assets/images/hello_header_dark_mode.png
-  static const String imagesHelloHeaderDarkMode = "assets/images/hello_header_dark_mode.png";
+  /// Assets for imagesDarkModeLogo
+  /// assets/images/dark_mode_logo.png
+  static const String imagesDarkModeLogo = "assets/images/dark_mode_logo.png";
 
   /// Assets for imagesHomeEconomics
   /// assets/images/HomeEconomics.jpg
@@ -30,17 +26,25 @@ class Assets {
   /// assets/images/home_vectors.png
   static const String imagesHomeVectors = "assets/images/home_vectors.png";
 
+  /// Assets for imagesKarimMohamed
+  /// assets/images/karim_mohamed.jpeg
+  static const String imagesKarimMohamed = "assets/images/karim_mohamed.jpeg";
+
+  /// Assets for imagesLightModeLogo
+  /// assets/images/light_mode_logo.png
+  static const String imagesLightModeLogo = "assets/images/light_mode_logo.png";
+
   /// Assets for imagesLoginVector
   /// assets/images/login_vector.png
   static const String imagesLoginVector = "assets/images/login_vector.png";
 
+  /// Assets for imagesLogo
+  /// assets/images/logo.png
+  static const String imagesLogo = "assets/images/logo.png";
+
   /// Assets for imagesMusic
   /// assets/images/Music.jpg
   static const String imagesMusic = "assets/images/Music.jpg";
-
-  /// Assets for imagesNoEvents
-  /// assets/images/no_events.json
-  static const String imagesNoEvents = "assets/images/no_events.json";
 
   /// Assets for imagesOnboarding1
   /// assets/images/onboarding1.png

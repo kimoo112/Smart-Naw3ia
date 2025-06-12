@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:naw3ia/features/chat/data/models/faculty_info_model.dart';
-import 'package:naw3ia/features/home/data/models/news_model.dart';
+import 'package:smart_naw3ia/features/chat/data/models/faculty_info_model.dart';
+import 'package:smart_naw3ia/features/home/data/models/news_model.dart';
 
 import '../../../home/data/models/department_model.dart';
 import '../../model/search_result_model.dart';

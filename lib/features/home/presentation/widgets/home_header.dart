@@ -1,10 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:naw3ia/core/routes/routes.dart';
-import 'package:naw3ia/features/search/presentation/views/search_results.dart';
+import 'package:smart_naw3ia/core/routes/routes.dart';
+import 'package:smart_naw3ia/features/notifications/data/services/notification_service.dart';
+import 'package:smart_naw3ia/features/search/presentation/views/search_results.dart';
 
 import '../../../../core/cache/cache_helper.dart';
 import '../../../../core/localization/cubit/locale_cubit.dart';
@@ -22,6 +25,8 @@ class _HomeHeaderState extends State<HomeHeader> with TickerProviderStateMixin {
   late final TextEditingController _searchController;
   late final FocusNode _searchFocusNode;
   bool _showResults = false;
+  bool _hasUnreadNotifications = false;
+  Timer? _notificationCheckTimer;
 
   late final Animation<Offset> _welcomeSlide, _titleSlide, _searchSlide;
   late final Animation<double> _welcomeFade,
@@ -36,6 +41,11 @@ class _HomeHeaderState extends State<HomeHeader> with TickerProviderStateMixin {
     _searchController = TextEditingController();
     _searchFocusNode = FocusNode();
     _searchFocusNode.addListener(_onFocusChange);
+    _checkUnreadNotifications();
+
+    // Set up periodic check for notifications
+    _notificationCheckTimer = Timer.periodic(
+        const Duration(seconds: 2), (_) => _checkUnreadNotifications());
 
     _controller = AnimationController(
       vsync: this,
@@ -90,18 +100,38 @@ class _HomeHeaderState extends State<HomeHeader> with TickerProviderStateMixin {
     );
   }
 
+  @override
+  void dispose() {
+    _notificationCheckTimer?.cancel();
+    _controller.dispose();
+    _searchController.dispose();
+    _searchFocusNode.dispose();
+    super.dispose();
+  }
+
+  Future<void> _checkUnreadNotifications() async {
+    try {
+      final notifications = await NotificationService().getNotifications();
+      if (mounted) {
+        setState(() {
+          _hasUnreadNotifications = notifications.any((n) => !n.isRead);
+        });
+      }
+    } catch (e) {
+      debugPrint('Error checking notifications: $e');
+    }
+  }
+
   void _onFocusChange() {
     setState(() {
       _showResults = _searchFocusNode.hasFocus;
     });
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    _searchController.dispose();
-    _searchFocusNode.dispose();
-    super.dispose();
+  void _onNotificationTap() async {
+    await context.push(notificationsView);
+    // Check notifications again after returning from notifications view
+    _checkUnreadNotifications();
   }
 
   @override
@@ -120,7 +150,7 @@ class _HomeHeaderState extends State<HomeHeader> with TickerProviderStateMixin {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               if (!_showResults) ...[
-                /// Welcome Text
+                /// Welcome Text with Notification Icon
                 SlideTransition(
                   position: _welcomeSlide,
                   child: FadeTransition(
@@ -136,7 +166,31 @@ class _HomeHeaderState extends State<HomeHeader> with TickerProviderStateMixin {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        const Icon(IconlyLight.notification),
+                        GestureDetector(
+                          onTap: _onNotificationTap,
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              Icon(
+                                IconlyLight.notification,
+                                size: 24.r,
+                              ),
+                              if (_hasUnreadNotifications)
+                                Positioned(
+                                  top: -5,
+                                  right: -5,
+                                  child: Container(
+                                    width: 10.r,
+                                    height: 10.r,
+                                    decoration: const BoxDecoration(
+                                      color: Colors.red,
+                                      shape: BoxShape.circle,
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -157,12 +211,31 @@ class _HomeHeaderState extends State<HomeHeader> with TickerProviderStateMixin {
                               .copyWith(fontWeight: FontWeight.bold),
                         ),
                         Positioned(
-                          top: isEnglish ? -20.h : -17.h,
-                          right: isEnglish ? null : -25.w,
-                          left: isEnglish ? -27.w : null,
-                          child: Image.asset(isDark
-                              ? "app.white_cap".tr(context)
-                              : "app.cap".tr(context)),
+                          top: MediaQuery.of(context).devicePixelRatio >= 2.5
+                              ? (isEnglish ? -20.h : -14.h)
+                              : (isEnglish ? -16.h : -13.h),
+                          right: isEnglish
+                              ? null
+                              : MediaQuery.of(context).devicePixelRatio >= 2.5
+                                  ? -25.w
+                                  : -22.w,
+                          left: isEnglish
+                              ? MediaQuery.of(context).devicePixelRatio >= 2.5
+                                  ? -27.w
+                                  : -24.w
+                              : null,
+                          child: SizedBox(
+                            width:
+                                MediaQuery.of(context).devicePixelRatio >= 2.5
+                                    ? 60.w
+                                    : 50.w,
+                            child: Image.asset(
+                              isDark
+                                  ? "app.white_cap".tr(context)
+                                  : "app.cap".tr(context),
+                              fit: BoxFit.contain,
+                            ),
+                          ),
                         ),
                       ],
                     ),

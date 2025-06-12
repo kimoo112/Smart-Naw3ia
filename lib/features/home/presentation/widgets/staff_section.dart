@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 
 import '../../data/models/staff_model.dart';
 import 'staff_member_card.dart';
@@ -6,16 +7,24 @@ import 'staff_member_card.dart';
 class StaffSection extends StatelessWidget {
   final String title;
   final List<StaffMember> members;
+  final Color? cardColor;
+  final IconData? cardIcon;
 
   const StaffSection({
     super.key,
     required this.title,
     required this.members,
+    this.cardColor,
+    this.cardIcon,
   });
 
   @override
   Widget build(BuildContext context) {
     if (members.isEmpty) return const SizedBox.shrink();
+
+    final locale = Localizations.localeOf(context).languageCode;
+    final color = cardColor ?? Theme.of(context).primaryColor;
+    final icon = cardIcon ?? IconlyBold.profile;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,10 +35,23 @@ class StaffSection extends StatelessWidget {
             title,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
+                  color: color,
                 ),
           ),
         ),
-        ...members.map((member) => StaffMemberCard(member: member)),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          alignment: WrapAlignment.center,
+          children: members
+              .map((member) => StaffMemberCard(
+                    member: member,
+                    color: color,
+                    icon: icon,
+                    locale: locale,
+                  ))
+              .toList(),
+        ),
       ],
     );
   }

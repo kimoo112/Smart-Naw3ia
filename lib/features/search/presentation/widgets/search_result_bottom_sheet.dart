@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:naw3ia/core/localization/translation_extension.dart';
-import 'package:naw3ia/core/routes/routes.dart';
-import 'package:naw3ia/features/chat/data/models/department_model.dart' as chat;
-import 'package:naw3ia/features/chat/data/models/faculty_info_model.dart';
-import 'package:naw3ia/features/home/data/models/department_model.dart';
-import 'package:naw3ia/features/home/data/models/news_model.dart';
-import 'package:naw3ia/features/home/data/models/staff_model.dart';
-import 'package:naw3ia/features/search/model/search_result_model.dart';
+import 'package:smart_naw3ia/core/localization/translation_extension.dart';
+import 'package:smart_naw3ia/core/routes/routes.dart';
+import 'package:smart_naw3ia/features/chat/data/models/department_model.dart' as chat;
+import 'package:smart_naw3ia/features/chat/data/models/faculty_info_model.dart';
+import 'package:smart_naw3ia/features/home/data/models/department_model.dart';
+import 'package:smart_naw3ia/features/home/data/models/news_model.dart';
+import 'package:smart_naw3ia/features/home/data/models/staff_model.dart';
+import 'package:smart_naw3ia/features/search/model/search_result_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SearchResultBottomSheet extends StatelessWidget {
@@ -94,7 +94,7 @@ class SearchResultBottomSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildInfoRow(context, 'staff.department'.tr(context),
-              staffDepartment.getName(locale) ),
+                staffDepartment.getName(locale)),
             if (staff.position != null)
               _buildInfoRow(
                   context, 'staff.position'.tr(context), staff.position!),

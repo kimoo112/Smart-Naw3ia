@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TypingIndicator extends StatefulWidget {
@@ -72,7 +73,7 @@ class _TypingIndicatorState extends State<TypingIndicator>
             backgroundColor: Theme.of(context).primaryColor,
             radius: 16.r,
             child: Icon(
-              Icons.school,
+              IconlyBold.chat,
               size: 16.r,
               color: Colors.white,
             ),

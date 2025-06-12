@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:naw3ia/core/localization/translation_extension.dart';
-import 'package:naw3ia/features/calendar/models/event_model.dart';
-import 'package:naw3ia/features/calendar/widgets/modern_calendar.dart';
-import 'package:naw3ia/features/home/data/models/news_model.dart';
+import 'package:smart_naw3ia/core/localization/translation_extension.dart';
+import 'package:smart_naw3ia/features/calendar/models/event_model.dart';
+import 'package:smart_naw3ia/features/calendar/widgets/modern_calendar.dart';
+import 'package:smart_naw3ia/features/home/data/models/news_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CalendarView extends StatelessWidget {
@@ -10,7 +10,7 @@ class CalendarView extends StatelessWidget {
 
   List<CalendarEvent> _createEventsFromNews() {
     final events = newsList.map((news) {
-      return CalendarEvent(
+      final event = CalendarEvent(
         titleEn: news.titleEn,
         titleAr: news.titleAr,
         categoryEn: news.categoryEn,
@@ -21,6 +21,8 @@ class CalendarView extends StatelessWidget {
         link: news.link,
         color: _getCategoryColor(news.categoryEn),
       );
+
+      return event;
     }).toList();
 
     return events;

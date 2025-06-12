@@ -5,12 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
-import 'package:naw3ia/core/localization/cubit/locale_cubit.dart';
-import 'package:naw3ia/core/localization/translation_extension.dart';
-import 'package:naw3ia/core/ui/custom_refresh_indicator.dart';
-import 'package:naw3ia/core/ui/skeleton_loading.dart';
-import 'package:naw3ia/core/utils/app_assets.dart';
-import 'package:naw3ia/core/utils/haptic_feedback.dart';
+import 'package:smart_naw3ia/core/localization/cubit/locale_cubit.dart';
+import 'package:smart_naw3ia/core/localization/translation_extension.dart';
+import 'package:smart_naw3ia/core/ui/custom_refresh_indicator.dart';
+import 'package:smart_naw3ia/core/ui/skeleton_loading.dart';
+import 'package:smart_naw3ia/core/utils/app_assets.dart';
+import 'package:smart_naw3ia/core/utils/haptic_feedback.dart';
 
 import '../../data/models/notification_model.dart';
 import '../../data/services/notification_service.dart';

@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:naw3ia/core/localization/translation_extension.dart';
-import 'package:naw3ia/features/home/presentation/widgets/animations/fade_slide_animation.dart';
+import 'package:smart_naw3ia/core/localization/translation_extension.dart';
+import 'package:smart_naw3ia/features/home/presentation/widgets/animations/fade_slide_animation.dart';
 
 import '../../data/models/department_model.dart';
 

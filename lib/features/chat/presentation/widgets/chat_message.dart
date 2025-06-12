@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:naw3ia/features/chat/data/models/chat_message_model.dart';
+import 'package:smart_naw3ia/features/chat/data/models/chat_message_model.dart';
+
+import '../../../../core/utils/app_assets.dart';
 
 class ChatMessage extends StatelessWidget {
   final String message;
@@ -34,11 +37,7 @@ class ChatMessage extends StatelessWidget {
             CircleAvatar(
               backgroundColor: Theme.of(context).primaryColor,
               radius: 16.r,
-              child: Icon(
-                Icons.school,
-                size: 16.r,
-                color: Colors.white,
-              ),
+              child: Image.asset(Assets.imagesLogo,width:20.w,height: 20.h,)
             ),
             SizedBox(width: 8.w),
           ],
@@ -83,7 +82,7 @@ class ChatMessage extends StatelessWidget {
               backgroundColor: Theme.of(context).primaryColor.withOpacity(0.2),
               radius: 16.r,
               child: Icon(
-                Icons.person,
+                IconlyBold.profile,
                 size: 16.r,
                 color: Theme.of(context).primaryColor,
               ),

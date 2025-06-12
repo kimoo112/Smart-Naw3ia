@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:naw3ia/core/localization/translation_extension.dart';
-import 'package:naw3ia/features/home/presentation/views/department_details_page.dart';
+import 'package:smart_naw3ia/core/localization/translation_extension.dart';
+import 'package:smart_naw3ia/features/home/presentation/views/department_details_page.dart';
 
 import '../../data/models/department_model.dart';
 
@@ -83,12 +83,10 @@ class DepartmentListViewWidget extends StatelessWidget {
                             )
                           ],
                         ),
-                        child: Center(
-                          child: Icon(
-                            dept.icon,
-                            size: 24.sp,
-                            color: Colors.white,
-                          ),
+                        child: Icon(
+                          dept.icon,
+                          size: 24.sp,
+                          color: Colors.white,
                         ),
                       ),
                       SizedBox(width: 14.w),

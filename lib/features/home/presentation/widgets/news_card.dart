@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:naw3ia/features/home/presentation/widgets/animations/scale_animation.dart';
+import 'package:smart_naw3ia/features/home/presentation/widgets/animations/scale_animation.dart';
 
 import '../../data/models/news_model.dart';
 

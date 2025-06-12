@@ -11,11 +11,11 @@ class ProfileBackground extends StatelessWidget {
         gradient: LinearGradient(
           colors: isDark
               ? const [Color(0xFF141E30), Color(0xFF243B55)]
-              : const [Color(0xFFF5F7FA), Color(0xFFE4EBF5)],
+              : const [Color(0xFFF5F7FA), Color.fromARGB(255, 235, 243, 255)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
       ),
     );
   }
-} 
+}
