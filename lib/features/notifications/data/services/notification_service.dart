@@ -58,13 +58,6 @@ class NotificationService {
         onDismissActionReceivedMethod: onDismissActionReceivedMethod,
       );
 
-      // Initialize scheduled notifications if already enabled
-      final notificationsEnabled = await isNotificationsEnabled();
-      developer.log('Notifications enabled: $notificationsEnabled');
-      if (notificationsEnabled) {
-        await _initializeScheduledNotifications();
-      }
-
       developer.log('Notification service initialization completed');
     } catch (e, stackTrace) {
       developer.log('Error initializing notification service: $e\n$stackTrace');
@@ -203,28 +196,39 @@ class NotificationService {
     }
   }
 
+  Future<bool> requestNotificationPermissions() async {
+    try {
+      final isAllowed = await AwesomeNotifications().isNotificationAllowed();
+      if (!isAllowed) {
+        final userResponse =
+            await AwesomeNotifications().requestPermissionToSendNotifications(
+          permissions: [
+            NotificationPermission.Alert,
+            NotificationPermission.Sound,
+            NotificationPermission.Badge,
+            NotificationPermission.Vibration,
+            NotificationPermission.Light,
+            NotificationPermission.CriticalAlert,
+            NotificationPermission.FullScreenIntent,
+          ],
+        );
+        return userResponse;
+      }
+      return true;
+    } catch (e) {
+      developer.log('Error requesting notification permissions: $e');
+      return false;
+    }
+  }
+
   Future<void> setNotificationsEnabled(bool enabled) async {
     try {
       if (enabled) {
         // Request permission when enabling notifications
-        final isAllowed = await AwesomeNotifications().isNotificationAllowed();
-        if (!isAllowed) {
-          final userResponse =
-              await AwesomeNotifications().requestPermissionToSendNotifications(
-            permissions: [
-              NotificationPermission.Alert,
-              NotificationPermission.Sound,
-              NotificationPermission.Badge,
-              NotificationPermission.Vibration,
-              NotificationPermission.Light,
-              NotificationPermission.CriticalAlert,
-              NotificationPermission.FullScreenIntent,
-            ],
-          );
-          if (!userResponse) {
-            developer.log('User denied notification permissions');
-            return;
-          }
+        final hasPermission = await requestNotificationPermissions();
+        if (!hasPermission) {
+          developer.log('User denied notification permissions');
+          return;
         }
         await _initializeScheduledNotifications();
       } else {

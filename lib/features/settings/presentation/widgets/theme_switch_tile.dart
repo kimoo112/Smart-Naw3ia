@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
-import 'package:smart_naw3ia/core/theme/cubit/theme_cubit.dart';
-import 'package:smart_naw3ia/core/utils/app_colors.dart';
+import '../../../../core/localization/translation_extension.dart';
+import '../../../../core/theme/cubit/theme_cubit.dart';
+import '../../../../core/utils/app_colors.dart';
 
 class ThemeSwitchTile extends StatefulWidget {
   const ThemeSwitchTile({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
-import 'package:smart_naw3ia/features/home/presentation/views/department_details_page.dart';
+import '../../../../core/localization/translation_extension.dart';
+import '../views/department_details_page.dart';
 
 import '../../data/models/department_model.dart';
 

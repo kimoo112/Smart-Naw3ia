@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_naw3ia/core/localization/cubit/locale_cubit.dart';
-import 'package:smart_naw3ia/core/utils/app_text_styles.dart';
-import 'package:smart_naw3ia/features/home/data/models/news_model.dart';
+import '../../../../core/localization/cubit/locale_cubit.dart';
+import '../../../../core/utils/app_text_styles.dart';
+import '../../data/models/news_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../core/localization/translation_extension.dart';

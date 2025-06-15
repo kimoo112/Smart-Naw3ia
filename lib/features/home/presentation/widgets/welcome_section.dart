@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_naw3ia/core/ui/animated_container_widget.dart';
-import 'package:smart_naw3ia/core/ui/notification_badge.dart';
-import 'package:smart_naw3ia/core/utils/animation_utils.dart';
+import '../../../../core/ui/animated_container_widget.dart';
+import '../../../../core/ui/notification_badge.dart';
+import '../../../../core/utils/animation_utils.dart';
 
 class WelcomeSection extends StatelessWidget {
   final String name;

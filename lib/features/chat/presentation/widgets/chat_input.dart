@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_naw3ia/core/localization/cubit/locale_cubit.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
-import 'package:smart_naw3ia/features/chat/presentation/cubit/chat_cubit.dart';
+import '../../../../core/localization/cubit/locale_cubit.dart';
+import '../../../../core/localization/translation_extension.dart';
+import '../cubit/chat_cubit.dart';
 
 class ChatInput extends StatefulWidget {
   const ChatInput({super.key});

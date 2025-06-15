@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_naw3ia/features/home/presentation/widgets/animations/fade_slide_animation.dart';
-import 'package:smart_naw3ia/features/home/presentation/widgets/department_card.dart';
+import 'animations/fade_slide_animation.dart';
+import 'department_card.dart';
 
 import '../../data/models/department_model.dart';
 import '../views/department_details_page.dart';
@@ -16,7 +16,7 @@ class DepartmentsGrid extends StatelessWidget {
       delay: const Duration(milliseconds: 200),
       beginOffset: const Offset(0.3, 0),
       child: SizedBox(
-        height: 265.h,
+        height: 295.h,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           padding: EdgeInsets.symmetric(horizontal: 12.w),

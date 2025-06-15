@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
-import 'package:smart_naw3ia/features/search/presentation/cubit/search_cubit.dart';
-import 'package:smart_naw3ia/features/search/presentation/widgets/search_result_bottom_sheet.dart';
+import '../../../../core/localization/translation_extension.dart';
+import '../cubit/search_cubit.dart';
+import '../widgets/search_result_bottom_sheet.dart';
 
 import '../../../../core/utils/app_assets.dart';
 import '../../model/search_result_model.dart';

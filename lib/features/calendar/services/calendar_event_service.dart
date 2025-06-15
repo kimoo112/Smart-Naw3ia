@@ -1,5 +1,5 @@
-import 'package:smart_naw3ia/features/calendar/models/event_model.dart';
-import 'package:smart_naw3ia/features/notifications/data/services/notification_helper.dart';
+import '../models/event_model.dart';
+import '../../notifications/data/services/notification_helper.dart';
 
 class CalendarEventService {
   static final CalendarEventService _instance = CalendarEventService._();

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
-import 'package:smart_naw3ia/features/profile/data/models/exam_model.dart';
+import '../../../../core/localization/translation_extension.dart';
+import '../../data/models/exam_model.dart';
 
 class ExamScheduleWidget extends StatefulWidget {
   final List<Exam> exams;

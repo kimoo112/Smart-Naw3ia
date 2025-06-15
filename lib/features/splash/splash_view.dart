@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_naw3ia/core/cache/cache_helper.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
-import 'package:smart_naw3ia/core/routes/functions/navigation_functions.dart';
-import 'package:smart_naw3ia/core/routes/routes.dart';
-import 'package:smart_naw3ia/core/utils/app_assets.dart';
+import '../../core/cache/cache_helper.dart';
+import '../../core/localization/translation_extension.dart';
+import '../../core/routes/functions/navigation_functions.dart';
+import '../../core/routes/routes.dart';
+import '../../core/utils/app_assets.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({Key? key}) : super(key: key);
@@ -94,7 +94,6 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
 
     if (studentName != null && studentName.isNotEmpty) {
       if (mounted) {
-        // Allow guest users to continue their session after app restart
         delayedNavigate(context, homeView);
       }
     } else {
@@ -112,7 +111,6 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Scaffold(
       body: Stack(
         alignment: Alignment.center,

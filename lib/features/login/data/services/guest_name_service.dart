@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smart_naw3ia/core/cache/cache_helper.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
+import '../../../../core/cache/cache_helper.dart';
+import '../../../../core/localization/translation_extension.dart';
 
 /// Service to manage guest name changes
 class GuestNameService {
@@ -8,10 +8,19 @@ class GuestNameService {
   static Future<bool> updateGuestName({
     required String nameEn,
     required String nameAr,
+    required BuildContext context,
   }) async {
     try {
       await CacheHelper.saveData(key: 'studentName', value: nameAr);
       await CacheHelper.saveData(key: 'studentNameEn', value: nameEn);
+
+      // Trigger rebuild of the profile view
+      if (context.mounted) {
+        Navigator.of(context).pop(); // Close the dialog
+        Navigator.of(context)
+            .pushReplacementNamed('/profile'); // Rebuild profile view
+      }
+
       return true;
     } catch (e) {
       return false;
@@ -75,11 +84,10 @@ class GuestNameService {
                   nameAr: nameArController.text.isNotEmpty
                       ? nameArController.text
                       : 'زائر',
+                  context: context,
                 );
 
                 if (success && dialogContext.mounted) {
-                  Navigator.of(dialogContext).pop();
-
                   // Show success message
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(

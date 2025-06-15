@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
-import 'package:smart_naw3ia/features/calendar/models/event_model.dart';
-import 'package:smart_naw3ia/features/calendar/widgets/modern_calendar.dart';
-import 'package:smart_naw3ia/features/home/data/models/news_model.dart';
-import 'package:smart_naw3ia/features/login/data/services/guest_permissions_service.dart';
+import '../../../core/localization/translation_extension.dart';
+import '../models/event_model.dart';
+import '../widgets/modern_calendar.dart';
+import '../../home/data/models/news_model.dart';
+import '../../login/data/services/guest_permissions_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/ui/floating_menu_navigation.dart';

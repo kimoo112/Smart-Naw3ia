@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
+import '../../../../../core/localization/translation_extension.dart';
 
 class CollegeVisionSection extends StatelessWidget {
   const CollegeVisionSection({super.key});

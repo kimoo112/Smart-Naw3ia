@@ -5,9 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:smart_naw3ia/core/routes/routes.dart';
-import 'package:smart_naw3ia/features/notifications/data/services/notification_service.dart';
-import 'package:smart_naw3ia/features/search/presentation/views/search_results.dart';
+import '../../../../core/routes/routes.dart';
+import '../../../notifications/data/services/notification_service.dart';
+import '../../../search/presentation/views/search_results.dart';
 
 import '../../../../core/cache/cache_helper.dart';
 import '../../../../core/localization/cubit/locale_cubit.dart';
@@ -155,43 +155,106 @@ class _HomeHeaderState extends State<HomeHeader> with TickerProviderStateMixin {
                   position: _welcomeSlide,
                   child: FadeTransition(
                     opacity: _welcomeFade,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "${'app.welcome'.tr(context)}، $name",
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            color: Theme.of(context).primaryColor,
-                            fontWeight: FontWeight.w600,
-                          ),
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Theme.of(context).primaryColor.withOpacity(0.1),
+                            Theme.of(context).primaryColor.withOpacity(0.05),
+                          ],
                         ),
-                        GestureDetector(
-                          onTap: _onNotificationTap,
-                          child: Stack(
-                            clipBehavior: Clip.none,
+                        borderRadius: BorderRadius.circular(16.r),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
                             children: [
-                              Icon(
-                                IconlyLight.notification,
-                                size: 24.r,
+                              Container(
+                                padding: EdgeInsets.all(8.r),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(12.r),
+                                ),
+                                child: Icon(
+                                  IconlyLight.profile,
+                                  size: 20.r,
+                                  color: Theme.of(context).primaryColor,
+                                ),
                               ),
-                              if (_hasUnreadNotifications)
-                                Positioned(
-                                  top: -5,
-                                  right: -5,
-                                  child: Container(
-                                    width: 10.r,
-                                    height: 10.r,
-                                    decoration: const BoxDecoration(
-                                      color: Colors.red,
-                                      shape: BoxShape.circle,
+                              SizedBox(width: 12.w),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'app.welcome'.tr(context),
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall
+                                          ?.color,
                                     ),
                                   ),
-                                ),
+                                  Text(
+                                    name,
+                                    style: TextStyle(
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w600,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
-                        ),
-                      ],
+                          GestureDetector(
+                            onTap: _onNotificationTap,
+                            child: Container(
+                              padding: EdgeInsets.all(8.r),
+                              decoration: BoxDecoration(
+                                color: Theme.of(context)
+                                    .primaryColor
+                                    .withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(12.r),
+                              ),
+                              child: Stack(
+                                clipBehavior: Clip.none,
+                                children: [
+                                  Icon(
+                                    IconlyLight.notification,
+                                    size: 20.r,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                  if (_hasUnreadNotifications)
+                                    Positioned(
+                                      top: -5,
+                                      right: -5,
+                                      child: Container(
+                                        width: 8.r,
+                                        height: 8.r,
+                                        decoration: BoxDecoration(
+                                          color: Colors.red,
+                                          shape: BoxShape.circle,
+                                          border: Border.all(
+                                            color: Theme.of(context).cardColor,
+                                            width: 2,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -267,28 +330,56 @@ class _HomeHeaderState extends State<HomeHeader> with TickerProviderStateMixin {
                     child: Material(
                       color: Colors.transparent,
                       child: InkWell(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(16.r),
                         onTap: () => context.push(searchView),
                         child: Container(
                           margin: EdgeInsets.symmetric(vertical: 8.h),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 12),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 12.w, vertical: 8.h),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor.withOpacity(.8),
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(16.r),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Theme.of(context)
+                                    .shadowColor
+                                    .withOpacity(0.1),
+                                blurRadius: 10,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
                             border: Border.all(
-                                color: Theme.of(context).dividerColor),
-                            borderRadius: BorderRadius.circular(30),
+                              color: Theme.of(context)
+                                  .dividerColor
+                                  .withOpacity(0.1),
+                              width: 1,
+                            ),
                           ),
                           child: Row(
                             children: [
-                              Icon(Icons.search,
-                                  color: Theme.of(context).hintColor),
-                              const SizedBox(width: 12),
-                              Text(
-                                'app.search'.tr(context),
-                                style: TextStyle(
-                                  color: Theme.of(context).hintColor,
-                                  fontSize: 16.sp,
+                              Container(
+                                padding: EdgeInsets.all(8.r),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(12.r),
+                                ),
+                                child: Icon(
+                                  IconlyLight.search,
+                                  size: 20.r,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                              ),
+                              SizedBox(width: 12.w),
+                              Expanded(
+                                child: Text(
+                                  'app.search'.tr(context),
+                                  style: TextStyle(
+                                    color: Theme.of(context).hintColor,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ),
                             ],

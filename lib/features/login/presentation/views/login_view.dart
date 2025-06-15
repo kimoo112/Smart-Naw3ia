@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
-import 'package:smart_naw3ia/core/routes/functions/navigation_functions.dart';
-import 'package:smart_naw3ia/core/routes/routes.dart';
+import '../../../../core/localization/translation_extension.dart';
+import '../../../../core/routes/functions/navigation_functions.dart';
+import '../../../../core/routes/routes.dart';
 
 import '../../../../core/utils/app_assets.dart';
 import '../cubit/login_cubit.dart';
@@ -63,9 +63,9 @@ class LoginView extends StatelessWidget {
                         validator: cubit.validatePassword,
                       ),
                       SizedBox(height: 24.h),
-                      LoginButton(onPressed: cubit.login),
+                      LoginButton(onPressed: () => cubit.login()),
                       SizedBox(height: 16.h),
-                      GuestLoginButton(onPressed: cubit.loginAsGuest),
+                      GuestLoginButton(onPressed: () => cubit.loginAsGuest()),
                     ],
                   ),
                 ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_naw3ia/core/utils/app_colors.dart';
+import '../utils/app_colors.dart';
 
 class FabItem extends StatelessWidget {
   final int currentIndex;

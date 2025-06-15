@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
-import 'package:smart_naw3ia/features/profile/data/models/lecture_model.dart';
+import '../../../../core/localization/translation_extension.dart';
+import '../../data/models/lecture_model.dart';
 
 class TimetableWidget extends StatefulWidget {
   final List<Lecture> lectures;

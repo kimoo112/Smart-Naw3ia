@@ -1,8 +1,8 @@
-import 'package:smart_naw3ia/features/chat/data/models/department_model.dart' as chat;
-import 'package:smart_naw3ia/features/chat/data/models/faculty_info_model.dart';
-import 'package:smart_naw3ia/features/home/data/models/department_model.dart';
-import 'package:smart_naw3ia/features/home/data/models/news_model.dart';
-import 'package:smart_naw3ia/features/home/data/models/staff_model.dart';
+import '../../chat/data/models/department_model.dart' as chat;
+import '../../chat/data/models/faculty_info_model.dart';
+import '../../home/data/models/department_model.dart';
+import '../../home/data/models/news_model.dart';
+import '../../home/data/models/staff_model.dart';
 
 enum SearchResultType { department, news, staff, facultyInfo, chatDepartment }
 

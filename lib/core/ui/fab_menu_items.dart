@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:smart_naw3ia/core/routes/routes.dart';
+import '../routes/routes.dart';
 
 class FabMenuItem {
   final int index;

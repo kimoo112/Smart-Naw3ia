@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_naw3ia/core/cache/cache_helper.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
-import 'package:smart_naw3ia/features/login/data/services/guest_name_service.dart';
-import 'package:smart_naw3ia/features/login/data/services/guest_permissions_service.dart';
-import 'package:smart_naw3ia/features/profile/presentation/widgets/profile_achievements.dart';
-import 'package:smart_naw3ia/features/profile/presentation/widgets/profile_background.dart';
-import 'package:smart_naw3ia/features/profile/presentation/widgets/profile_header.dart';
-import 'package:smart_naw3ia/features/profile/presentation/widgets/profile_info_section.dart';
+import '../../../../core/cache/cache_helper.dart';
+import '../../../../core/localization/translation_extension.dart';
+import '../../../login/data/services/guest_name_service.dart';
+import '../../../login/data/services/guest_permissions_service.dart';
+import '../widgets/profile_achievements.dart';
+import '../widgets/profile_background.dart';
+import '../widgets/profile_header.dart';
+import '../widgets/profile_info_section.dart';
 
 import '../../../../core/localization/cubit/locale_cubit.dart';
 import '../../../../core/ui/floating_menu_navigation.dart';

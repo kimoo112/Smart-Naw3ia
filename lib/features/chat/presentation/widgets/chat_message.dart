@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_naw3ia/features/chat/data/models/chat_message_model.dart';
+import '../../data/models/chat_message_model.dart';
 
 import '../../../../core/utils/app_assets.dart';
 

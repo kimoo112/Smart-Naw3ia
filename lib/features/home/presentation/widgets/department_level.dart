@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_naw3ia/features/home/data/models/staff_model.dart';
-import 'package:smart_naw3ia/features/home/presentation/widgets/staff_member_card.dart';
+import '../../data/models/staff_model.dart';
+import 'staff_member_card.dart';
 
 class DepartmentLevel extends StatelessWidget {
   final String title;

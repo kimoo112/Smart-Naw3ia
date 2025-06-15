@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_naw3ia/features/home/presentation/widgets/animations/scale_animation.dart';
+import 'animations/scale_animation.dart';
 
 import '../../data/models/news_model.dart';
 
@@ -20,20 +20,23 @@ class NewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return ScaleAnimation(
       delay: delay,
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-          width: 250.w,
-          margin: EdgeInsets.all(12.sp),
+          width: 270.w,
+          height: 170.h,
+          margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
           decoration: BoxDecoration(
-            color: Theme.of(context).cardColor,
-            borderRadius: BorderRadius.circular(16.r),
+            color: theme.cardColor,
+            borderRadius: BorderRadius.circular(20.r),
             boxShadow: [
               BoxShadow(
-                color: Theme.of(context).shadowColor.withOpacity(0.05),
-                blurRadius: 6,
+                color: theme.shadowColor.withOpacity(0.08),
+                blurRadius: 8,
                 offset: const Offset(0, 2),
               ),
             ],
@@ -42,73 +45,77 @@ class NewsCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
+                padding: EdgeInsets.all(12.r),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
+                      decoration: BoxDecoration(
+                        color: theme.primaryColor.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(12.r),
+                      ),
+                      child: Text(
+                        news.getCategory(locale),
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: theme.primaryColor,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 11.sp,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                      decoration: BoxDecoration(
+                        color: theme.primaryColor.withOpacity(0.05),
+                        borderRadius: BorderRadius.circular(12.r),
+                      ),
+                      child: Text(
+                        news.date,
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: theme.primaryColor.withOpacity(0.8),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 10.sp,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12.r),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       news.getTitle(locale),
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 13.sp,
-                          ),
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 13.sp,
+                        height: 1.3,
+                      ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
                     if (news.getDescription(locale) != null) ...[
-                      6.verticalSpace,
+                      8.verticalSpace,
                       Text(
                         news.getDescription(locale)!,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              fontSize: 9.5.sp,
-                            ),
-                        maxLines: 3,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          fontSize: 11.sp,
+                          height: 1.4,
+                          color: theme.textTheme.bodySmall?.color
+                              ?.withOpacity(0.8),
+                        ),
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ],
                 ),
               ),
-
-              12.verticalSpace,
-
-              /// Link Footer
-              if (news.link != null)
-                Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // Category Chip
-                      Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 8.w, vertical: 4.h),
-                        decoration: BoxDecoration(
-                          color:
-                              Theme.of(context).primaryColor.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(14.r),
-                        ),
-                        child: Text(
-                          news.getCategory(locale),
-                          style:
-                              Theme.of(context).textTheme.labelSmall?.copyWith(
-                                    color: Theme.of(context).primaryColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                        ),
-                      ),
-                      // Date
-                      Text(
-                        news.date,
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelSmall
-                            ?.copyWith(color: Theme.of(context).primaryColor),
-                      ),
-                    ],
-                  ),
-                ),
             ],
           ),
         ),

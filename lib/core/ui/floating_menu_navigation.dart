@@ -3,12 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:go_router/go_router.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
-import 'package:smart_naw3ia/core/routes/functions/navigation_functions.dart';
-import 'package:smart_naw3ia/core/routes/routes.dart';
-import 'package:smart_naw3ia/core/utils/animation_utils.dart';
-import 'package:smart_naw3ia/core/utils/app_colors.dart';
-import 'package:smart_naw3ia/features/home/presentation/cubit/navigation_cubit.dart';
+import '../localization/translation_extension.dart';
+import '../routes/functions/navigation_functions.dart';
+import '../routes/routes.dart';
+import '../utils/animation_utils.dart';
+import '../utils/app_colors.dart';
+import '../../features/home/presentation/cubit/navigation_cubit.dart';
 
 import 'fab_item.dart';
 import 'fab_menu_items.dart';

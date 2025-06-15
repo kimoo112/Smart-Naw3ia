@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_naw3ia/features/chat/data/chat_data.dart';
-import 'package:smart_naw3ia/features/chat/presentation/widgets/suggestion_chip.dart';
+import '../../data/chat_data.dart';
+import 'suggestion_chip.dart';
 
 class ChatSuggestions extends StatelessWidget {
   final Function(String) onSuggestionSelected;

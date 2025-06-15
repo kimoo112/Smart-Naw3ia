@@ -123,6 +123,7 @@ class StaffMemberCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: actualColor,
+                            fontFamily: 'Almarai',
                             fontWeight: FontWeight.w600,
                             fontSize: 9.sp,
                           ),
@@ -139,7 +140,6 @@ class StaffMemberCard extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: theme.textTheme.bodySmall?.copyWith(
-                          fontStyle: FontStyle.italic,
                           fontSize: 9.sp,
                         ),
                       ),

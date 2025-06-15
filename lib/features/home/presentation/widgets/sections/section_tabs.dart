@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_naw3ia/core/utils/app_colors.dart';
-import 'package:smart_naw3ia/core/utils/app_text_styles.dart';
-import 'package:smart_naw3ia/features/home/presentation/widgets/sections/dean_word_section.dart';
-import 'package:smart_naw3ia/features/home/presentation/widgets/sections/history_section.dart';
+import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/app_text_styles.dart';
+import 'dean_word_section.dart';
+import 'history_section.dart';
 
 import '../../../../../core/localization/translation_extension.dart';
 import 'college_vision_section.dart';

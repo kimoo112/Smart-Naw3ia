@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
-import 'package:smart_naw3ia/core/utils/app_assets.dart';
-import 'package:url_launcher/url_launcher.dart';
+import '../../../../core/localization/translation_extension.dart';
+import '../../../../core/utils/app_assets.dart';
 
 class AboutAppView extends StatefulWidget {
   const AboutAppView({super.key});
@@ -37,12 +36,6 @@ class _AboutAppViewState extends State<AboutAppView>
     super.dispose();
   }
 
-  Future<void> _launchURL(String url) async {
-    final Uri uri = Uri.parse(url);
-    if (!await launchUrl(uri)) {
-      throw Exception('Could not launch $url');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:smart_naw3ia/core/cache/cache_helper.dart';
-import 'package:smart_naw3ia/core/routes/functions/navigation_functions.dart';
-import 'package:smart_naw3ia/core/routes/routes.dart';
+
+import '../../../../core/cache/cache_helper.dart';
+import '../../../../core/routes/functions/navigation_functions.dart';
+import '../../../../core/routes/routes.dart';
 
 class LogoutService {
   static Future<void> logout(BuildContext context) async {
@@ -21,8 +22,8 @@ class LogoutService {
     await CacheHelper.removeData(key: 'studentStatus');
     await CacheHelper.removeData(key: 'studentStatusEn');
     await CacheHelper.removeData(key: 'isGuest');
-
-    // Navigate to login screen
-    customReplacementAndRemove(context, loginView);
+    if (context.mounted) {
+      customReplacementAndRemove(context, loginView);
+    }
   }
 }

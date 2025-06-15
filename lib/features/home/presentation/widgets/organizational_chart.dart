@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
-import 'package:smart_naw3ia/features/home/data/models/staff_model.dart';
-import 'package:smart_naw3ia/features/home/presentation/widgets/department_connector.dart';
-import 'package:smart_naw3ia/features/home/presentation/widgets/department_level.dart';
+import '../../../../core/localization/translation_extension.dart';
+import '../../data/models/staff_model.dart';
+import 'department_connector.dart';
+import 'department_level.dart';
 
 class OrganizationalChart extends StatelessWidget {
   final List<StaffMember> staff;

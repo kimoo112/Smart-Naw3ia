@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_naw3ia/features/home/data/models/news_model.dart';
+import '../../home/data/models/news_model.dart';
 
 class CalendarEvent {
   final String titleEn;

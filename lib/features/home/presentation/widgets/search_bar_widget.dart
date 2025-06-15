@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
-import 'package:smart_naw3ia/core/routes/routes.dart';
-import 'package:smart_naw3ia/core/ui/animated_container_widget.dart';
-import 'package:smart_naw3ia/core/ui/rounded_container.dart';
-import 'package:smart_naw3ia/core/utils/animation_utils.dart';
+import '../../../../core/localization/translation_extension.dart';
+import '../../../../core/routes/routes.dart';
+import '../../../../core/ui/animated_container_widget.dart';
+import '../../../../core/ui/rounded_container.dart';
+import '../../../../core/utils/animation_utils.dart';
 
 class SearchBarWidget extends StatelessWidget {
   const SearchBarWidget({super.key});

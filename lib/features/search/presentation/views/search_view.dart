@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
-import 'package:smart_naw3ia/core/localization/cubit/locale_cubit.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
-import 'package:smart_naw3ia/features/search/presentation/cubit/search_cubit.dart';
-import 'package:smart_naw3ia/features/search/presentation/views/search_results.dart';
+import '../../../../core/localization/cubit/locale_cubit.dart';
+import '../../../../core/localization/translation_extension.dart';
+import '../cubit/search_cubit.dart';
+import 'search_results.dart';
 
 import '../../../../core/utils/app_assets.dart';
 
@@ -53,7 +53,9 @@ class _SearchViewState extends State<SearchView> {
               child: Row(
                 children: [
                   IconButton(
-                    icon: const Icon(IconlyLight.arrowLeft),
+                    icon: Icon(locale == 'en'
+                        ? IconlyLight.arrowLeft
+                        : IconlyLight.arrowRight),
                     onPressed: () => context.pop(),
                   ),
                   SizedBox(width: 8.w),
@@ -62,31 +64,63 @@ class _SearchViewState extends State<SearchView> {
                       tag: 'search_bar',
                       child: Material(
                         color: Colors.transparent,
-                        child: TextField(
-                          controller: _searchController,
-                          focusNode: _searchFocusNode,
-                          onChanged: (query) {
-                            _searchCubit.search(query, locale);
-                          },
-                          decoration: InputDecoration(
-                            hintText: 'app.search'.tr(context),
-                            prefixIcon: const Icon(IconlyLight.search),
-                            suffixIcon: _searchController.text.isNotEmpty
-                                ? IconButton(
-                                    icon: const Icon(IconlyLight.closeSquare),
-                                    onPressed: () {
-                                      _searchController.clear();
-                                      _searchCubit.clearSearch();
-                                    },
-                                  )
-                                : null,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(16.r),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Theme.of(context)
+                                    .shadowColor
+                                    .withOpacity(0.1),
+                                blurRadius: 10,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                            border: Border.all(
+                              color: Theme.of(context)
+                                  .dividerColor
+                                  .withOpacity(0.1),
+                              width: 1,
                             ),
-                            contentPadding:
-                                const EdgeInsets.symmetric(vertical: 0),
-                            filled: true,
-                            fillColor: Theme.of(context).cardColor,
+                          ),
+                          child: TextField(
+                            controller: _searchController,
+                            focusNode: _searchFocusNode,
+                            onChanged: (query) {
+                              _searchCubit.search(query, locale);
+                            },
+                            decoration: InputDecoration(
+                              hintText: 'app.search'.tr(context),
+                              prefixIcon: Icon(
+                                IconlyLight.search,
+                                size: 20.r,
+                                color: Theme.of(context).primaryColor,
+                              ),
+                              suffixIcon: _searchController.text.isNotEmpty
+                                  ? IconButton(
+                                      icon: Icon(
+                                        IconlyLight.delete,
+                                        size: 20.r,
+                                        color: Theme.of(context).primaryColor,
+                                      ),
+                                      onPressed: () {
+                                        _searchController.clear();
+                                        _searchCubit.clearSearch();
+                                      },
+                                    )
+                                  : null,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16.r),
+                                borderSide: BorderSide.none,
+                              ),
+                              contentPadding: EdgeInsets.symmetric(
+                                horizontal: 16.w,
+                                vertical: 12.h,
+                              ),
+                              filled: true,
+                              fillColor: Theme.of(context).cardColor,
+                            ),
                           ),
                         ),
                       ),

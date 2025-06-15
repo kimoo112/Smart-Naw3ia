@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_naw3ia/features/chat/data/models/chat_message_model.dart';
-import 'package:smart_naw3ia/features/chat/data/services/chatbot_service.dart';
-import 'package:smart_naw3ia/features/notifications/data/services/notification_helper.dart';
+import '../../data/models/chat_message_model.dart';
+import '../../data/services/chatbot_service.dart';
+import '../../../notifications/data/services/notification_helper.dart';
 
 part 'chat_state.dart';
 

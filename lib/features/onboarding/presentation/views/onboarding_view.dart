@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intro_screen_onboarding_flutter/intro_app.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
+import '../../../../core/localization/translation_extension.dart';
 
 import '../../../../core/localization/cubit/locale_cubit.dart';
 import '../../../../core/routes/functions/navigation_functions.dart';

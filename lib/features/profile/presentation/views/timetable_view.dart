@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:smart_naw3ia/core/localization/cubit/locale_cubit.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
-import 'package:smart_naw3ia/features/profile/data/models/exam_model.dart';
-import 'package:smart_naw3ia/features/profile/data/models/lecture_model.dart';
-import 'package:smart_naw3ia/features/profile/presentation/widgets/exam_schedule_widget.dart';
-import 'package:smart_naw3ia/features/profile/presentation/widgets/timetable_widget.dart';
+import '../../../../core/localization/cubit/locale_cubit.dart';
+import '../../../../core/localization/translation_extension.dart';
+import '../../data/models/exam_model.dart';
+import '../../data/models/lecture_model.dart';
+import '../widgets/exam_schedule_widget.dart';
+import '../widgets/timetable_widget.dart';
 
 class TimetableView extends StatefulWidget {
   const TimetableView({super.key});

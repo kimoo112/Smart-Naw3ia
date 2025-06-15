@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_naw3ia/core/cache/cache_helper.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
+import '../../../../core/cache/cache_helper.dart';
+import '../../../../core/localization/translation_extension.dart';
+import '../../../notifications/data/services/notification_service.dart';
 
 import '../../../../core/utils/app_router.dart';
 
@@ -32,7 +33,7 @@ class LoginCubit extends Cubit<LoginState> {
       'statusEn': 'Active',
       'semesterAr': 'الفصل الثاني',
       'semesterEn': 'Semester 2',
-      'year': '2023/2024',
+      'year': '2024/2025',
       'advisorAr': 'د. أحمد محمود',
       'advisorEn': 'Dr. Ahmed Mahmoud',
       'attendance': '95%',
@@ -71,6 +72,37 @@ class LoginCubit extends Cubit<LoginState> {
       'internshipEn': 'Arabic Music Institute',
       'projectTitleAr': 'تطوير برنامج تعليم الموسيقى للأطفال',
       'projectTitleEn': 'Development of Music Education Program for Children'
+    },
+    '30311080203099': {
+      'nameAr': 'عبدالرحمن عزت أبو زيد',
+      'nameEn': 'Abdelrahman Ezat Abozied',
+      'email': 'abdelrahman.ezat@student.edu',
+      'phone': '+20 100 345 6789',
+      'nationalId': '30311080203099',
+      'genderAr': 'ذكر',
+      'genderEn': 'Male',
+      'dob': '2002-12-18',
+      'addressAr': 'شارع سموحة، الاسكندرية',
+      'addressEn': 'Smouha Street, Alexandria',
+      'departmentAr': 'تكنولوجيا التعليم',
+      'departmentEn': 'Educational Technology',
+      'programAr': 'بكالوريوس تكنولوجيا التعليم',
+      'programEn': 'BSc Educational Technology',
+      'levelAr': 'المستوى الرابع',
+      'levelEn': 'Level 4',
+      'gpa': 3.5,
+      'statusAr': 'نشط',
+      'statusEn': 'Active',
+      'semesterAr': 'الفصل الثاني',
+      'semesterEn': 'Semester 2',
+      'year': '2024/2025',
+      'advisorAr': 'د. أحمد محمود',
+      'advisorEn': 'Dr. Ahmed Mahmoud',
+      'attendance': '98%',
+      'internshipAr': 'شركة تكنولوجيا التعليم المتقدمة',
+      'internshipEn': 'Advanced EdTech Co.',
+      'projectTitleAr': 'تطوير نظام إدارة التعلم الذكي',
+      'projectTitleEn': 'Smart Learning Management System Development'
     }
   };
 
@@ -146,6 +178,14 @@ class LoginCubit extends Cubit<LoginState> {
           await CacheHelper.saveData(
               key: 'studentPhone', value: userData['phone']);
           await CacheHelper.saveData(
+              key: 'studentGenderAr', value: userData['genderAr']);
+          await CacheHelper.saveData(
+              key: 'studentGenderEn', value: userData['genderEn']);
+          await CacheHelper.saveData(
+              key: 'studentAddressAr', value: userData['addressAr']);
+          await CacheHelper.saveData(
+              key: 'studentAddressEn', value: userData['addressEn']);
+          await CacheHelper.saveData(
               key: 'studentDepartment', value: userData['departmentAr']);
           await CacheHelper.saveData(
               key: 'studentDepartmentEn', value: userData['departmentEn']);
@@ -164,6 +204,9 @@ class LoginCubit extends Cubit<LoginState> {
           await CacheHelper.saveData(
               key: 'studentStatusEn', value: userData['statusEn']);
           await CacheHelper.saveData(key: 'isGuest', value: false);
+
+          // Request notification permissions after successful login
+          await NotificationService().requestNotificationPermissions();
 
           emit(LoginSuccess());
         } else {
@@ -189,6 +232,12 @@ class LoginCubit extends Cubit<LoginState> {
       await CacheHelper.saveData(
           key: 'studentEmail', value: 'guest@example.com');
       await CacheHelper.saveData(key: 'studentPhone', value: 'N/A');
+      await CacheHelper.saveData(key: 'studentGenderAr', value: 'غير محدد');
+      await CacheHelper.saveData(
+          key: 'studentGenderEn', value: 'Not Specified');
+      await CacheHelper.saveData(key: 'studentAddressAr', value: 'غير محدد');
+      await CacheHelper.saveData(
+          key: 'studentAddressEn', value: 'Not Specified');
       await CacheHelper.saveData(key: 'studentDepartment', value: 'زائر');
       await CacheHelper.saveData(key: 'studentDepartmentEn', value: 'Guest');
       await CacheHelper.saveData(key: 'studentProgram', value: 'زائر');
@@ -199,6 +248,9 @@ class LoginCubit extends Cubit<LoginState> {
       await CacheHelper.saveData(key: 'studentStatus', value: 'زائر');
       await CacheHelper.saveData(key: 'studentStatusEn', value: 'Guest');
       await CacheHelper.saveData(key: 'isGuest', value: true);
+
+      // Request notification permissions after successful guest login
+      await NotificationService().requestNotificationPermissions();
 
       emit(LoginSuccess());
     } catch (e) {

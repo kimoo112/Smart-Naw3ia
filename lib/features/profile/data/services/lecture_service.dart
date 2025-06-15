@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:smart_naw3ia/features/profile/data/models/lecture_model.dart';
+import '../models/lecture_model.dart';
 
 class LectureService {
   static List<Lecture> getLectures() {
-    // TODO: Replace with actual API call or database fetch
     return [
       const Lecture(
         subjectName: 'استخدام الحاسب الآلي في التعليم والتعلم',

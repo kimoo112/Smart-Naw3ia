@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
+import '../../../../core/localization/translation_extension.dart';
 import 'package:smart_naw3ia/features/settings/presentation/widgets/animations/fade_slide_animation.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -11,8 +11,6 @@ class HelpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final locale = Localizations.localeOf(context).languageCode;
-
     return Scaffold(
       appBar: AppBar(
         title: Text('settings.help'.tr(context)),

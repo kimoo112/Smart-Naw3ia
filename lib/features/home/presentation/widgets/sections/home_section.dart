@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_naw3ia/features/home/presentation/widgets/animations/fade_slide_animation.dart';
-import 'package:smart_naw3ia/features/home/presentation/widgets/animations/scale_animation.dart';
-import 'package:smart_naw3ia/features/home/presentation/widgets/departments_grid.dart';
+import '../animations/fade_slide_animation.dart';
+import '../animations/scale_animation.dart';
+import '../departments_grid.dart';
 
 import '../../../../../core/localization/translation_extension.dart';
 import '../../../../../core/routes/functions/navigation_functions.dart';

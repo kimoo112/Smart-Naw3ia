@@ -6,53 +6,45 @@ import 'package:smart_naw3ia/features/chat/data/services/text_comparison_service
 class ChatbotService {
   final TextComparisonService _comparisonService = TextComparisonService();
 
-  String generateResponse(String query, String locale) {
-    // Convert query to lowercase for case-insensitive matching
-    query = query.toLowerCase();
-
-    // If empty query, return welcome message
-    if (query.isEmpty) {
+  String generateResponse(String message, String locale) {
+    if (message.isEmpty) {
       return locale == 'ar'
-          ? '''مرحباً بك! كيف يمكنني مساعدتك؟'''
-          : '''Welcome! How can I help you?''';
+          ? 'مرحباً بك في كلية التربية النوعية! كيف يمكنني مساعدتك اليوم؟'
+          : 'Welcome to the Faculty of Specific Education! How can I help you today?';
     }
 
-    // Search through suggested questions for matches
-    for (var question in suggestedQuestions) {
-      String questionToCompare =
-          locale == 'ar' ? question.questionAr : question.questionEn;
-      questionToCompare = questionToCompare.toLowerCase();
+    // Normalize the input message for Arabic
+    final normalizedMessage = _normalizeArabicText(message);
 
-      if (questionToCompare.contains(query) ||
-          query.contains(questionToCompare)) {
+    // Find matching question
+    for (final question in suggestedQuestions) {
+      final normalizedQuestion = locale == 'ar'
+          ? _normalizeArabicText(question.questionAr)
+          : question.questionEn.toLowerCase();
+
+      if (normalizedMessage.contains(normalizedQuestion) ||
+          normalizedQuestion.contains(normalizedMessage)) {
         return locale == 'ar' ? question.answerAr : question.answerEn;
       }
     }
 
-    // If no exact match, try fuzzy matching
-    double bestMatch = 0;
-    String? bestResponse;
-
-    for (var question in suggestedQuestions) {
-      final result = _comparisonService.compareAnswers(
-        query,
-        locale == 'ar' ? question.questionAr : question.questionEn,
-      );
-
-      if (result.similarity > bestMatch) {
-        bestMatch = result.similarity;
-        bestResponse = locale == 'ar' ? question.answerAr : question.answerEn;
-      }
-    }
-
-    // Return best match if found with good confidence, otherwise default response
-    if (bestMatch >= 0.5 && bestResponse != null) {
-      return bestResponse;
-    }
-
-    // If no match found, return default response
+    // Default response if no match found
     return locale == 'ar'
         ? 'عذراً، لم أفهم سؤالك. هل يمكنك إعادة صياغته بطريقة أخرى؟'
-        : 'Sorry, I did not understand your question. Could you rephrase it?';
+        : 'Sorry, I didn\'t understand your question. Could you rephrase it?';
+  }
+
+  String _normalizeArabicText(String text) {
+    return text
+        .replaceAll('أ', 'ا')
+        .replaceAll('إ', 'ا')
+        .replaceAll('آ', 'ا')
+        .replaceAll('ة', 'ه')
+        .replaceAll('ى', 'ي')
+        .replaceAll('ئ', 'ي')
+        .replaceAll('ؤ', 'و')
+        .replaceAll(RegExp(r'\s+'), ' ')
+        .trim()
+        .toLowerCase();
   }
 }

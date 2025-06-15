@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_naw3ia/core/ui/floating_menu_navigation.dart';
-import 'package:smart_naw3ia/core/utils/app_assets.dart';
-import 'package:smart_naw3ia/features/home/presentation/cubit/navigation_cubit.dart';
-import 'package:smart_naw3ia/features/home/presentation/widgets/home_header.dart';
-import 'package:smart_naw3ia/features/home/presentation/widgets/sections/section_tabs.dart';
+import '../../../../core/ui/floating_menu_navigation.dart';
+import '../../../../core/utils/app_assets.dart';
+import '../cubit/navigation_cubit.dart';
+import '../widgets/home_header.dart';
+import '../widgets/sections/section_tabs.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});

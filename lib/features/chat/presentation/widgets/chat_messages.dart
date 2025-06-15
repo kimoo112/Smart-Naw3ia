@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_naw3ia/features/chat/presentation/cubit/chat_cubit.dart';
-import 'package:smart_naw3ia/features/chat/presentation/widgets/chat_bubble.dart';
+import '../cubit/chat_cubit.dart';
+import 'chat_bubble.dart';
 
 class ChatMessages extends StatefulWidget {
   const ChatMessages({super.key});

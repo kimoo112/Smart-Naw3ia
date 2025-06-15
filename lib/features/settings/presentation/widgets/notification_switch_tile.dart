@@ -35,9 +35,26 @@ class _NotificationSwitchTileState extends State<NotificationSwitchTile> {
   }
 
   Future<void> _handleNotificationToggle(bool value) async {
+    if (value) {
+      // When enabling notifications, request permission first
+      final hasPermission =
+          await _notificationService.requestNotificationPermissions();
+      if (!hasPermission) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('notifications.permission_denied'.tr(context)),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+        return;
+      }
+    }
+
     await _notificationService.setNotificationsEnabled(value);
 
-    // Optionally show a test notification when enabling
+    // Show a test notification when enabling
     if (value) {
       await NotificationHelper.showSimpleNotification(
         title: 'notifications.enabled_title'.tr(context),

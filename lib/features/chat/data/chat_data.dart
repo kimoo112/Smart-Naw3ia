@@ -13,6 +13,25 @@ class ChatQuestion {
 }
 
 const List<ChatQuestion> suggestedQuestions = [
+  // App Information
+  ChatQuestion(
+    questionEn: 'Who are you?',
+    questionAr: 'من أنت؟',
+    answerEn:
+        'I am Smart Naw3ia, the official chatbot assistant for the Faculty of Specific Education at Alexandria University. I can help you with information about the college, academic departments, student services, and more.',
+    answerAr:
+        'أنا سمارت نوعية، المساعد الآلي الرسمي لكلية التربية النوعية بجامعة الإسكندرية. يمكنني مساعدتك في الحصول على معلومات عن الكلية والأقسام الأكاديمية وخدمات الطلاب والمزيد.',
+  ),
+
+  ChatQuestion(
+    questionEn: 'What is this app?',
+    questionAr: 'ما هو هذا التطبيق؟',
+    answerEn:
+        'This is Smart Naw3ia, the official mobile application for the Faculty of Specific Education at Alexandria University. It provides easy access to academic information, student services, schedules, and helps you stay connected with college updates.',
+    answerAr:
+        'هذا هو تطبيق سمارت نوعية، التطبيق الرسمي لكلية التربية النوعية بجامعة الإسكندرية. يوفر وصولاً سهلاً للمعلومات الأكاديمية وخدمات الطلاب والجداول الدراسية، ويساعدك في البقاء على اطلاع بآخر تحديثات الكلية.',
+  ),
+
   // College Information
   ChatQuestion(
     questionEn: 'Tell me about the college history and establishment',
