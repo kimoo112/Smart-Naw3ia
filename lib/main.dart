@@ -20,12 +20,9 @@ import 'features/notifications/data/services/notification_service.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
+
+  // Initialize notification service without requesting permissions
   await NotificationService().init();
-  AwesomeNotifications().setListeners(
-    onActionReceivedMethod: onActionReceivedMethod,
-    onNotificationDisplayedMethod: onNotificationDisplayedMethod,
-    onDismissActionReceivedMethod: onDismissActionReceivedMethod,
-  );
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,

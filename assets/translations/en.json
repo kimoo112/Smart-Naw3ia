@@ -148,7 +148,38 @@
     "instructor": "Instructor",
     "course": "Course",
     "section": "Section",
-    "day": "Day"
+    "day": "Day",
+    "no_lectures": "No lectures scheduled for this day",
+    "timetable": "Timetable",
+    "semester": "Semester",
+    "spring": "Spring",
+    "fall": "Fall",
+    "summer": "Summer",
+    "lecture_types": {
+      "lecture": "Lecture",
+      "lab": "Lab",
+      "tutorial": "Tutorial",
+      "workshop": "Workshop",
+      "other": "Other"
+    },
+    "days": {
+      "saturday": "Saturday",
+      "sunday": "Sunday",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday"
+    },
+    "exams": "Exams",
+    "exam_schedule": "Exam Schedule",
+    "midterm_exams": "Midterm Exams",
+    "final_exams": "Final Exams",
+    "practical_exams": "Practical Exams",
+    "no_exams": "No exams scheduled for this period",
+    "subject": "Subject",
+    "date": "Date",
+    "location": "Location"
   },
   "academic": {
     "course_registration": "Course Registration",
@@ -170,8 +201,9 @@
     "general": "General",
     "preferences": "Preferences",
     "more": "More",
-    "logout": "Logout"
-    
+    "logout": "Logout",
+    "guest_mode": "You are currently logged in as a Guest",
+    "exit_guest_mode": "Exit Guest Mode"
   },
   
   "search": {
@@ -218,6 +250,7 @@
     "password": "Password",
     "forgot_password": "Forgot Password?",
     "login_button": "Login",
+    "continue_as_guest": "Continue as Guest",
     "validation": {
       "student_number_required": "Please enter your student number",
       "student_number_length": "Student number must be at least 8 digits",
@@ -331,9 +364,19 @@
       "enabled_title": "Notifications Enabled",
       "enabled_body": "You will now receive important updates from the Faculty app."
   },
+  "help": {
+    "contact_us": "Contact Us",
+    "address": "Address",
+    "address_content": "ALEXANDRIA, MOSTAFA KAMEL، Abu an Nawatir",
+    "phone": "Phone",
+    "email": "Email",
+    "fax": "Fax",
+    "social_media": "Social Media",
+    "developed_by": "Developed by"
+  },
   "about_app": {
     "title": "About the App",
-    "description": "Naw3ia is a modern Flutter application designed for the Faculty of Specific Education at Alexandria University...",
+    "description": "Smart Naw3ia is a modern Flutter application designed for the Faculty of Specific Education at Alexandria University...",
     "features_title": "Key Features",
     "features": {
       "0": "AI Chat Assistant: Instantly get answers to your questions about the faculty, departments, courses, and student services using an integrated AI-powered chatbot.",
@@ -349,6 +392,22 @@
     },
     "purpose_title": "App Purpose",
     "purpose": "The app aims to prepare and support students and staff in their academic journey..."
+  },
+  "restrictions": {
+    "guest_mode_title": "Guest Mode Restriction",
+    "login": "Login",
+    "continue_as_guest": "Continue as Guest",
+    "calendar_interaction_message": "This feature requires a student account. As a guest, you can view events but not interact with them.",
+    "profile_edit_message": "Profile editing is not available in guest mode. Please login with a student account to access this feature.",
+    "course_registration_message": "Course registration requires a student account. Please login to register for courses.",
+    "form_submission_message": "Form submission is not available in guest mode. Please login with a student account to submit this form.",
+    "personal_chat_message": "Personalized chat features require a student account. As a guest, you can only access general information."
+  },
+  "guest": {
+    "edit_name_title": "Edit Guest Name",
+    "name_en": "Name (English)",
+    "name_ar": "Name (Arabic)",
+    "name_updated": "Your name has been updated",
+    "edit_name": "Edit Name"
   }
-  
 }

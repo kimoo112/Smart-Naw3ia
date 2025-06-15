@@ -12,8 +12,10 @@ import 'package:smart_naw3ia/features/login/presentation/views/login_view.dart';
 import 'package:smart_naw3ia/features/notifications/presentation/views/notifications_view.dart';
 import 'package:smart_naw3ia/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:smart_naw3ia/features/profile/presentation/views/profile_view.dart';
+import 'package:smart_naw3ia/features/profile/presentation/views/timetable_view.dart';
 import 'package:smart_naw3ia/features/search/presentation/views/search_view.dart';
 import 'package:smart_naw3ia/features/settings/presentation/views/about_app_view.dart';
+import 'package:smart_naw3ia/features/settings/presentation/views/help_view.dart';
 import 'package:smart_naw3ia/features/settings/presentation/views/settings_view.dart';
 import 'package:smart_naw3ia/features/splash/splash_view.dart';
 
@@ -50,6 +52,13 @@ final router = GoRouter(
       path: profileView,
       pageBuilder: (context, state) => _buildPageTransition(
         child: const ProfileView(),
+        state: state,
+      ),
+    ),
+    GoRoute(
+      path: timetableView,
+      pageBuilder: (context, state) => _buildPageTransition(
+        child: const TimetableView(),
         state: state,
       ),
     ),
@@ -119,6 +128,12 @@ final router = GoRouter(
       path: aboutApp,
       builder: (BuildContext context, GoRouterState state) {
         return const AboutAppView();
+      },
+    ),
+     GoRoute(
+      path:helpView,
+      builder: (BuildContext context, GoRouterState state) {
+        return const HelpView();
       },
     ),
   ],

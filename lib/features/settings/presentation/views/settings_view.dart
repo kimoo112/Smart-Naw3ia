@@ -104,7 +104,7 @@ class SettingsView extends StatelessWidget {
               NavigationTile(
                 icon: IconlyLight.moreCircle,
                 title: 'settings.help'.tr(context),
-                onTap: () {},
+                onTap: () => customNavigate(context, helpView),
               ),
               NavigationTile(
                 icon: IconlyLight.logout,

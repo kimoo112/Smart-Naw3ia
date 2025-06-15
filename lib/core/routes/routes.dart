@@ -13,3 +13,5 @@ const String calenderView = '/calenderView';
 const String profileView = '/profile';
 const String notificationsView = '/notifications';
 const String aboutApp = '/aboutAppView';
+const String timetableView = '/profile/timetable';
+const String helpView = '/help';
