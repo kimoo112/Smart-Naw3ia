@@ -160,8 +160,3 @@ lib/
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-<<<<<<< HEAD
-=======
-
->>>>>>> f4ff8d9b23196850459cfa30b445ae510b5a73ca
