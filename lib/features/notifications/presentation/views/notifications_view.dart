@@ -3,17 +3,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
-import 'package:lottie/lottie.dart';
 import 'package:smart_naw3ia/core/localization/cubit/locale_cubit.dart';
 import 'package:smart_naw3ia/core/localization/translation_extension.dart';
 import 'package:smart_naw3ia/core/ui/custom_refresh_indicator.dart';
-import 'package:smart_naw3ia/core/ui/skeleton_loading.dart';
-import 'package:smart_naw3ia/core/utils/app_assets.dart';
 import 'package:smart_naw3ia/core/utils/haptic_feedback.dart';
 
 import '../../data/models/notification_model.dart';
 import '../../data/services/notification_service.dart';
+import '../widgets/empty_notifications.dart';
+import '../widgets/notification_item.dart';
+import '../widgets/notification_skeleton_item.dart';
 
 class NotificationsView extends StatefulWidget {
   const NotificationsView({super.key});
@@ -77,42 +76,9 @@ class _NotificationsViewState extends State<NotificationsView>
     await _loadNotifications();
   }
 
-  Widget _buildSkeletonItem() {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.h),
-      child: Row(
-        children: [
-          SkeletonLoading(
-            width: 50.w,
-            height: 50.h,
-            borderRadius: 25.r,
-          ),
-          SizedBox(width: 16.w),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SkeletonLoading(
-                  width: 200.w,
-                  height: 20.h,
-                ),
-                SizedBox(height: 8.h),
-                SkeletonLoading(
-                  width: 150.w,
-                  height: 16.h,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final locale = context.watch<LocaleCubit>().state.locale.languageCode;
-
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
@@ -139,27 +105,10 @@ class _NotificationsViewState extends State<NotificationsView>
           ? ListView.builder(
               padding: EdgeInsets.all(16.w),
               itemCount: 5,
-              itemBuilder: (context, index) => _buildSkeletonItem(),
+              itemBuilder: (context, index) => const NotificationSkeletonItem(),
             )
           : _notifications.isEmpty
-              ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Lottie.asset(
-                        Assets.imagesSearchFailLottie,
-                        height: 220.h,
-                      ),
-                      Text(
-                        'notifications.empty'.tr(context),
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          color: Theme.of(context).hintColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                )
+              ? const EmptyNotifications()
               : CustomRefreshIndicator(
                   onRefresh: _loadNotifications,
                   child: SlideTransition(
@@ -169,10 +118,11 @@ class _NotificationsViewState extends State<NotificationsView>
                       itemCount: _notifications.length,
                       itemBuilder: (context, index) {
                         final notification = _notifications[index];
-                        return Dismissible(
-                          key: Key(notification.id),
-                          direction: DismissDirection.endToStart,
-                          onDismissed: (_) {
+                        return NotificationItem(
+                          notification: notification,
+                          locale: locale,
+                          onTap: () => _markAsRead(notification.id),
+                          onDismissed: () {
                             AppHaptics.mediumImpact();
                             _notificationService
                                 .deleteNotification(notification.id);
@@ -180,101 +130,6 @@ class _NotificationsViewState extends State<NotificationsView>
                               _notifications.removeAt(index);
                             });
                           },
-                          background: Container(
-                            alignment: Alignment.centerRight,
-                            padding: EdgeInsets.only(right: 20.w),
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.circular(12.r),
-                            ),
-                            child: const Icon(
-                              Icons.delete_outline,
-                              color: Colors.white,
-                            ),
-                          ),
-                          child: Card(
-                            margin: EdgeInsets.only(bottom: 12.h),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.r),
-                            ),
-                            child: InkWell(
-                              onTap: () => _markAsRead(notification.id),
-                              borderRadius: BorderRadius.circular(12.r),
-                              child: Padding(
-                                padding: EdgeInsets.all(16.w),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: 40.w,
-                                      height: 40.h,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Theme.of(context)
-                                            .primaryColor
-                                            .withOpacity(0.1),
-                                      ),
-                                      child: Icon(
-                                        Icons.notifications_none,
-                                        color: Theme.of(context).primaryColor,
-                                      ),
-                                    ),
-                                    SizedBox(width: 16.w),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            notification.title,
-                                            style: TextStyle(
-                                              fontSize: 16.sp,
-                                              fontWeight: notification.isRead
-                                                  ? FontWeight.normal
-                                                  : FontWeight.bold,
-                                            ),
-                                          ),
-                                          SizedBox(height: 4.h),
-                                          Text(
-                                            notification.body,
-                                            style: TextStyle(
-                                              fontSize: 14.sp,
-                                              color: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium
-                                                  ?.color
-                                                  ?.withOpacity(0.7),
-                                            ),
-                                          ),
-                                          SizedBox(height: 8.h),
-                                          Text(
-                                            DateFormat.yMMMd(locale)
-                                                .format(notification.timestamp),
-                                            style: TextStyle(
-                                              fontSize: 12.sp,
-                                              color: Theme.of(context)
-                                                  .textTheme
-                                                  .bodySmall
-                                                  ?.color,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    if (!notification.isRead)
-                                      Container(
-                                        width: 8.w,
-                                        height: 8.h,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Theme.of(context).primaryColor,
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
                         );
                       },
                     ),

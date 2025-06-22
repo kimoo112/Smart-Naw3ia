@@ -3,10 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:smart_naw3ia/core/localization/translation_extension.dart';
-import 'package:smart_naw3ia/core/utils/app_colors.dart';
 import 'package:smart_naw3ia/features/notifications/data/services/notification_service.dart';
-
-import '../../../notifications/data/services/notification_helper.dart';
 
 class NotificationSwitchTile extends StatefulWidget {
   const NotificationSwitchTile({super.key});
@@ -16,8 +13,8 @@ class NotificationSwitchTile extends StatefulWidget {
 }
 
 class _NotificationSwitchTileState extends State<NotificationSwitchTile> {
+  final _notificationService = NotificationService();
   bool _notificationsEnabled = false;
-  final NotificationService _notificationService = NotificationService();
 
   @override
   void initState() {
@@ -50,16 +47,17 @@ class _NotificationSwitchTileState extends State<NotificationSwitchTile> {
         }
         return;
       }
-    }
+      await _notificationService.init();
 
-    await _notificationService.setNotificationsEnabled(value);
-
-    // Show a test notification when enabling
-    if (value) {
-      await NotificationHelper.showSimpleNotification(
+      await _notificationService.setNotificationsEnabled(true);
+      await _notificationService.showNotification(
         title: 'notifications.enabled_title'.tr(context),
         body: 'notifications.enabled_body'.tr(context),
       );
+    } else {
+      // When disabling notifications
+      await _notificationService.setNotificationsEnabled(false);
+      await _notificationService.clearAll(); // Cancel all notifications
     }
 
     if (mounted) {
@@ -80,10 +78,10 @@ class _NotificationSwitchTileState extends State<NotificationSwitchTile> {
       ),
       title: Text('notifications.enable_notifications'.tr(context)),
       trailing: Switch(
-        activeColor: AppColors.white,
+        activeColor: Colors.white,
         activeTrackColor: const Color(0xFF4CAF50),
         inactiveTrackColor: const Color(0xFFD13025),
-        inactiveThumbColor: AppColors.white,
+        inactiveThumbColor: Colors.white,
         value: _notificationsEnabled,
         onChanged: _handleNotificationToggle,
       ),

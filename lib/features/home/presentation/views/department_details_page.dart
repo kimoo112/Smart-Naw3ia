@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/localization/translation_extension.dart';
 import '../../data/models/department_model.dart';
 import '../widgets/custom_tab_bar.dart';
-import '../widgets/department_tab_content.dart';
+import '../widgets/department_tabs/aims_tab.dart';
+import '../widgets/department_tabs/department_tab_container.dart';
+import '../widgets/department_tabs/mission_tab.dart';
+import '../widgets/department_tabs/vision_tab.dart';
 import '../widgets/organizational_chart.dart';
 
 class DepartmentDetailsView extends StatefulWidget {
@@ -85,8 +87,7 @@ class _DepartmentDetailsViewState extends State<DepartmentDetailsView>
             child: TabBarView(
               controller: _tabController,
               children: [
-                // About Tab
-                DepartmentTabContent(
+                DepartmentTabContainer(
                   title: tabLabels[0],
                   icon: tabIcons[0],
                   accentColor: colors[0],
@@ -107,193 +108,26 @@ class _DepartmentDetailsViewState extends State<DepartmentDetailsView>
                     ],
                   ),
                 ),
-
-                DepartmentTabContent(
-                  title: tabLabels[1],
-                  icon: tabIcons[1],
+                VisionTab(
+                  vision: widget.department.getVision(locale),
+                  locale: locale,
                   accentColor: colors[1],
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(bottom: 20.h),
-                        child: Stack(
-                          children: [
-                            Positioned(
-                              left: 0,
-                              top: 0,
-                              child: Icon(
-                                IconlyBold.discovery,
-                                size: 60.r,
-                                color: colors[1].withOpacity(0.1),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 8.w, top: 8.h),
-                              child: Text(
-                                locale == 'ar' ? 'الرؤية' : 'Our Vision',
-                                style: textTheme.headlineSmall?.copyWith(
-                                  color: colors[1],
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Text(
-                        widget.department.getVision(locale),
-                        style: textTheme.bodyLarge?.copyWith(
-                          height: 1.6,
-                          fontSize: 16.sp,
-                          color: Theme.of(context)
-                              .textTheme
-                              .bodyLarge
-                              ?.color
-                              ?.withOpacity(0.87),
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
-
-                // Mission Tab
-                DepartmentTabContent(
-                  title: tabLabels[2],
-                  icon: tabIcons[2],
+                MissionTab(
+                  mission: widget.department.getMission(locale),
+                  locale: locale,
                   accentColor: colors[2],
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(bottom: 20.h),
-                        child: Stack(
-                          children: [
-                            Positioned(
-                              left: 0,
-                              top: 0,
-                              child: Icon(
-                                IconlyBold.work,
-                                size: 60.r,
-                                color: colors[2].withOpacity(0.1),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 8.w, top: 8.h),
-                              child: Text(
-                                locale == 'ar' ? 'رسالتنا' : 'Our Mission',
-                                style: textTheme.headlineSmall?.copyWith(
-                                  color: colors[2],
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(16.r),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            left: BorderSide(
-                              color: colors[2],
-                              width: 3.w,
-                            ),
-                          ),
-                        ),
-                        child: Text(
-                          widget.department.getMission(locale),
-                          style: textTheme.bodyLarge?.copyWith(
-                            height: 1.6,
-                            fontSize: 16.sp,
-                            color: Theme.of(context)
-                                .textTheme
-                                .bodyLarge
-                                ?.color
-                                ?.withOpacity(0.87),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
-
-                // Aims Tab
-                DepartmentTabContent(
-                  title: tabLabels[3],
-                  icon: tabIcons[3],
+                AimsTab(
+                  aims: widget.department.getObjectives(locale),
+                  locale: locale,
                   accentColor: colors[3],
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        locale == 'ar'
-                            ? 'أهداف القسم'
-                            : 'Department Objectives',
-                        style: textTheme.titleLarge?.copyWith(
-                          color: colors[3],
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 0.5,
-                        ),
-                      ),
-                      SizedBox(height: 16.h),
-                      ...widget.department
-                          .getObjectives(locale)
-                          .asMap()
-                          .entries
-                          .map((entry) {
-                        final index = entry.key;
-                        final aim = entry.value;
-                        return Container(
-                          margin: EdgeInsets.only(bottom: 16.h),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 28.r,
-                                height: 28.r,
-                                margin: EdgeInsets.only(right: 12.r, top: 2.r),
-                                decoration: BoxDecoration(
-                                  color: colors[3].withOpacity(0.1),
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    '${index + 1}',
-                                    style: TextStyle(
-                                      color: colors[3],
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Text(
-                                  aim,
-                                  style: textTheme.bodyLarge?.copyWith(
-                                    height: 1.5,
-                                    fontSize: 15.sp,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      }).toList(),
-                    ],
-                  ),
                 ),
-
-                // Staff Tab - Enhanced with ScrollView
-                SingleChildScrollView(
-                  padding: EdgeInsets.all(16.w),
-                  physics: const BouncingScrollPhysics(),
-                  child: OrganizationalChart(
-                    staff: [
-                      widget.department.head,
-                      ...widget.department.facultyMembers
-                    ],
-                  ),
+                OrganizationalChart(
+                  staff: [
+                    widget.department.head,
+                    ...widget.department.facultyMembers
+                  ],
                 ),
               ],
             ),

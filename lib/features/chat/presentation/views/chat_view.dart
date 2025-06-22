@@ -2,13 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smart_naw3ia/core/localization/translation_extension.dart';
 import 'package:smart_naw3ia/features/chat/presentation/cubit/chat_cubit.dart';
+import 'package:smart_naw3ia/features/chat/presentation/widgets/chat_app_bar.dart';
 import 'package:smart_naw3ia/features/chat/presentation/widgets/chat_input_field.dart';
 import 'package:smart_naw3ia/features/chat/presentation/widgets/chat_message.dart';
 import 'package:smart_naw3ia/features/chat/presentation/widgets/chat_suggestions.dart';
+import 'package:smart_naw3ia/features/chat/presentation/widgets/clear_chat_dialog.dart';
 import 'package:smart_naw3ia/features/chat/presentation/widgets/typing_indicator.dart';
 
 class ChatView extends StatefulWidget {
@@ -75,58 +75,11 @@ class _ChatViewState extends State<ChatView> {
     });
   }
 
-  Future<void> _showClearConfirmationDialog() async {
-    final locale = Localizations.localeOf(context).languageCode;
-    final isRTL = locale == 'ar';
-
-    return showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(
-          isRTL ? 'مسح المحادثة' : 'Clear Chat',
-          textAlign: isRTL ? TextAlign.right : TextAlign.left,
-        ),
-        content: Text(
-          isRTL
-              ? 'هل أنت متأكد من أنك تريد مسح جميع الرسائل؟'
-              : 'Are you sure you want to clear all messages?',
-          textAlign: isRTL ? TextAlign.right : TextAlign.left,
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text(isRTL ? 'إلغاء' : 'Cancel'),
-          ),
-          TextButton(
-            onPressed: () {
-              _chatCubit.clearChat();
-              Navigator.of(context).pop();
-              setState(() {
-                _isTyping = false;
-              });
-            },
-            child: Text(
-              isRTL ? 'مسح' : 'Clear',
-              style: const TextStyle(color: Colors.red),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('chat.title'.tr(context)),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(IconlyLight.delete),
-            onPressed: () => _showClearConfirmationDialog(),
-          ),
-        ],
+      appBar: ChatAppBar(
+        onClearChat: () => showClearChatConfirmationDialog(context, _chatCubit),
       ),
       body: Column(
         children: [

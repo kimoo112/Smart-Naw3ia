@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../core/cache/cache_helper.dart';
-import '../../core/localization/translation_extension.dart';
 import '../../core/routes/functions/navigation_functions.dart';
 import '../../core/routes/routes.dart';
-import '../../core/utils/app_assets.dart';
+import 'widgets/circle_one_animated_builder.dart';
+import 'widgets/circle_three_animated_builder.dart';
+import 'widgets/circle_two_animated_builder.dart';
+import 'widgets/logo_animated_builder.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({Key? key}) : super(key: key);
@@ -123,94 +125,18 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
               child: Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
-                  AnimatedBuilder(
-                    animation: _circle1,
-                    builder: (_, __) => ClipRect(
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        heightFactor: 0.5,
-                        child: Container(
-                          width: _circle1.value,
-                          height: _circle1.value,
-                          decoration: BoxDecoration(
-                            color:
-                                Theme.of(context).primaryColor.withOpacity(.4),
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  AnimatedBuilder(
-                    animation: _circle2,
-                    builder: (_, __) => ClipRect(
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        heightFactor: 0.5,
-                        child: Container(
-                          width: _circle2.value,
-                          height: _circle2.value,
-                          decoration: BoxDecoration(
-                            color:
-                                Theme.of(context).primaryColor.withOpacity(.6),
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  AnimatedBuilder(
-                    animation: _circle3,
-                    builder: (_, __) => ClipRect(
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        heightFactor: 0.5,
-                        child: Container(
-                          width: _circle3.value,
-                          height: _circle3.value,
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).primaryColor,
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  CircleOneAnimatedBuilder(circle1: _circle1),
+                  CircleTwoAnimatedBuilder(circle2: _circle2),
+                  CircleThreeAnimatedBuilder(circle3: _circle3),
                 ],
               ),
             ),
           ),
-
-          // Animated logo
-          AnimatedBuilder(
-            animation: _logoController,
-            builder: (_, child) => Opacity(
-              opacity: _logoOpacity.value,
-              child: Transform.scale(
-                scale: _logoScale.value,
-                child: child,
-              ),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  isDark
-                      ? Assets.imagesDarkModeLogo
-                      : Assets.imagesLightModeLogo,
-                  width: 200.w,
-                  height: 200.h,
-                ),
-                8.verticalSpace,
-                Text(
-                  'app.title'.tr(context),
-                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: Theme.of(context).primaryColor),
-                ),
-              ],
-            ),
-          ),
+          LogoAnimatedBuilder(
+              logoController: _logoController,
+              logoOpacity: _logoOpacity,
+              logoScale: _logoScale,
+              isDark: isDark),
         ],
       ),
     );

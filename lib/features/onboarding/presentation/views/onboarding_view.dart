@@ -17,7 +17,6 @@ class OnboardingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final locale = context.read<LocaleCubit>().state.locale.languageCode;
-
     return Stack(
       children: [
         IntroScreenOnboarding(
@@ -41,8 +40,6 @@ class OnboardingView extends StatelessWidget {
           skipTextStyle: Theme.of(context).textTheme.bodyLarge!,
         ),
         const OnboardingVectors(),
-        // Positioned(
-        //     top: 20.h, left: 10.w, child: Image.asset(Assets.imagesGreenSlogan))
       ],
     );
   }

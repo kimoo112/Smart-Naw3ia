@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DepartmentTabContent extends StatelessWidget {
+class DepartmentTabContainer extends StatelessWidget {
   final String? title;
   final Widget child;
   final IconData? icon;
   final bool animate;
   final Color? accentColor;
 
-  const DepartmentTabContent({
+  const DepartmentTabContainer({
     super.key,
     this.title,
     required this.child,

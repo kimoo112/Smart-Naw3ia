@@ -14,7 +14,7 @@ class NotificationService {
 
   final String _storageKey = 'local_notifications';
   final String _prefsKey = 'notification_preferences';
-
+  bool isSwitchAllowed = true;
   Future<void> init() async {
     try {
       developer.log('Initializing notification service');
@@ -367,10 +367,12 @@ class NotificationService {
             })
         .toList();
 
-    await CacheHelper.saveData(
-      key: _storageKey,
-      value: jsonEncode(jsonList),
-    );
+    isSwitchAllowed
+        ? await CacheHelper.saveData(
+            key: _storageKey,
+            value: jsonEncode(jsonList),
+          )
+        : null;
   }
 
   Future<List<NotificationsModel>> getNotifications() async {
@@ -415,8 +417,11 @@ class NotificationService {
   }
 
   Future<void> clearAll() async {
+    isSwitchAllowed = false;
+
     await CacheHelper.removeData(key: _storageKey);
     await AwesomeNotifications().cancelAll();
+    await AwesomeNotifications().removeChannel("basic_channel");
   }
 
   Future<void> deleteNotification(String id) async {

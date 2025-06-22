@@ -18,6 +18,7 @@ import '../../../../features/settings/presentation/widgets/notification_switch_t
 import '../../../../features/settings/presentation/widgets/section_header.dart';
 import '../../../../features/settings/presentation/widgets/settings_card.dart';
 import '../../../../features/settings/presentation/widgets/theme_switch_tile.dart';
+import '../widgets/guest_mode_warning.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
@@ -25,7 +26,6 @@ class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool isGuest = CacheHelper.getData(key: 'isGuest') == true;
-
     return Scaffold(
       appBar: AppBar(
         title: Text('settings.title'.tr(context)),
@@ -36,36 +36,7 @@ class SettingsView extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
         children: [
-          if (isGuest)
-            Container(
-              margin: EdgeInsets.only(bottom: 16.h),
-              padding: EdgeInsets.all(12.r),
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(12.r),
-                border: Border.all(
-                  color: Theme.of(context).primaryColor.withOpacity(0.3),
-                ),
-              ),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.info_outline,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  SizedBox(width: 8.w),
-                  Expanded(
-                    child: Text(
-                      'settings.guest_mode'.tr(context),
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+          if (isGuest) const GuestModeWarning(),
           SectionHeader(title: 'settings.general'.tr(context)),
           const SettingsCard(
             children: [

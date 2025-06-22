@@ -161,24 +161,3 @@ lib/
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Flutter Team for the amazing framework
-- All contributors who have helped shape this project
-- The open-source community for their invaluable packages and tools
-
-## 📞 Contact
-
-Your Name - [@yourtwitter](https://twitter.com/yourtwitter)
-
-Project Link: [https://github.com/yourusername/smart-naw3ia](https://github.com/yourusername/smart-naw3ia)
-
----
-
-<div align="center">
-Made with ❤️ by [Your Name]
-</div>

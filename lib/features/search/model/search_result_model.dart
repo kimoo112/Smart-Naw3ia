@@ -1,10 +1,34 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
+
 import '../../chat/data/models/department_model.dart' as chat;
 import '../../chat/data/models/faculty_info_model.dart';
 import '../../home/data/models/department_model.dart';
 import '../../home/data/models/news_model.dart';
 import '../../home/data/models/staff_model.dart';
 
-enum SearchResultType { department, news, staff, facultyInfo, chatDepartment }
+enum SearchResultType {
+  department,
+  news,
+  staff,
+  facultyInfo,
+  chatDepartment;
+
+  IconData get icon {
+    switch (this) {
+      case SearchResultType.department:
+        return IconlyLight.category;
+      case SearchResultType.news:
+        return Icons.article_outlined;
+      case SearchResultType.staff:
+        return IconlyLight.profile;
+      case SearchResultType.facultyInfo:
+        return Icons.school_outlined;
+      case SearchResultType.chatDepartment:
+        return Icons.chat_bubble_outline_rounded;
+    }
+  }
+}
 
 class SearchResult {
   final String title;

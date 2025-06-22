@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/localization/cubit/locale_cubit.dart';
 import '../../../../core/utils/app_text_styles.dart';
+import '../../../settings/data/services/launch_service.dart';
 import '../../data/models/news_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -10,12 +11,6 @@ import '../../../../../core/localization/translation_extension.dart';
 
 class AllNewsView extends StatelessWidget {
   const AllNewsView({super.key});
-
-  void _launchURL(String? url) async {
-    if (url != null && await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +40,7 @@ class AllNewsView extends StatelessWidget {
             curve: Curves.easeOut,
             margin: EdgeInsets.only(bottom: 16.h),
             child: GestureDetector(
-              onTap: () => _launchURL(news.link),
+              onTap: () => LaunchService.launchWebsite(news.link!),
               child: Material(
                 elevation: 6,
                 shadowColor: Colors.black26,

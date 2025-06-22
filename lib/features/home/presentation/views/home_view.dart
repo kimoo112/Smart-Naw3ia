@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../core/ui/floating_menu_navigation.dart';
-import '../../../../core/utils/app_assets.dart';
 import '../cubit/navigation_cubit.dart';
+import '../widgets/home_background.dart';
 import '../widgets/home_header.dart';
 import '../widgets/sections/section_tabs.dart';
 
@@ -40,8 +41,7 @@ class _HomeViewState extends State<HomeView> {
           child: Scaffold(
             body: Stack(
               children: [
-                Positioned(
-                    left: 0, child: Image.asset(Assets.imagesHomeVectors)),
+                const HomeBackground(),
                 Padding(
                   padding: EdgeInsets.only(top: 20.0.h),
                   child: const Column(

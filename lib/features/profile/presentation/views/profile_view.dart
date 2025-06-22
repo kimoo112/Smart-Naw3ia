@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../core/cache/cache_helper.dart';
+import '../../../../core/localization/cubit/locale_cubit.dart';
 import '../../../../core/localization/translation_extension.dart';
+import '../../../../core/ui/floating_menu_navigation.dart';
 import '../../../login/data/services/guest_name_service.dart';
 import '../../../login/data/services/guest_permissions_service.dart';
+import '../widgets/guest_warning.dart';
 import '../widgets/profile_achievements.dart';
 import '../widgets/profile_background.dart';
 import '../widgets/profile_header.dart';
 import '../widgets/profile_info_section.dart';
-
-import '../../../../core/localization/cubit/locale_cubit.dart';
-import '../../../../core/ui/floating_menu_navigation.dart';
-import '../../../settings/data/services/logout_service.dart';
 import '../widgets/time_table_card.dart';
 
 class ProfileView extends StatelessWidget {
@@ -78,7 +78,6 @@ class ProfileView extends StatelessWidget {
 
     final scholarships = [isAr ? 'منحة التفوق' : 'Academic Excellence'];
     final warnings = <String>[]; // or your warning logic
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Theme.of(context).colorScheme.background,
@@ -112,72 +111,7 @@ class ProfileView extends StatelessWidget {
                 ProfileHeader(student: student),
                 12.verticalSpace,
                 if (isGuest)
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 16.h),
-                    padding: EdgeInsets.all(16.r),
-                    decoration: BoxDecoration(
-                      color: Colors.amber.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(12.r),
-                      border: Border.all(
-                        color: Colors.amber,
-                        width: 1,
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.info_outline,
-                              color: Colors.amber,
-                              size: 20.r,
-                            ),
-                            SizedBox(width: 8.w),
-                            Expanded(
-                              child: Text(
-                                'restrictions.profile_edit_message'.tr(context),
-                                style: TextStyle(
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.amber[800],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 16.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ElevatedButton.icon(
-                              onPressed: () {
-                                GuestNameService.showGuestNameEditDialog(
-                                    context);
-                              },
-                              icon: const Icon(Icons.edit),
-                              label: Text('guest.edit_name'.tr(context)),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Theme.of(context).primaryColor,
-                                foregroundColor: Colors.white,
-                              ),
-                            ),
-                            // Login button
-                            OutlinedButton(
-                              onPressed: () {
-                                LogoutService.logout(context);
-                              },
-                              style: OutlinedButton.styleFrom(
-                                side: BorderSide(
-                                  color: Theme.of(context).primaryColor,
-                                ),
-                              ),
-                              child: Text('restrictions.login'.tr(context)),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
+                  const GuestWarning()
                 else
                   Column(
                     children: [

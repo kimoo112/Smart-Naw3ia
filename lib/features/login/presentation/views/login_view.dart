@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../core/localization/translation_extension.dart';
 import '../../../../core/routes/functions/navigation_functions.dart';
 import '../../../../core/routes/routes.dart';
-
-import '../../../../core/utils/app_assets.dart';
 import '../cubit/login_cubit.dart';
 import '../widgets/guest_login_button.dart';
 import '../widgets/login_button.dart';
 import '../widgets/login_form_field.dart';
 import '../widgets/login_header.dart';
+import '../widgets/login_vectors.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -70,14 +70,7 @@ class LoginView extends StatelessWidget {
                   ),
                 ),
               ),
-              Positioned(
-                  bottom: -10,
-                  left: 0,
-                  right: 0,
-                  child: Image.asset(
-                    Assets.imagesLoginVector,
-                    fit: BoxFit.cover,
-                  ))
+              const LoginVectors()
             ],
           ),
         );
